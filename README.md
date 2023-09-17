@@ -18,4 +18,4 @@ Este projeto é distribuído sob a Licença MIT.
 
 ## Contato
 
-Se você deseja entrar em contato com o autor do projeto, Guilherme Matos, você pode fazê-lo através do seguinte e-mail: [seu-email@gmail.com](mailto:seu-email@gmail.com).
+Se você deseja entrar em contato com o autor do projeto, Guilherme Matos, você pode fazê-lo através do seguinte e-mail: [guilhermematosgto2015@outlook.com](mailto:guilhermematosgto2015@outlook.com).
