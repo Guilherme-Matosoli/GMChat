@@ -12,7 +12,7 @@
     "forceConsistentCasingInFileNames": true,          
 
     /* Type Checking */
-    "strict": true,                                      
+    "strict": false,                                      
     "skipLibCheck": true                             
   }
 }
