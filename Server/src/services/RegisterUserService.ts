@@ -1,10 +1,8 @@
-import { randomUUID } from 'crypto';
-import { userRepository } from "../database/repositories/userRespository";
-
+import { UserRepository } from "../database/repositories/UserRepository";
 
 export class RegisterUserService{
   async register( { name, email, username, password }: any ){
-    const userCreate = userRepository.create({
+    const userCreate = UserRepository.create({
       name,
       email,
       username,
