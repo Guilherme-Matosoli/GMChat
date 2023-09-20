@@ -8,18 +8,17 @@ export class RegisterUserService{
   constructor( private userRepository: Omit<IUserRepository,"users"> ){};
 
   async register( { name, email, username, password }: any ){
-
     const userExist = this.userRepository.findOne({ where: { email } });
     if(userExist){
       return new Error("User already exists")
-    }
+    };
 
     const userCreate = this.userRepository.create({
       name,
       email,
       username,
       password
-    })
+    });
 
     return userCreate
   };
