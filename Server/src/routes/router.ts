@@ -5,4 +5,4 @@ import { RegisterUserController } from '../controllers/RegisterUserController';
 export const router = Router();
 router.use(cors());
 
-router.post('/register', new RegisterUserController().register)
+router.post('/register', new RegisterUserController().register);

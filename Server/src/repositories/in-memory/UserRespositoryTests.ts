@@ -1,7 +1,6 @@
 import { FindOptionsWhere, Repository } from "typeorm"
 import { User } from "../../database/entities/User"
-
-import { randomUUID } from "crypto";
+import { genUserId } from "../../utils/genUserId";
 
 export interface IUserRepository  extends Repository<User>{
   users: Array<User>
@@ -10,13 +9,14 @@ export interface IUserRepository  extends Repository<User>{
 export const UserRepositoryTests= {
   users: [],
   create({ name, username, password, email }: User): Omit<User, "password"> {
+    const user = { id: genUserId(), name, username, password, email };
+    return user;
+  },
 
-    const user = { id: randomUUID(), name, username, password, email };
+  save(user: User){
     this.users.push(user)
 
     const { password: _, ...userWhithoutPass } = user;
-
-    return userWhithoutPass;
   },
 
   findOne( { where: { email } } : any ) {

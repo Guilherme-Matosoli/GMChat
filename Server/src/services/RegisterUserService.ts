@@ -1,25 +1,27 @@
-import { Repository } from "typeorm";
-import { UserRepository } from "../repositories/UserRepository";
 import { User } from "../database/entities/User";
 import { IUserRepository } from "../repositories/in-memory/UserRespositoryTests";
+import { genUserId } from "../utils/genUserId";
 
 export class RegisterUserService{
   static register: any;
   constructor( private userRepository: Omit<IUserRepository,"users"> ){};
 
-  async register( { name, email, username, password }: any ){
-    const userExist = this.userRepository.findOne({ where: { email } });
+  async register( { name, email, username, password }: Omit< User, "id" > ){
+    const userExist = await this.userRepository.findOne({ where: { email } });
     if(userExist){
-      return new Error("User already exists")
+      return "User already exists"
     };
 
-    const userCreate = this.userRepository.create({
+    const user = this.userRepository.create({
+      id: genUserId(),
       name,
       email,
       username,
       password
     });
 
-    return userCreate
+    await this.userRepository.save(user);
+
+    return user
   };
 };

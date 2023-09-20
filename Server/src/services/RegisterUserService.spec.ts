@@ -34,7 +34,7 @@ describe("Register user", () => {
     await registerService.register(data);
     const register = await registerService.register(data);
 
-    expect(register).toEqual(new Error("User already exists"))
+    expect(register).toEqual("User already exists")
 
   })
 });
