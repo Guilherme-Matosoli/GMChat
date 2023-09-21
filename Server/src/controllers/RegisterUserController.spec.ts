@@ -1,10 +1,17 @@
 import { app } from "../app";
 import request from "supertest";
 
-describe("create user controller", () => {
+describe("Register user controller", () => {
 
-  it("should be able to create a new user", () => {
-    request(app).get('')
+  it("Should be able to create a new user", async () => {
+    const data = {
+      name: "tester",
+      email: "tester@itester.com",
+      username: "testering",
+      password: "tester123"
+    };
+
+    const response = request(app).post('/register').send(data);
   })
 
 })

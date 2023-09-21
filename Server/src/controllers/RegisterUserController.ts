@@ -18,7 +18,7 @@ export class RegisterUserController{
 
   async register( req: Request, res: Response ){
     const { name, username, email, password } = req.body; 
-    this.checkFields([name, username, email, password], res)
+    this.checkFields([name, username, email, password], res); 
 
     try{
       const registerService = new RegisterUserService(UserRepository);
