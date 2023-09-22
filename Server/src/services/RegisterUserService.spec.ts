@@ -6,7 +6,7 @@ describe("Register user", () => {
 
   beforeAll(() => {
     registerService = new RegisterUserService(UserRepositoryTests);
-  })
+  });
 
   it("should be able to register a new user", async () => {
 
