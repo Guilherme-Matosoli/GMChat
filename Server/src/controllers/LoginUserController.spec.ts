@@ -1,21 +1,20 @@
-import { app } from "../app";
-import request from "supertest";
 import { Client } from "pg";
+import { app } from "../app";
+import { AppDataSource } from "../database/dataSource";
 
-import { AppDataSource } from '../database/dataSource';
+import request from "supertest";
+
 
 beforeAll(async () => {
-  // connect with DB before tests
   await AppDataSource.initialize();
 });
 
 afterAll(async () => {
-  // desconect from database after tests
-  await AppDataSource.destroy(); 
+  await AppDataSource.destroy();
 });
 
-describe("Register user controller", () => {
-  it("Should be able to create a new user", async () => {
+describe("Login User Controller", () => {
+  it("Should be able to log user", async () => {
     const data = {
       name: "tester",
       email: "tester@itester.com",
@@ -23,10 +22,9 @@ describe("Register user controller", () => {
       password: "tester123"
     };
 
-    const response = await request(app).post('/register').send(data);
-    
-    const { password, ...userData } = data;
-    const { id: _, ...userResponse } = response.body;
+    await request(app).post('/register').send(data);
+
+    const user = await request(app).post('/login').send({ email: data.email, password: data.password });
 
     const client = new Client({
       host: "localhost",
@@ -38,8 +36,7 @@ describe("Register user controller", () => {
     });
     await client.connect();
     await client.query('DELETE FROM users;');
-    client.end()
 
-    expect(userResponse).toStrictEqual(userData);
-  });
+    expect(user.body).toHaveProperty("token");
+  })
 })

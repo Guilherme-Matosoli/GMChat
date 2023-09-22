@@ -4,6 +4,8 @@ import { RegisterUserService } from "../services/RegisterUserService";
 import { UserRepository } from "../repositories/UserRepository";
 import { User } from "../database/entities/User";
 
+import bcrypt from "bcrypt";
+
 export class RegisterUserController{
   constructor() { this.register = this.register.bind(this); };
 
@@ -19,11 +21,12 @@ export class RegisterUserController{
   async register( req: Request, res: Response ){
     const { name, username, email, password } = req.body; 
     this.checkFields([name, username, email, password], res); 
+    const hashPassowrd = await bcrypt.hash(password, 10);
 
     try{
       const registerService = new RegisterUserService(UserRepository);
 
-      const user = await registerService.register({ name, username, email, password });
+      const user = await registerService.register({ name, username, email, password: hashPassowrd });
       if(user == "User already exists") return res.status(409).json( { message: user } );
 
       const unstructuredUser = user as User;
