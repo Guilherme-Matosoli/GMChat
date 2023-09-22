@@ -3,6 +3,7 @@
   "testEnvironment": "node",
   "testMatch": ["**/**/*.spec.ts"],
   "moduleFileExtensions": ["ts","js", "json", "node"],
+  "setupFiles": ["./setuptest.js"],
 
   "transform": {
     "^.+\\.tsx?$": "ts-jest"

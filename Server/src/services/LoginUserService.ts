@@ -8,7 +8,7 @@ export class LoginUserService{
   
   async login( { email, password } ){
     try{
-      const user = await this.userRepository.findOne({ where: {email}  });
+      const user = await this.userRepository.findOne({ where: { email }  });
       if(!user) return "Invalid email or password";
 
       const verifyPass = bcrypt.compare(password, user.password);

@@ -38,7 +38,6 @@ describe("Register user controller", () => {
     });
     await client.connect();
     await client.query('DELETE FROM users;');
-    client.end()
 
     expect(userResponse).toStrictEqual(userData);
   });

@@ -12,9 +12,8 @@ export class RegisterUserService{
     try{
       const userExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
       if(userExist) return "User already exists";
-      
-      const hashPassowrd = await bcrypt.hash(password, 10);
-  
+
+      const hashPassowrd = await bcrypt.hash(password, 15);
       const user = this.userRepository.create({
         id: genUserId(),
         name,

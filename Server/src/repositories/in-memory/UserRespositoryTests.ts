@@ -15,14 +15,12 @@ export const UserRepositoryTests= {
 
   save(user: User){
     this.users.push(user)
-
-    const { password: _, ...userWhithoutPass } = user;
   },
 
   findOne( { where: { email } } : any ) {
     let exists = false;
     this.users.map(user => {
-      if(user.email == email) exists = true
+      if(user.email == email) exists = user
     })
 
     return exists
