@@ -7,8 +7,12 @@
     "dev": "nodemon -e ts -w ./src -x ts-node ./src/server.ts",
     "build": "tsc",
     "start": "node ./build/server.js",
+
+    "migration:revert": "typeorm-ts-node-commonjs -d ./src/database/dataSource.ts migration:revert",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/dataSource.ts migration:generate ./src/database/migrations/default",
     "migration:run": "typeorm-ts-node-commonjs -d ./src/database/dataSource.ts migration:run",
+
+    
     "test": "jest --runInBand --detectOpenHandles"
   },
   "keywords": [],
