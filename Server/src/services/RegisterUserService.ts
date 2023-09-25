@@ -1,5 +1,5 @@
 import { User } from "../database/entities/User";
-import { IUserRepository } from "../repositories/in-memory/UserRespositoryTests";
+import { IUserRepository } from "../repositories/in-memory/UserRepositoryTests";
 import { genUserId } from "../utils/genUserId";
 
 import bcrypt from "bcrypt";

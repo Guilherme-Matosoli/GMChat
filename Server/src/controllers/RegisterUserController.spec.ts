@@ -1,8 +1,8 @@
 import { app } from "../app";
 import request from "supertest";
-import { Client } from "pg";
 
 import { AppDataSource } from '../database/dataSource';
+import { cleanDatabase } from "../utils/cleanDatabase";
 
 beforeAll(async () => {
   // connect with DB before tests
@@ -28,16 +28,7 @@ describe("Register user controller", () => {
     const { password, ...userData } = data;
     const { id: _, ...userResponse } = response.body;
 
-    const client = new Client({
-      host: "localhost",
-      port: 5432,
-      password: "12345678",
-      application_name: "postgres",
-      user: "postgres",
-      database: "postgres"
-    });
-    await client.connect();
-    await client.query('DELETE FROM users;');
+    await cleanDatabase();
 
     expect(userResponse).toStrictEqual(userData);
   });

@@ -18,13 +18,4 @@ export class User{
   @Column({type: 'text'})
   password: string;
 
-  @OneToMany(() => Chat, chat => chat.userSender)
-  private sentChats?: Chat[];
-  
-  @OneToMany(() => Chat, chat => chat.userReceiver)
-  private receivedChats?: Chat[];
-
-  get chats(): Chat[] {
-    return [...this.sentChats, ...this.receivedChats];
-  }
 } 

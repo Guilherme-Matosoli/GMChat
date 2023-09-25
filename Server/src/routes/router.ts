@@ -2,6 +2,7 @@ import { Router } from 'express';
 import cors from 'cors';
 import { RegisterUserController } from '../controllers/RegisterUserController';
 import { LoginUserController } from '../controllers/LoginUserController';
+import { CreateChatController } from '../controllers/CreateChatController';
 
 export const router = Router();
 router.use(cors());
@@ -11,3 +12,7 @@ router.post('/register', new RegisterUserController().register);
 
 //User login
 router.post('/login', new LoginUserController().login);
+
+
+//Create a new chat
+router.post('/chat/create', new CreateChatController().create)

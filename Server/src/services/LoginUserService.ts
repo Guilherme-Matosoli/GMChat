@@ -1,4 +1,4 @@
-import { IUserRepository } from "../repositories/in-memory/UserRespositoryTests";
+import { IUserRepository } from "../repositories/in-memory/UserRepositoryTests";
 
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
