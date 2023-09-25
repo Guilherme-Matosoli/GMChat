@@ -1,4 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Chat } from './Chat';
 
 @Entity('users')
 export class User{
@@ -16,4 +17,14 @@ export class User{
 
   @Column({type: 'text'})
   password: string;
+
+  @OneToMany(() => Chat, chat => chat.userSender)
+  sentChats: Chat[];
+  
+  @OneToMany(() => Chat, chat => chat.userReceiver)
+  receivedChats: Chat[];
+
+  get chats(): Chat[] {
+    return [...this.sentChats, ...this.receivedChats];
+  }
 } 

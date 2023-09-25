@@ -13,4 +13,4 @@ export class Chat{
   @ManyToOne(() => User, user => user.username)
   @JoinColumn({ name: 'userReceiver', referencedColumnName: "username" })
   userReceiver: User
-}
+};
