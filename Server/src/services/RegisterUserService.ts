@@ -8,7 +8,7 @@ export class RegisterUserService{
   static register: User;
   constructor( private userRepository: Omit<IUserRepository,"users"> ){};
 
-  async register( { name, email, username, password }: Omit< User, "id" > ){
+  async register( { name, email, username, password }: Omit< User, "id" | "chats" > ){
     try{
       const userExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
       if(userExist) return "User already exists";

@@ -1,15 +1,15 @@
 import { Repository } from "typeorm"
-import { genUserId } from "../../utils/genUserId";
+import { genChatId } from "../../utils/genChatId";
 import { Chat } from "../../database/entities/Chat";
 
 export interface IChatRepository  extends Repository<Chat>{
   chats: Array<Chat>
 };
 
-export const UserRepositoryTests = {
+export const ChatRepositoryTest = {
   chats: [],
   create({ userSender, userReceiver }: Chat){
-    const chat = { id: genUserId(), userSender, userReceiver };
+    const chat = { id: genChatId(), userSender, userReceiver };
     return chat;
   },
 

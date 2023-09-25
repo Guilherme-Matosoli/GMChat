@@ -19,10 +19,10 @@ export class User{
   password: string;
 
   @OneToMany(() => Chat, chat => chat.userSender)
-  sentChats: Chat[];
+  private sentChats?: Chat[];
   
   @OneToMany(() => Chat, chat => chat.userReceiver)
-  receivedChats: Chat[];
+  private receivedChats?: Chat[];
 
   get chats(): Chat[] {
     return [...this.sentChats, ...this.receivedChats];

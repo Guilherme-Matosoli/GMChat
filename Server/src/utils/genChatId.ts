@@ -1,4 +1,4 @@
-function genChatId(): string {
+export function genChatId(): string {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
 
@@ -8,6 +8,4 @@ function genChatId(): string {
   };
 
   return result;
-}
-
-console.log(genChatId())
+};
