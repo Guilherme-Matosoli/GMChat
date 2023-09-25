@@ -23,7 +23,7 @@ export class CreateChatController{
       
       const chat =await createChatService.create({userSender, userReceiver});
 
-      return chat;
+      return res.status(200).json(chat);
     }
     catch(err){
       console.log(err)
