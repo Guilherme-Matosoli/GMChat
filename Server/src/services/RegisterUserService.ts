@@ -11,7 +11,7 @@ export class RegisterUserService{
   async register( { name, email, username, password }: Omit< User, "id" | "chats" > ){
     try{
       const emailExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
-      if(emailExist) return "User already exists";
+      if(emailExist) return "Email already exists";
       
       const userExist = await this.userRepository.findOne({ where: { username: username.toLowerCase() } });
       if(userExist) return "Username already exists";

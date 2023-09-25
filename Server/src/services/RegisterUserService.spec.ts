@@ -34,21 +34,21 @@ describe("Register user", () => {
     await registerService.register(data);
     const register = await registerService.register(data);
 
-    expect(register).toEqual("User already exists");
+    expect(register).toEqual("Email already exists");
   })
   
   it("shouldn't be able to register a new user because the username already exists in DB", async () => {
     const data = { 
       name: "Testing",
-      username: "testingsa",
-      email: "testinasg@outlook.com",
+      username: "abec",
+      email: "testinasasssssddddddsg@a.com",
       password: "testing123"
     };
 
     const data2 = { 
       name: "Testing",
-      username: "testingsa",
-      email: "tasestiang@outlook.com",
+      username: "abec",
+      email: "tasestasdasiang@s.com",
       password: "testing123"
     };
 

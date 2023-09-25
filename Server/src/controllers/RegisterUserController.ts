@@ -24,7 +24,7 @@ export class RegisterUserController{
       const registerService = new RegisterUserService(UserRepository);
 
       const user = await registerService.register({ name, username, email, password});
-      if(user == "User already exists") return res.status(409).json( { message: user } );
+      if(user == "Email already exists") return res.status(409).json( { message: user } );
       if(user == "Username already exists") return res.status(409).json( { message: user } );
 
       const unstructuredUser = user as User;
