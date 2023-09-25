@@ -10,16 +10,18 @@ export class RegisterUserService{
 
   async register( { name, email, username, password }: Omit< User, "id" | "chats" > ){
     try{
-      const userExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
-      if(userExist) return "User already exists";
-      if(userExist.username ==  username) return "Username already exists";
+      const emailExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
+      if(emailExist) return "User already exists";
+      
+      const userExist = await this.userRepository.findOne({ where: { username: username.toLowerCase() } });
+      if(userExist) return "Username already exists";
 
       const hashPassowrd = await bcrypt.hash(password, 15);
       const user = this.userRepository.create({
         id: genUserId(),
         name,
         email: email.toLowerCase(),
-        username,
+        username: username.toLowerCase(),
         password: hashPassowrd
       });
   

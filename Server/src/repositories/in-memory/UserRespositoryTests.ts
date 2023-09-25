@@ -17,10 +17,10 @@ export const UserRepositoryTests= {
     this.users.push(user)
   },
 
-  findOne( { where: { email } } : any ) {
+  findOne( { where: { property } } : any ) {
     let exists = false;
     this.users.map(user => {
-      if(user.email == email) exists = user
+      if(user[property] == property) exists = user
     })
 
     return exists
