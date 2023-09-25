@@ -1,9 +1,9 @@
-import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity("chats")
 export class Chat{
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   id: string
 
   @ManyToOne(() => User, user => user.username)
