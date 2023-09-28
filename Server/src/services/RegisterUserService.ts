@@ -5,7 +5,6 @@ import { genUserId } from "../utils/genUserId";
 import bcrypt from "bcrypt";
 
 export class RegisterUserService{
-  static register: User;
   constructor( private userRepository: Omit<IUserRepository,"users"> ){};
 
   async register( { name, email, username, password }: Omit< User, "id" | "chats" > ){
