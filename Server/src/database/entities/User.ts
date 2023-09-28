@@ -1,9 +1,9 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 import { Chat } from './Chat';
 
 @Entity('users')
 export class User{
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn({ type: 'int4' })
   id: number;
 
   @Column({ type: 'text' })
