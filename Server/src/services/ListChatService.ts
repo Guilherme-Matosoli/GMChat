@@ -22,7 +22,7 @@ export class ListChatService{
         }
       };
       
-      return { id: chat.id, user: handleName() };
+      return { id: chat.id, username: handleName() };
     });
     
     return chatsFormated;
