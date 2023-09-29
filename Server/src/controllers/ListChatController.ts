@@ -10,7 +10,6 @@ export class ListChatController{
 
     const response = await listChatService.list({ username });
 
-    return res.json(response)
-
+    return res.status(200).json(response)
   }
 }

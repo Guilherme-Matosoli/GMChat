@@ -4,7 +4,6 @@ export class ListChatService{
   constructor( private chatRepository: Omit<IChatRepository, "chats"> ){};
 
   async list( { username } ){
-
     const chats = await this.chatRepository
     .createQueryBuilder('chat')
     .leftJoinAndSelect('chat.userSender', 'userSender')
@@ -26,5 +25,5 @@ export class ListChatService{
     });
     
     return chatsFormated;
-  }
-} 
+  };
+};
