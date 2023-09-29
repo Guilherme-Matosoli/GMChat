@@ -8,7 +8,7 @@ export class ListChatController{
 
     const listChatService = new ListChatService(ChatRepository);
 
-    const response = await listChatService.list({username});
+    const response = await listChatService.list({ username });
 
     return res.json(response)
 

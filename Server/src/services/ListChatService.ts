@@ -12,7 +12,19 @@ export class ListChatService{
     .where('chat.userReceiver = :username OR chat.userSender = :username', { username })
     .getMany();
 
-    return chats
-
+    const chatsFormated = chats.map(chat => {
+      function handleName(){
+        if(chat.userSender.username == username){
+          return chat.userReceiver.username
+        }
+        else {
+          return chat.userSender.username
+        }
+      };
+      
+      return { id: chat.id, user: handleName() };
+    });
+    
+    return chatsFormated;
   }
-}
+} 
