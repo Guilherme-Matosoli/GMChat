@@ -6,10 +6,16 @@ export class ListChatController{
   async list( req: Request, res: Response ){
     const { username } = req.params;
 
-    const listChatService = new ListChatService(ChatRepository);
-
-    const response = await listChatService.list({ username });
-
-    return res.status(200).json(response)
+    try{
+      const listChatService = new ListChatService(ChatRepository);
+  
+      const response = await listChatService.list({ username });
+  
+      return res.status(200).json(response);
+    }
+    catch(err){
+      console.log(err)
+    }
+    
   }
-}
+} 

@@ -1,9 +1,10 @@
 import { io } from "../server";
 
 io.on("connection", (socket) => {
-  console.log(socket.id)
+  socket.on("join chat", chat => {
+    const chatCr = io.of(`/${chat}`);
 
-  socket.on("message", message => {
-    console.log(message)
+    chatCr.on("message", message => { })
   })
 })
+
