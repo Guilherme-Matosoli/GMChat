@@ -13,4 +13,4 @@ AppDataSource.initialize().then(() => {
   serverHttp.listen( PORT, () => console.log(`Server is running on port ${ PORT }👻`));
 });
 
-import "./listeners/onConnection";
+import "./listeners/webSocket";

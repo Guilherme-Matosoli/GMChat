@@ -15,7 +15,6 @@ export class ListChatController{
     }
     catch(err){
       console.log(err)
-    }
-    
-  }
-} 
+    };
+  };
+};

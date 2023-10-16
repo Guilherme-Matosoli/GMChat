@@ -14,7 +14,6 @@ router.post('/register', new RegisterUserController().register);
 //User login
 router.post('/login', new LoginUserController().login);
 
-
 //Create a new chat
 router.post('/chat/create', new CreateChatController().create)
 
