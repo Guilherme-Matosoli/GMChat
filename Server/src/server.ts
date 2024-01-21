@@ -6,7 +6,12 @@ import { AppDataSource } from './database/dataSource';
 import { app } from './app';
 
 const serverHttp = http.createServer(app);
-export const io = new Server(serverHttp);
+export const io = new Server(serverHttp, {
+  cors:{
+    "origin": "*"
+  }
+});
+
 
 AppDataSource.initialize().then(() => {
   const { PORT } = process.env;

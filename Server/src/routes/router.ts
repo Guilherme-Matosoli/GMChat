@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import cors from 'cors';
+
 import { RegisterUserController } from '../controllers/RegisterUserController';
 import { LoginUserController } from '../controllers/LoginUserController';
 import { CreateChatController } from '../controllers/CreateChatController';
@@ -15,7 +16,7 @@ router.post('/register', new RegisterUserController().register);
 router.post('/login', new LoginUserController().login);
 
 //Create a new chat
-router.post('/chat/create', new CreateChatController().create)
+router.post('/chat/create', new CreateChatController().create);
 
 //List user chats
-router.get('/chat/list/:username', new ListChatController().list)
+router.get('/chat/list/:username', new ListChatController().list);

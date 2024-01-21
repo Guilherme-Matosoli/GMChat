@@ -10,9 +10,8 @@ export class CreateChatService{
   async create({ userSender, userReceiver }: Omit<Chat, "id">): Promise<Chat> {
     try{
       const chat = this.chatRepository.create({ id: genChatId(), userSender, userReceiver});
-
       await this.chatRepository.save(chat);
-
+      
       return chat;
     }
     catch(err){

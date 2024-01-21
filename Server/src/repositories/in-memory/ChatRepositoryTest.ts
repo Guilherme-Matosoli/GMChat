@@ -2,7 +2,7 @@ import { Repository } from "typeorm"
 import { genChatId } from "../../utils/genChatId";
 import { Chat } from "../../database/entities/Chat";
 
-export interface IChatRepository  extends Repository<Chat>{
+export interface IChatRepository extends Repository<Chat>{
   chats: Array<Chat>
 };
 

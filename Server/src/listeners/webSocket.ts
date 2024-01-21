@@ -7,7 +7,10 @@ interface Message {
 };
 
 io.on("connection", (socket) => {
-  socket.on("join chat", chat => socket.join(chat));
+  socket.on("join chat", chat => {
+    socket.join(chat)
+    console.log(chat)
+  });
 
   socket.on("message", ( msg: Message ) => {
     io.to(msg.room).emit("message", msg);

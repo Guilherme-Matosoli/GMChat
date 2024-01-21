@@ -13,12 +13,8 @@ export class ListChatService{
 
     const chatsFormated = chats.map(chat => {
       function handleName(){
-        if(chat.userSender.username == username){
-          return chat.userReceiver.username
-        }
-        else {
-          return chat.userSender.username
-        }
+        if(chat.userSender.username == username) return chat.userReceiver.username
+        else return chat.userSender.username
       };
       
       return { id: chat.id, username: handleName() };
