@@ -1,6 +1,7 @@
 import { Content } from '@/components/Content';
 import { Container } from './styles';
 import { Header } from '@/components/Header';
+import { Button } from '@/components/Button';
 
 export const HomePage = () => {
 	return(
@@ -22,6 +23,10 @@ export const HomePage = () => {
 							❤️Desenvolvido com amor por: <a href="https://www.linkedin.com/in/guilherme-matos-13b6a6229/" target='_blank'> &gt;Guilherme Matos&lt;</a>❤️
 						</span>
 					</div>
+
+					<Button buttonType={2} href='/login'>
+						COMECE A SE DIVERTIR JÁ!
+					</Button>
 				</div>
 			</Content>
 		</Container>

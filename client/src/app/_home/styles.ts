@@ -44,7 +44,7 @@ export const Container = styled.main`
 
   .mainContent .box{
     width: 100%;
-    height: 130px;
+    min-height: 130px;
 
     display: flex;
     flex-direction: column;
@@ -56,9 +56,14 @@ export const Container = styled.main`
     background-color: rgba(0, 0, 0, 0.5);
 
     margin-top: 150px;
+    padding: 20px;
 
-    p, span{
+    p{
       margin: 0;
+    }
+
+    span{
+      margin-top: 20px;
     }
 
     a{
@@ -69,7 +74,7 @@ export const Container = styled.main`
 
     a::after{
       position: absolute;
-      left: 0;
+      left: 50%;
       bottom: 0;
 
       content: '';
@@ -81,6 +86,7 @@ export const Container = styled.main`
     }
 
     a:hover::after{
+      left: 0;
       width: 100%;
     }
   }
