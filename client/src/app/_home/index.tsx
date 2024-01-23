@@ -30,6 +30,9 @@ export const HomePage = () => {
 							COMECE A SE DIVERTIR JÁ!
 					</LinkButton>
 				</div>
+				<footer>
+					Copyright © { String(new Date().getFullYear()) } GM Chat Company. Todos os direitos reservados.
+				</footer>
 			</Content>
 		</Container>
 	)

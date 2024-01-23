@@ -94,4 +94,16 @@ export const Container = styled.main`
   .mainContent a{
     margin-top: 100px;
   }
+
+  footer{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+  }
 `;
