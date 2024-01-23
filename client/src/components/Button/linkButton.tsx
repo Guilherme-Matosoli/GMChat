@@ -1,5 +1,6 @@
 import { LinkProps } from "next/link";
 import { LinkContainer } from "./styles";
+import { AnchorHTMLAttributes } from "react";
 
 interface LinkButtonProps extends LinkProps{
   children: React.ReactNode

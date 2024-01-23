@@ -1,7 +1,9 @@
+'use client'
 import { Content } from '@/components/Content';
 import { Container } from './styles';
 import { Header } from '@/components/Header';
-import { Button } from '@/components/Button';
+import { LinkButton } from '@/components/Button/linkButton';
+
 
 export const HomePage = () => {
 	return(
@@ -24,9 +26,9 @@ export const HomePage = () => {
 						</span>
 					</div>
 
-					<Button buttonType={2} href='/login'>
-						COMECE A SE DIVERTIR JÁ!
-					</Button>
+					<LinkButton href="/login">
+							COMECE A SE DIVERTIR JÁ!
+					</LinkButton>
 				</div>
 			</Content>
 		</Container>

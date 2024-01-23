@@ -90,4 +90,8 @@ export const Container = styled.main`
       width: 100%;
     }
   }
+
+  .mainContent a{
+    margin-top: 100px;
+  }
 `;
