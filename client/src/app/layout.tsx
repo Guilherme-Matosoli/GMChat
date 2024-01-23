@@ -1,5 +1,6 @@
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import type { Metadata } from "next";
+import StyledComponentsRegistry from "./registry";
 
 export const metadata: Metadata = {
   title: "GMChat",
@@ -16,7 +17,7 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
       </head>
       <body>
         <GlobalStyle/>
-        { children }
+        <StyledComponentsRegistry>{ children }</StyledComponentsRegistry>
       </body>
     </html>
   );
