@@ -16,8 +16,8 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Open+Sans:wght@800&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <GlobalStyle/>
         <StyledComponentsRegistry>{ children }</StyledComponentsRegistry>
+        <GlobalStyle/>
       </body>
     </html>
   );

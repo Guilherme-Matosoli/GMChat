@@ -8,5 +8,11 @@ export const Container = styled.section`
   margin: 0 auto;
 
   max-width: 1400px;
-  min-height: 950px;
+  min-height: 850px;
+
+  @media(max-width: 900px){
+    max-width: 1000px;
+
+    padding: 0 20px;
+  }
 `;

@@ -106,4 +106,35 @@ export const Container = styled.main`
     font-family: 'Inter', sans-serif;
     font-size: 1.6rem;
   }
+
+  @media(max-width: 900px){
+    .mainContent{
+      padding-top: 50px;
+
+      p, span{
+        margin-top: 4rem;
+      }
+    }
+
+    .mainContent .box{
+      margin-top: 70px;
+      padding: 10px;
+
+      gap: 0;
+    }
+
+    .mainContent .box p,
+    .mainContent .box a,
+    .mainContent .box span{
+      font-size: 1.6rem;
+    }
+
+    .mainContent a{
+      margin-top: 50px;
+    }
+
+    footer{
+      font-size: 1.2rem;
+    }
+  }
 `;

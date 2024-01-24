@@ -20,4 +20,10 @@ export const Container = styled.header`
     justify-content: space-between;
     gap: 5rem;
   }
+
+  @media(max-width: 900px){
+    .buttonWrapper{
+      gap: 2rem;
+    }
+  }
 `;
