@@ -25,5 +25,7 @@ export const Container = styled.header`
     .buttonWrapper{
       gap: 2rem;
     }
+
+    margin-bottom: 50px;
   }
 `;

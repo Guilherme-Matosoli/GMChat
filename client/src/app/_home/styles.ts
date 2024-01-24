@@ -19,7 +19,7 @@ export const Container = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8rem;
+    gap: 10rem;
     flex-grow: 1;
 
     width: 100%;
