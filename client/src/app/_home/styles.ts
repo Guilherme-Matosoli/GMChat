@@ -2,8 +2,8 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  /* max-width: 100vw; */
   height: auto;
 
   padding: 20px 0;
@@ -19,12 +19,12 @@ export const Container = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 8rem;
     flex-grow: 1;
 
     width: 100%;
-    min-height: 100%;
 
-    padding-top: 100px;
+    margin-top: -100px;
 
     h2{
       font-size: 4rem;
@@ -37,33 +37,34 @@ export const Container = styled.main`
       font-size: 2rem;
       font-family: 'Inter', sans-serif;
       color: white;
-
-      margin-top: 6rem;
     }
+  }
+
+  .mainContent .introduction{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
   }
 
   .mainContent .box{
     width: 100%;
-    min-height: 130px;
+    min-height: 100px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.5);
 
-    margin-top: 150px;
     padding: 20px;
 
     p{
       margin: 0;
-    }
-
-    span{
-      margin-top: 20px;
     }
 
     a{
@@ -91,10 +92,6 @@ export const Container = styled.main`
     }
   }
 
-  .mainContent a{
-    margin-top: 100px;
-  }
-
   footer{
     width: 100%;
 
@@ -108,16 +105,17 @@ export const Container = styled.main`
   }
 
   @media(max-width: 900px){
-    .mainContent{
-      padding-top: 50px;
+    padding: 10px 0;
 
-      p, span{
-        margin-top: 4rem;
-      }
+    section{
+      background-size: 100%;
+    }
+
+    .mainContent{
+      /* gap: 0; */
     }
 
     .mainContent .box{
-      margin-top: 70px;
       padding: 10px;
 
       gap: 0;
@@ -126,11 +124,7 @@ export const Container = styled.main`
     .mainContent .box p,
     .mainContent .box a,
     .mainContent .box span{
-      font-size: 1.6rem;
-    }
-
-    .mainContent a{
-      margin-top: 50px;
+      font-size: 1.4rem;
     }
 
     footer{

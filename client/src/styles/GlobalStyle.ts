@@ -9,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body{
-    max-width: 100vw;
     overflow-x: hidden;
 
     background-color: rgb(255,153,0);
