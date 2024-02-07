@@ -54,4 +54,11 @@ export const Container = styled.div`
     background-image: var(--gradient-background);
     border-radius: 100px 20px 20px 100px;
   }
+
+  @media(max-width: 1700px){
+    padding: 80px 100px;
+  }
+  @media(max-width: 1100px){
+    padding: 80px 20px;
+  }
 `;
