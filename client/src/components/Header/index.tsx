@@ -1,9 +1,14 @@
+import { HTMLAttributes } from "react";
 import { HeaderButton } from "../HeaderButton";
 import { Container } from "./styles";
 
-export const Header = () => {
+interface HeaderProps{
+  showButtons?: boolean
+};
+
+export const Header: React.FC<HeaderProps>= ( { showButtons } ) => {
   return(
-    <Container>
+    <Container className={ showButtons ? "" : "hidden" }>
       <a href="/">
         <img
           src="headerLogo.svg" 
@@ -13,11 +18,11 @@ export const Header = () => {
       </a>
 
       <div className="buttonWrapper">
-        <HeaderButton href="/login" buttonType={1}>
+        <HeaderButton href="/auth/login" buttonType={ 1 }>
           LogIn
         </HeaderButton>
 
-        <HeaderButton href="/signup">
+        <HeaderButton href="/auth/signup">
           SignUp
         </HeaderButton>
       </div>

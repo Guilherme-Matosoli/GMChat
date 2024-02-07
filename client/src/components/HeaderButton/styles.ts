@@ -37,4 +37,8 @@ export const Container = styled(Link)`
       filter: brightness(0.9);
     } 
   }
+
+  @media(max-width: 500px){
+    width: 10rem;
+  }
 `;
