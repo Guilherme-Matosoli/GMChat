@@ -7,7 +7,7 @@ interface AuthLayoutProps {
 const AuthLayout: React.FC<AuthLayoutProps> = ( { children } ) => {
   return(
     <Container>
-      <div className="content">
+      <main className="content">
         <div className="formArea">
           <div className="form">
             { children }
@@ -22,7 +22,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ( { children } ) => {
             />
           </a>
         </div>
-      </div>
+      </main>
     </Container>
   );
 };
