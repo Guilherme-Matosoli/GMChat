@@ -1,5 +1,5 @@
-import { InputHTMLAttributes } from "react"
-import { Container } from "./styles"
+import { InputHTMLAttributes } from "react";
+import { Container } from "./styles";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   title: string
