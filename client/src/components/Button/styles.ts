@@ -38,6 +38,7 @@ export const LinkContainer = styled(Link)`
     padding: 15px 75px;
 
     font-size: 1.4rem;
+    max-width: 100%;
   }
 `;
 
@@ -63,5 +64,6 @@ export const ButtonContainer = styled.button`
     padding: 15px 75px;
 
     font-size: 1.4rem;
+    max-width: 100%;
   }
 `;

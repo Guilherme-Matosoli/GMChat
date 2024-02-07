@@ -51,4 +51,14 @@ export const Container = styled.form`
 
     background-color: black;
   }
+
+  @media(max-width: 900px){
+    .buttonsWrapper{
+      max-width: 100%;
+    }
+
+    .separator{
+      max-width: 100%;
+    }
+  }
 `;

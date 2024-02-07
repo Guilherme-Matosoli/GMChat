@@ -61,4 +61,21 @@ export const Container = styled.div`
   @media(max-width: 1100px){
     padding: 80px 20px;
   }
+
+  @media(max-width: 900px){
+    background-color: var(--linear-background);
+
+    .content{
+      height: 600px;
+      padding: 0px 20px;
+    }
+
+    .content .formArea, .content .formArea .form{
+      width: 100%;
+    }
+
+    .content .aside{
+      display: none;
+    }
+  }
 `;

@@ -7,6 +7,7 @@ export const Container = styled.div`
   gap: 1rem;
 
   width: 400px;
+  min-width: 100px;
 
   font-family: 'Open Sans', sans-serif;
   font-size: 1.3rem;
@@ -21,5 +22,9 @@ export const Container = styled.div`
 
     outline: none;
     border: 1px solid black;
+  }
+
+  @media(max-width: 900px){
+    max-width: 100%;
   }
 `;
