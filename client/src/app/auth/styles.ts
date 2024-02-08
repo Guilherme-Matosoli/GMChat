@@ -76,7 +76,6 @@ export const Container = styled.div`
 
     .logo{
       display: inline;
-      max-width: 95px;
     }
 
     .content{
