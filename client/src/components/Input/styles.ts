@@ -6,8 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  width: 400px;
-  min-width: 100px;
+  width: 100%;
 
   font-family: 'Open Sans', sans-serif;
   font-size: 1.3rem;
@@ -22,9 +21,5 @@ export const Container = styled.div`
 
     outline: none;
     border: 1px solid black;
-  }
-
-  @media(max-width: 900px){
-    max-width: 100%;
   }
 `;

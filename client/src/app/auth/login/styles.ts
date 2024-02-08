@@ -8,6 +8,7 @@ export const Container = styled.form`
   justify-content: space-between;
 
   height: 500px;
+  width: 400px;
 
   font-family: 'Open Sans';
   font-size: 1.5rem;
@@ -18,20 +19,22 @@ export const Container = styled.form`
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    width: 100%;
   }
 
   button, a{
-    width: 400px;
+    width: 100%;
     border: none;
   }
 
   .separator{
-    width: 400px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+
+    width: 100%;
   }
 
   .separator::before{
@@ -52,13 +55,8 @@ export const Container = styled.form`
     background-color: black;
   }
 
-  @media(max-width: 900px){
-    .buttonsWrapper{
-      max-width: 100%;
-    }
-
-    .separator{
-      max-width: 100%;
-    }
+  @media(max-width: 300px){
+    width: 100%;
   }
+
 `;

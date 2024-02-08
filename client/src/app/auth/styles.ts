@@ -36,6 +36,10 @@ export const Container = styled.div`
   }
 
   .content .formArea .form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 50%;
   }
 

@@ -38,7 +38,10 @@ export const LinkContainer = styled(Link)`
     padding: 15px 75px;
 
     font-size: 1.4rem;
-    max-width: 100%;
+  }
+
+  @media(max-width: 300px){
+    padding: 5px 20px;
   }
 `;
 
@@ -65,5 +68,9 @@ export const ButtonContainer = styled.button`
 
     font-size: 1.4rem;
     max-width: 100%;
+  }
+
+  @media(max-width: 300px){
+    padding: 5px 20px;
   }
 `;
