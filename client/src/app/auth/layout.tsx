@@ -7,6 +7,7 @@ interface AuthLayoutProps {
 const AuthLayout: React.FC<AuthLayoutProps> = ( { children } ) => {
   return(
     <Container>
+      <img src="/gm-auth-responsive.svg" alt="GMChat" className="logo"/>
       <main className="content">
         <div className="formArea">
           <div className="form">

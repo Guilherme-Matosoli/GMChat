@@ -3,15 +3,19 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 
-  padding: 80px 250px;
+  padding: 50px 250px;
 
   min-height: 100vh;
   width: 100vw;
 
   background-color: var(--dark-background);
+
+  .logo{ display: none; }
 
   .content{
     display: flex;
@@ -68,6 +72,12 @@ export const Container = styled.div`
 
   @media(max-width: 900px){
     background-color: var(--linear-background);
+    padding: 20px;
+
+    .logo{
+      display: inline;
+      max-width: 95px;
+    }
 
     .content{
       height: 600px;

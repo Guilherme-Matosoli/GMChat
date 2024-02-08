@@ -10,8 +10,10 @@ export const Container = styled.form`
   height: 500px;
   width: 400px;
 
-  font-family: 'Open Sans';
-  font-size: 1.5rem;
+  h1{
+    font-family: 'Open Sans';
+    font-size: 2.5rem;
+  }
 
   .buttonsWrapper{
     display: flex;
