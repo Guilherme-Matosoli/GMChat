@@ -26,7 +26,7 @@ export class RegisterUserService{
   
       await this.userRepository.save(user);
    
-      return user
+      return user;
     }
     catch(err){
       console.log(err)

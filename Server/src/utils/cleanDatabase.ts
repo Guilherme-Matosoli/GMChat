@@ -1,11 +1,13 @@
 import { Client } from "pg";
 
 export async function cleanDatabase(){
+
+  const { DBPORT, DBPASS } = process.env;
   
   const client = new Client({
     host: "localhost",
-    port: 5432,
-    password: "12345678",
+    port: DBPORT as unknown as number,
+    password: DBPASS,
     application_name: "postgres",
     user: "postgres",
     database: "postgres"

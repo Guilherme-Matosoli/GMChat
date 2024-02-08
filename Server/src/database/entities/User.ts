@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
-import { Chat } from './Chat';
 
 @Entity('users')
 export class User{
