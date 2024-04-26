@@ -5,24 +5,24 @@ import { LinkButton } from "@/components/Button/linkButton";
 
 
 const SignUp = () => {
-  return(
+  return (
     <Container>
       <h1>CADASTRE-SE</h1>
 
       <InputWrapper>
-        <Input 
+        <Input
           title="Nome"
           name="name"
           placeholder="Digite seu nome"
         />
-        <Input 
+        <Input
           title="Sobrenome"
           name="lastName"
           placeholder="Digite seu sobrenome"
         />
       </InputWrapper>
 
-      <Input 
+      <Input
         title="Email:"
         name="email"
         placeholder="Digite seu email"
@@ -30,7 +30,7 @@ const SignUp = () => {
         required
       />
 
-      <Input 
+      <Input
         title="Senha:"
         name="password"
         placeholder="Digite sua senha"
@@ -40,15 +40,15 @@ const SignUp = () => {
 
       <div className="buttonsWrapper">
         <RealButton type="submit">
-          Entrar
+          Cadatrar-se
         </RealButton>
 
         <span className="separator">
           ou
         </span>
 
-        <LinkButton href="/auth/signup" type={2}>
-          Cadastre-se
+        <LinkButton href="/auth/login" type={2}>
+          Entrar
         </LinkButton>
       </div>
     </Container>
