@@ -5,6 +5,7 @@ import { RegisterUserController } from '../controllers/RegisterUserController';
 import { LoginUserController } from '../controllers/LoginUserController';
 import { CreateChatController } from '../controllers/CreateChatController';
 import { ListChatController } from '../controllers/ListChatController';
+import { SearchUserController } from '../controllers/SearchUserController';
 
 export const router = Router();
 router.use(cors());
@@ -20,3 +21,6 @@ router.post('/chat/create', new CreateChatController().create);
 
 //List user chats
 router.get('/chat/list/:username', new ListChatController().list);
+
+//List users by username
+router.get('/users/:username', new SearchUserController().search);
