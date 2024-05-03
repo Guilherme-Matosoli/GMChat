@@ -11,7 +11,8 @@ export class LoginUserService{
       const user = await this.userRepository.findOne({ where: { email }  });
       if(!user) return "Invalid email or password";
 
-      const verifyPass = bcrypt.compare(password, user.password);
+      const verifyPass = await bcrypt.compare(password, user.password);
+      console.log(verifyPass)
       if(!verifyPass) return "Invalid email or password";
 
       const token = jwt.sign(

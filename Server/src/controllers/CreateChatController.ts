@@ -21,7 +21,8 @@ export class CreateChatController{
     try{
       const createChatService = new CreateChatService(ChatRepository);
       
-      const chat =await createChatService.create({userSender, userReceiver});
+      const chat = await createChatService.create({userSender, userReceiver});
+      if(chat == "Can not find user sender" || chat == "Can not find user receiver") return res.status(409).json({ message: chat })
 
       return res.status(200).json(chat);
     }

@@ -11,7 +11,13 @@ export class SearchUserController{
       
       const users = await searchService.search(username);
 
-      if(users.length >= 1) return res.status(200).json(users);
+      const usersWithoutPass = users.map(user => {
+        const { password: _, ...rest } = user;
+
+        return rest;
+      });
+
+      if(users.length >= 1) return res.status(200).json(usersWithoutPass);
       return res.status(404).json({ message: "User not found" });
     }
     catch{

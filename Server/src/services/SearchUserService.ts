@@ -6,7 +6,7 @@ export class SearchUserService{
 
   async search(username: string){
     try{
-      const users = await this.userRepository.find({ where: { username: Like(`${username}%`) } });
+      const users = await this.userRepository.find({ where: { username: Like(`${username.trim()}%`) } });
       
       return users;
     }
