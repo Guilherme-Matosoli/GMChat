@@ -1,14 +1,28 @@
+'use client';
 import { Input } from "@/components/Input";
 import { Container, InputWrapper } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
+import { ChangeEvent, useState } from "react";
 
 interface SignUpInfos{
-  
-}
+  name?: string,
+  username?: string,
+  email?: string,
+  password?: string
+};
 
 const SignUp = () => {
-  
+  const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>();
+
+  const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target; 
+
+    setSignUpInfos(current => ({
+      ...current,
+      [name]: value || ''
+    }));
+  };
 
   return (
     <Container>
@@ -19,11 +33,17 @@ const SignUp = () => {
           title="Nome:"
           name="name"
           placeholder="Digite seu nome"
+          required
+          onChange={setInfos}
+          value={signUpInfos?.name}
         />
         <Input
           title="Usuário:"
           name="username"
           placeholder="Digite seu usuário"
+          required
+          onChange={setInfos}
+          value={signUpInfos?.username}
         />
       </InputWrapper>
 
@@ -33,6 +53,8 @@ const SignUp = () => {
         placeholder="Digite seu email"
         type="email"
         required
+        onChange={setInfos}
+        value={signUpInfos?.email}
       />
 
       <Input
@@ -41,6 +63,7 @@ const SignUp = () => {
         placeholder="Digite sua senha"
         type="password"
         required
+        onChange={setInfos}
       />
 
       <div className="buttonsWrapper">
