@@ -1,8 +1,11 @@
 import { Input } from "@/components/Input";
-import { Container } from "./style";
+import { Container, InputWrapper } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
 
+interface SignUpInfos{
+  
+}
 
 const SignUp = () => {
   
@@ -11,12 +14,19 @@ const SignUp = () => {
     <Container>
       <h1>CADASTRE-SE</h1>
 
-      <Input
-        title="Nome"
-        name="name"
-        placeholder="Digite seu nome"
-      />
-        
+      <InputWrapper>
+        <Input
+          title="Nome:"
+          name="name"
+          placeholder="Digite seu nome"
+        />
+        <Input
+          title="Usuário:"
+          name="username"
+          placeholder="Digite seu usuário"
+        />
+      </InputWrapper>
+
       <Input
         title="Email:"
         name="email"
