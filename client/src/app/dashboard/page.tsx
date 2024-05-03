@@ -6,11 +6,14 @@ import { Header } from "@/components/Header";
 import { Contact } from "@/components/Contact";
 import { Input } from "@/components/Input";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { api } from "@/services/api";
+import { AuthContext } from "@/context/AuthContext";
 
 interface User{
   username: string,
-  name: string
+  name: string,
+  id: number
 };
 
 
@@ -19,16 +22,15 @@ const Dashboard = () => {
 
   const handleFindUsers = async (username: string) => {
     try{    
-      const request = await axios.get(`http://localhost:4000/users/${username}`);
-  
+      const request = await api.get(`/users/${username}`);
       setUserSearchResult(request.data);
-
-      console.log(request.data)
     }
     catch(err){
       setUserSearchResult(null);
     }
   };
+
+  const AuthContextInfos = useContext(AuthContext);
 
   return (
     <Container>
@@ -70,8 +72,8 @@ const Dashboard = () => {
                 onChange={e => handleFindUsers(e.target.value)}
               />
               {
-                userSearchResult?.map(users => {
-                  return <Contact />
+                userSearchResult?.map(user => {
+                  return <Contact toAdd name={user.name} username={user.username} id={user.id}/>
                 })
               }
 

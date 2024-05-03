@@ -58,4 +58,15 @@ export const Container = styled.div`
     background-color: white;
     border-radius: 50%;
   }
+
+  .info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info strong{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+  }
 `;
