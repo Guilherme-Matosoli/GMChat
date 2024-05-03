@@ -1,27 +1,22 @@
 import { Input } from "@/components/Input";
-import { Container, InputWrapper } from "./style";
+import { Container } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
 
 
 const SignUp = () => {
+  
+
   return (
     <Container>
       <h1>CADASTRE-SE</h1>
 
-      <InputWrapper>
-        <Input
-          title="Nome"
-          name="name"
-          placeholder="Digite seu nome"
-        />
-        <Input
-          title="Sobrenome"
-          name="lastName"
-          placeholder="Digite seu sobrenome"
-        />
-      </InputWrapper>
-
+      <Input
+        title="Nome"
+        name="name"
+        placeholder="Digite seu nome"
+      />
+        
       <Input
         title="Email:"
         name="email"
