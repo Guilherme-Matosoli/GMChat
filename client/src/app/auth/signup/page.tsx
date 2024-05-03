@@ -3,7 +3,8 @@ import { Input } from "@/components/Input";
 import { Container, InputWrapper } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { api } from "@/services/api";
 
 interface SignUpInfos{
   name?: string,
@@ -24,8 +25,15 @@ const SignUp = () => {
     }));
   };
 
+  const signup = async (e: FormEvent) => {
+    e.preventDefault();
+    const response = await api.post('register', signUpInfos);
+
+    console.log(response.data)
+  };
+
   return (
-    <Container>
+    <Container onSubmit={signup}>
       <h1>CADASTRE-SE</h1>
 
       <InputWrapper>
