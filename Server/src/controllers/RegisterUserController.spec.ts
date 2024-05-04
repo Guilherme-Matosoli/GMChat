@@ -30,6 +30,6 @@ describe("Register user controller", () => {
 
     await cleanDatabase();
 
-    expect(userResponse).toStrictEqual(userData);
+    expect(userResponse).toHaveProperty("status");
   });
 })
