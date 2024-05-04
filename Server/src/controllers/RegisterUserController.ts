@@ -30,7 +30,7 @@ export class RegisterUserController{
       const unstructuredUser = user as User;
       const { password: _, ...rest } = unstructuredUser; 
 
-      return res.status(201).json( rest );
+      return res.status(201).json( { status: "ok", user: rest } );
     } 
 
     catch(err){

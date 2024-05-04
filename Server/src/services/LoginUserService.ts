@@ -12,7 +12,6 @@ export class LoginUserService{
       if(!user) return "Invalid email or password";
 
       const verifyPass = await bcrypt.compare(password, user.password);
-      console.log(verifyPass)
       if(!verifyPass) return "Invalid email or password";
 
       const token = jwt.sign(
