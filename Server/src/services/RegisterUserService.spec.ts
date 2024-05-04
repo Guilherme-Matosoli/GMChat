@@ -2,10 +2,12 @@ import { UserRepositoryTests } from "../repositories/in-memory/UserRepositoryTes
 import { RegisterUserService } from "./RegisterUserService";
 
 describe("Register user", () => {
+  let repository;
   let registerService;
 
   beforeAll(() => {
-    registerService = new RegisterUserService(UserRepositoryTests);
+    repository = UserRepositoryTests;
+    registerService = new RegisterUserService(repository);
   });
 
   it("should be able to register a new user", async () => {

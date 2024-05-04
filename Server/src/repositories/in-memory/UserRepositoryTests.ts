@@ -18,7 +18,7 @@ export const UserRepositoryTests= {
   },
 
   findOne({ where }: any) {
-    if(Object.keys(where)[0] == "email" || "username"){
+    if(Object.keys(where)[0] == "email"){
       let exists = false;
       this.users.map(user => {
         if(user.email == where.email) { exists = user }
