@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CreateChatService } from "../services/CreateChatService";
 import { ChatRepository } from "../repositories/ChatRepository";
+import { UserRepository } from "../repositories/UserRepository";
 
 export class CreateChatController{
   constructor(){ this.create = this.create.bind(this); };
@@ -19,7 +20,7 @@ export class CreateChatController{
     this.checkFields([userSender, userReceiver], res);
 
     try{
-      const createChatService = new CreateChatService(ChatRepository);
+      const createChatService = new CreateChatService(ChatRepository, UserRepository);
       
       const chat = await createChatService.create({userSender, userReceiver});
       if(chat == "Can not find user sender" || chat == "Can not find user receiver") return res.status(409).json({ message: chat })
