@@ -7,14 +7,14 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { api } from "@/services/api";
 
 interface SignUpInfos{
-  name?: string,
-  username?: string,
-  email?: string,
-  password?: string
+  name: string,
+  username: string,
+  email: string,
+  password: string
 };
 
 const SignUp = () => {
-  const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>();
+  const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
 
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target; 
@@ -30,6 +30,10 @@ const SignUp = () => {
     const response = await api.post('register', signUpInfos);
 
     console.log(response.data)
+
+    if(response.data.status == "ok"){
+      setSignUpInfos({ name: '', username: '', email: '', password: '' });
+    };
   };
 
   return (
@@ -43,7 +47,7 @@ const SignUp = () => {
           placeholder="Digite seu nome"
           required
           onChange={setInfos}
-          value={signUpInfos?.name}
+          value={signUpInfos.name}
         />
         <Input
           title="Usuário:"
@@ -51,7 +55,7 @@ const SignUp = () => {
           placeholder="Digite seu usuário"
           required
           onChange={setInfos}
-          value={signUpInfos?.username}
+          value={signUpInfos.username}
         />
       </InputWrapper>
 
@@ -62,7 +66,7 @@ const SignUp = () => {
         type="email"
         required
         onChange={setInfos}
-        value={signUpInfos?.email}
+        value={signUpInfos.email}
       />
 
       <Input
@@ -72,6 +76,7 @@ const SignUp = () => {
         type="password"
         required
         onChange={setInfos}
+        value={signUpInfos.password}
       />
 
       <div className="buttonsWrapper">
