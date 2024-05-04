@@ -14,4 +14,15 @@ export class SearchUserService{
       console.log(err)
     }
   }
+
+  async testsearch(username: string){
+    try{
+      const users = await this.userRepository.find({ where: { username } });
+      
+      return users;
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
 }

@@ -18,7 +18,7 @@ export const UserRepositoryTests= {
   },
 
   findOne({ where }: any) {
-    if(Object.keys(where)[0] == "email"){
+    if(Object.keys(where)[0] == "email" || "username"){
       let exists = false;
       this.users.map(user => {
         if(user.email == where.email) { exists = user }
@@ -37,10 +37,10 @@ export const UserRepositoryTests= {
   },
 
   find({ where }: any) {
-    if(Object.keys(where)[0] == "email"){
+    if(Object.keys(where)[0] == "username"){
       let exists = false;
       this.users.map(user => {
-        if(user.email == where.email) { exists = user }
+        if(user.username == where.username) { exists = user }
       })
   
       return exists
@@ -48,7 +48,7 @@ export const UserRepositoryTests= {
     else{
       let exists = false;
       this.users.map(user => {
-        if(user.username == where.username) { exists = user }
+        if(user.email == where.email) { exists = user }
       })
   
       return exists

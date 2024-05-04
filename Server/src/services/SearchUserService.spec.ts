@@ -23,10 +23,8 @@ describe("Search user", () => {
     };
 
     await registerUserService.register(data);
-    console.log(repository.users)
 
-    const userSearch = await searchUserService.search("testing");
-    console.log(userSearch)
+    const userSearch = await searchUserService.testsearch("testing");
 
     expect(userSearch).toHaveProperty("username")
   });
