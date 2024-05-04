@@ -36,4 +36,23 @@ export const UserRepositoryTests= {
     }
   },
 
+  find({ where }: any) {
+    if(Object.keys(where)[0] == "email"){
+      let exists = false;
+      this.users.map(user => {
+        if(user.email == where.email) { exists = user }
+      })
+  
+      return exists
+    }
+    else{
+      let exists = false;
+      this.users.map(user => {
+        if(user.username == where.username) { exists = user }
+      })
+  
+      return exists
+    }
+  },
+
 } as unknown as IUserRepository; 
