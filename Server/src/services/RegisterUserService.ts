@@ -18,9 +18,9 @@ export class RegisterUserService{
       const hashPassowrd = await bcrypt.hash(password, 15);
       const user = this.userRepository.create({
         id: genUserId(),
-        name,
-        email: email.toLowerCase(),
-        username: username.toLowerCase(),
+        name: name.trim(),
+        email: email.toLowerCase().trim(),
+        username: username.toLowerCase().trim(),
         password: hashPassowrd
       });
   
