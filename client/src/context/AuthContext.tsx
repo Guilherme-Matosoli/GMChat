@@ -1,5 +1,5 @@
 'use client';
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
 
 interface User{
   email: string,
@@ -20,6 +20,20 @@ export const AuthContext = createContext({} as UserInfos);
 export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [token, setToken] = useState<string>();
+
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+      setToken(localStorage.getItem("token")!);
+      setUser(JSON.parse(localStorage.getItem("userInfo")!)); 
+    };
+
+    return;
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("token", token!);
+    localStorage.setItem("userInfo",JSON.stringify(user));
+  }, [user, token]);
 
   return(
     <AuthContext.Provider value={ { token, user, setUser, setToken } }>
