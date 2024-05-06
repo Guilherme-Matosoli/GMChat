@@ -22,4 +22,10 @@ export const Container = styled.div`
     outline: none;
     border: 1px solid black;
   }
+
+  .error{
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    margin-left: 20px;
+  }
 `;

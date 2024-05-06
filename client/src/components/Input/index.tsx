@@ -4,9 +4,10 @@ import { Container } from "./styles";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
   title: string
   name: string
+  error?: string
 };
 
-export const Input: React.FC<InputProps> = ( { title, name, ...rest } ) => {
+export const Input: React.FC<InputProps> = ( { title, name, error, ...rest } ) => {
   return (
     <Container>
       <label htmlFor={ name }>
@@ -18,6 +19,10 @@ export const Input: React.FC<InputProps> = ( { title, name, ...rest } ) => {
         name={ name }
         { ...rest }
       />
+
+      <span className="error">
+        { error }
+      </span>
     </Container>
   )
 }
