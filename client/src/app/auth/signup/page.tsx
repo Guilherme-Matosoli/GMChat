@@ -3,10 +3,12 @@ import { Input } from "@/components/Input";
 import { Container, InputWrapper } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
+
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AxiosResponse } from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 interface SignUpInfos{
   name: string,
@@ -35,6 +37,12 @@ const SignUp = () => {
     setHasToken(true)
   }, []);
 
+  const alert = () => {
+    toast("Cadastro concluído! ✅", {
+      className: 'toast'
+    })
+  };
+
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target; 
@@ -54,6 +62,9 @@ const SignUp = () => {
       const response = await api.post('register', signUpInfos);
 
       setSignUpInfos({ name: '', username: '', email: '', password: '' });
+      alert();
+
+      router.push('login')
     }
     catch(err: unknown){
       if(typeof err == 'object' && err != null && 'response' in err){
@@ -61,6 +72,7 @@ const SignUp = () => {
 
         errorResponse.data.message == 'Email already exists' && setErrors(current => ({ ...current, emailError: "Email já cadastrado." }));
         errorResponse.data.message == 'Username already exists' && setErrors(current => ({ ...current, userError: "Usuário já cadastrado." }));
+        
         return;
       }
 
@@ -70,6 +82,7 @@ const SignUp = () => {
 
   return hasToken && (
     <Container onSubmit={handleSignup}>
+      <Toaster />
       <h1>CADASTRE-SE</h1>
 
       <InputWrapper>
