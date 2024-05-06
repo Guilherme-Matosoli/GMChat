@@ -35,7 +35,8 @@ const Login = () => {
     try{
       e.preventDefault();
       const request = await api.post('login', loginInfo);
-      console.log(request.data)
+      authContext.setToken(request.data.token);
+      authContext.setUser(request.data.user);
     }
     catch(err: unknown){
       if(typeof err == "object" && err != null && "response" in err){
