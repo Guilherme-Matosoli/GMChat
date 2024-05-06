@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -24,6 +25,9 @@ export const Container = styled.div`
   }
 
   .errorDesc{
+    position: absolute;
+    top: 100%;
+
     font-family: 'Open Sans', sans-serif;
     color: red;
     margin-left: 20px;
