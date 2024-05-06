@@ -23,7 +23,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if(token != undefined) router.push("/dashboard")
+    if(token != undefined) router.push("/dashboard");
   }, []);
 
   const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });
@@ -56,6 +56,7 @@ const Login = () => {
       
       alert();
       setLoginInfo({ email: '', password: '' });
+      window.location.reload();
     }
     catch(err: unknown){
       if(typeof err == "object" && err != null && "response" in err){

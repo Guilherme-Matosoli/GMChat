@@ -71,11 +71,13 @@ const Dashboard = () => {
                 placeholder="Digite o usúario"
                 onChange={e => handleFindUsers(e.target.value)}
               />
-              {
-                userSearchResult?.map(user => {
-                  return <Contact toAdd name={user.name} username={user.username} id={user.id}/>
-                })
-              }
+              <div className="result">
+                {
+                  userSearchResult?.map(user => {
+                    return <Contact toAdd name={user.name} username={user.username} id={user.id}/>
+                  })
+                }
+              </div>
 
             </div>
           </section>
