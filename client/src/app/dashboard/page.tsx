@@ -30,7 +30,14 @@ const Dashboard = () => {
     }
   };
 
-  const AuthContextInfos = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  const getChats = async () => {  
+    await api.get('chat/list/')
+  };
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <Container>
