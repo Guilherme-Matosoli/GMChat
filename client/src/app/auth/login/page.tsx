@@ -7,20 +7,27 @@ import { LinkButton } from "@/components/Button/linkButton";
 import { api } from "@/services/api";
 import { AuthContext } from "@/context/AuthContext";
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface LoginInfos{
   email?: string,
   password?: string
-}
+};
 
 const Login = () => {
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if(token != undefined) router.push("/dashboard")
+  }, []);
+
   const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });
   const [error, setError] = useState<string | undefined>();
-
   const authContext = useContext(AuthContext);
 
   const alert = () => {
