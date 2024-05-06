@@ -5,10 +5,12 @@ import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
 
 import { api } from "@/services/api";
+import { AuthContext } from "@/context/AuthContext";
+
 import { ChangeEvent, FormEvent, useState } from "react";
 import { AxiosResponse } from "axios";
 import { useContext } from "react";
-import { AuthContext } from "@/context/AuthContext";
+import toast, { Toaster } from "react-hot-toast";
 
 interface LoginInfos{
   email?: string,
@@ -20,6 +22,12 @@ const Login = () => {
   const [error, setError] = useState<string | undefined>();
 
   const authContext = useContext(AuthContext);
+
+  const alert = () => {
+    toast("Sucesso! ✅", {
+      className: 'toast'
+    })
+  };
 
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,8 +43,12 @@ const Login = () => {
     try{
       e.preventDefault();
       const request = await api.post('login', loginInfo);
+
       authContext.setToken(request.data.token);
       authContext.setUser(request.data.user);
+      
+      alert();
+      setLoginInfo({ email: '', password: '' });
     }
     catch(err: unknown){
       if(typeof err == "object" && err != null && "response" in err){
@@ -53,6 +65,7 @@ const Login = () => {
 
   return(
     <Container onSubmit={e => handleLogin(e)}>
+      <Toaster/>
       <h1>FAÇA SEU LOGIN</h1>
 
       <Input 
