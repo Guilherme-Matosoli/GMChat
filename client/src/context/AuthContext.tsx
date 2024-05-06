@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 interface User{
   email: string,
@@ -11,7 +11,8 @@ interface User{
 interface UserInfos{
   token: string | undefined,
   user: User | undefined,
-  setUserInfo: (user: User) => void
+  setUser: Dispatch<SetStateAction<User | undefined>>,
+  setToken: Dispatch<SetStateAction<string | undefined>>,
 }
 
 export const AuthContext = createContext({} as UserInfos);
@@ -19,13 +20,9 @@ export const AuthContext = createContext({} as UserInfos);
 export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [user, setUser] = useState<User>();
   const [token, setToken] = useState<string>();
-  
-  const setUserInfo = (user: User) => {
-    setUser(user)
-  };
 
   return(
-    <AuthContext.Provider value={ { token, user, setUserInfo } }>
+    <AuthContext.Provider value={ { token, user, setUser, setToken } }>
       { children }
     </AuthContext.Provider>
   )
