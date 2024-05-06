@@ -5,7 +5,8 @@ import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "@/services/api";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { AxiosResponse } from "axios";
 
 interface SignUpInfos{
   name: string,
@@ -13,6 +14,12 @@ interface SignUpInfos{
   email: string,
   password: string
 };
+
+interface Errors{
+  emailError?: string,
+  userError?: string,
+  others?: string
+}
 
 const SignUp = () => {
   const [hasToken, setHasToken] = useState<boolean>(false);
@@ -29,9 +36,10 @@ const SignUp = () => {
   }, []);
 
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
-
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target; 
+
+    setErrors({ emailError: undefined, userError: undefined, others: undefined });
 
     setSignUpInfos(current => ({
       ...current,
@@ -39,19 +47,29 @@ const SignUp = () => {
     }));
   };
 
-  const signup = async (e: FormEvent) => {
+  const [errors, setErrors] = useState<Errors>({ emailError: undefined, userError: undefined, others: undefined });
+  const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
-    const response = await api.post('register', signUpInfos);
+    try{
+      const response = await api.post('register', signUpInfos);
 
-    console.log(response.data)
-
-    if(response.data.status == "ok"){
       setSignUpInfos({ name: '', username: '', email: '', password: '' });
-    };
+    }
+    catch(err: unknown){
+      if(typeof err == 'object' && err != null && 'response' in err){
+        const errorResponse = err.response as AxiosResponse;
+
+        errorResponse.data.message == 'Email already exists' && setErrors(current => ({ ...current, emailError: "Email já cadastrado." }));
+        errorResponse.data.message == 'Username already exists' && setErrors(current => ({ ...current, userError: "Usuário já cadastrado." }));
+        return;
+      }
+
+      setErrors(current => ({ ...current, others: "Erro interno do servidor, tente novamente mais tarde." }))
+    }
   };
 
-  return (
-    <Container onSubmit={signup}>
+  return hasToken && (
+    <Container onSubmit={handleSignup}>
       <h1>CADASTRE-SE</h1>
 
       <InputWrapper>
@@ -70,6 +88,7 @@ const SignUp = () => {
           required
           onChange={setInfos}
           value={signUpInfos.username}
+          errorDesc={errors.userError}
         />
       </InputWrapper>
 
@@ -81,6 +100,7 @@ const SignUp = () => {
         required
         onChange={setInfos}
         value={signUpInfos.email}
+        errorDesc={errors.emailError}
       />
 
       <Input
@@ -91,6 +111,7 @@ const SignUp = () => {
         required
         onChange={setInfos}
         value={signUpInfos.password}
+        errorDesc={errors.others}
       />
 
       <div className="buttonsWrapper">
