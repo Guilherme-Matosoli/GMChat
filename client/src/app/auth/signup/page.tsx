@@ -3,8 +3,9 @@ import { Input } from "@/components/Input";
 import { Container, InputWrapper } from "./style";
 import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "@/services/api";
+import { useRouter } from "next/router";
 
 interface SignUpInfos{
   name: string,
@@ -14,6 +15,19 @@ interface SignUpInfos{
 };
 
 const SignUp = () => {
+  const [hasToken, setHasToken] = useState<boolean>(false);
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if(token != undefined){
+      router.push("/dashboard");
+      return
+    }
+
+    setHasToken(true)
+  }, []);
+
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
 
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {

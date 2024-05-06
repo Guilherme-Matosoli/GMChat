@@ -19,11 +19,17 @@ interface LoginInfos{
 };
 
 const Login = () => {
+  const [hasToken, setHasToken] = useState<boolean>(false);
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if(token != undefined) router.push("/dashboard");
+    if(token != undefined){
+      router.push("/dashboard");
+      return
+    }
+
+    setHasToken(true)
   }, []);
 
   const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });
@@ -71,7 +77,7 @@ const Login = () => {
     };
   };
 
-  return(
+  return hasToken && (
     <Container onSubmit={e => handleLogin(e)}>
       <Toaster/>
       <h1>FAÇA SEU LOGIN</h1>

@@ -5,7 +5,7 @@ import { Container } from "./styles";
 import { Header } from "@/components/Header";
 import { Contact } from "@/components/Contact";
 import { Input } from "@/components/Input";
-import axios from "axios";
+
 import { useContext, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { AuthContext } from "@/context/AuthContext";
