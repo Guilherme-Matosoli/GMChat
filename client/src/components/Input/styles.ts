@@ -23,7 +23,7 @@ export const Container = styled.div`
     border: 1px solid black;
   }
 
-  .error{
+  .errorDesc{
     font-family: 'Open Sans', sans-serif;
     color: red;
     margin-left: 20px;

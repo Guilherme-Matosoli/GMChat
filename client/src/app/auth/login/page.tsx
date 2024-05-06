@@ -5,6 +5,7 @@ import { RealButton } from "@/components/Button/realButton";
 import { LinkButton } from "@/components/Button/linkButton";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { api } from "@/services/api";
+import { AxiosError, AxiosResponse } from "axios";
 
 interface LoginInfos{
   email?: string,
@@ -12,7 +13,8 @@ interface LoginInfos{
 }
 
 const Login = () => {
-  const [loginInfo, setLoginInfo] = useState<LoginInfos>();
+  const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });
+  const [error, setError] = useState<string | undefined>();
 
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,10 +26,21 @@ const Login = () => {
   };
 
   const login = async (e: FormEvent) => {
-    e.preventDefault();
-    const request = await api.post('login', loginInfo);
+    try{
+      e.preventDefault();
+      const request = await api.post('login', loginInfo);
+    }
+    catch(err: unknown){
+      if(typeof err == "object" && err != null && "response" in err){
+        const errorResponse = err.response as AxiosResponse;
 
-    console.log(request.data);
+        errorResponse.data.message == "Invalid email or password" && setError("Email ou senha inválidos, tente novamente.");
+        setLoginInfo(current => ({ ...current, password: '' }));
+        
+        return
+      };
+      setError("Erro interno do servidor, tente novamente mais tarde.");
+    };
   };
 
   return(
@@ -52,6 +65,7 @@ const Login = () => {
         required
         onChange={e => setInfos(e)}
         value={loginInfo?.password}
+        errorDesc={ error }
       />
 
       <div className="buttonsWrapper">

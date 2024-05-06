@@ -2,12 +2,12 @@ import { InputHTMLAttributes } from "react";
 import { Container } from "./styles";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
-  title: string
-  name: string
-  error?: string
+  title: string,
+  name: string,
+  errorDesc?: string
 };
 
-export const Input: React.FC<InputProps> = ( { title, name, error, ...rest } ) => {
+export const Input: React.FC<InputProps> = ( { title, name, errorDesc, ...rest } ) => {
   return (
     <Container>
       <label htmlFor={ name }>
@@ -20,9 +20,13 @@ export const Input: React.FC<InputProps> = ( { title, name, error, ...rest } ) =
         { ...rest }
       />
 
-      <span className="error">
-        { error }
-      </span>
+      {
+        errorDesc && (
+          <span className="errorDesc">
+            { errorDesc }
+          </span>
+        )
+      }
     </Container>
   )
 }
