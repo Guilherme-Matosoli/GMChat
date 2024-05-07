@@ -7,7 +7,13 @@ export const Header = () => {
   const { user } = useContext(AuthContext);
 
   const handleLogout = () => {
+    const token = localStorage.getItem("token");
+    if(!token) return;
 
+    localStorage.removeItem("token");
+    localStorage.removeItem("userInfo");
+
+    window.location.reload();
   };
 
   return(
@@ -24,7 +30,7 @@ export const Header = () => {
           <div className="informations">
             <span className="name">Olá, { user.name }!</span>
             <abbr title="Sair">
-              <button className="logout">
+              <button className="logout" onClick={handleLogout}>
                 <img src="logoutIcon.svg" alt="Sair" />
               </button>
             </abbr>
