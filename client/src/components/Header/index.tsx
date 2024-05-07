@@ -3,15 +3,15 @@ import { HeaderButton } from "../HeaderButton";
 import { Container } from "./styles";
 import { AuthContext } from "@/context/AuthContext";
 
-interface HeaderProps{
-  showButtons?: boolean
-};
-
-export const Header: React.FC<HeaderProps>= ( { showButtons } ) => {
+export const Header = () => {
   const { user } = useContext(AuthContext);
 
+  const handleLogout = () => {
+
+  };
+
   return(
-    <Container className={ showButtons ? "" : "hidden" }>
+    <Container>
       <a href="/">
         <img
           src="headerLogo.svg" 
