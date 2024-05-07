@@ -52,7 +52,7 @@ const Dashboard = () => {
       router.push('/auth/login');
       return;
     };
-    setHasToken(true)
+    setHasToken(true);
 
     getChats();
   }, [user]);
@@ -94,7 +94,7 @@ const Dashboard = () => {
               <div className="result">
                 {
                   userSearchResult?.map(user => {
-                    return <Contact toAdd name={user.name} username={user.username} id={user.id}/>
+                    return <Contact toAdd name={user.name} username={user.username} contactId={user.id} />
                   })
                 }
               </div>

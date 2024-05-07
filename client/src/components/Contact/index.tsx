@@ -1,23 +1,24 @@
 import { Container } from "./styles";
 
-import { useContext } from "react";
+import { HTMLAttributes, useContext, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import { api } from "@/services/api";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/utils/alert";
+import { AxiosResponse } from "axios";
 
-interface ContactProps{
+interface ContactProps extends HTMLAttributes<HTMLDivElement>{
   toAdd?: boolean,
   name?: string,
   username?: string,
-  id?: number
+  contactId?: number
 };
 
-export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, id }) => {
+export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, ...rest }) => {
   const { user } = useContext(AuthContext);
 
   const randomIcon = () => {
-    const firstNumberAtId = String(id)?.split('')[0]
+    const firstNumberAtId = String(contactId)?.split('')[0]
 
     return "icons/" + firstNumberAtId + ".svg"
   };
@@ -28,16 +29,24 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, id }) =
       
       const response = await api.post("/chat/create", data);
       if(response.data.id) showToast("Chat criado com sucesso!");
+      window.location.reload(); 
     }
-    catch(err){
-      console.log(err)
+    catch(err: unknown){
+      if(typeof err == "object" && err != null && 'response' in err){
+        const errorResponse = err.response as AxiosResponse;
+
+        errorResponse.data.message == "Chat already exists" && showToast("Chat já existente!");
+        return;
+      };
+      
+      showToast("Tente novamente mais tarde.");
     }
   };
 
   return(
-    <Container className={ toAdd ? "add" : "" }>
+    <Container className={ toAdd ? "add" : "" } { ...rest }>
       <Toaster/>
-      <img src={ id ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
+      <img src={ contactId ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
       
       <div className="info">
         <span>{ name || "fulano" }</span>
