@@ -10,13 +10,6 @@ export const Container = styled.form`
   height: 500px;
   width: 400px;
 
-  .toast{
-    padding: 10px;
-    font-size: 20px;
-
-    font-family: 'Open Sans', sans-serif;
-  }
-
   h1{
     font-family: 'Open Sans';
     font-size: 2.5rem;

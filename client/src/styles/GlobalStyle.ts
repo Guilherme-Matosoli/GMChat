@@ -27,6 +27,13 @@ export const GlobalStyle = createGlobalStyle`
     html { font-size: 12px; }
   }
 
+  .toast{
+    padding: 10px;
+    font-size: 20px;
+
+    font-family: 'Open Sans', sans-serif;
+  }
+
   :root{
     --gradient-background: linear-gradient(90deg, rgba(255,153,0,1) 0%, rgba(254,154,4,1) 3%, rgba(255,104,71,1) 100%);
     --button-gradient: linear-gradient(90deg, rgba(255,104,71,1) 0%, rgba(255,46,0,1) 100%);

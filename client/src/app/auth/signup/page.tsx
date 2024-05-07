@@ -8,7 +8,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AxiosResponse } from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/utils/alert";
 
 interface SignUpInfos{
   name: string,
@@ -37,12 +38,6 @@ const SignUp = () => {
     setHasToken(true)
   }, []);
 
-  const alert = () => {
-    toast("Cadastro concluído! ✅", {
-      className: 'toast'
-    })
-  };
-
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target; 
@@ -64,7 +59,7 @@ const SignUp = () => {
       const response = await api.post('register', signUpInfos);
 
       setSignUpInfos({ name: '', username: '', email: '', password: '' });
-      alert();
+      showToast("Cadastro concluído! ✅");
 
       response.data.status == "ok" && router.push('login');
     }

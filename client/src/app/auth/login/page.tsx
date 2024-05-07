@@ -12,6 +12,7 @@ import { AxiosResponse } from "axios";
 import { useContext } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { showToast } from "@/utils/alert";
 
 interface LoginInfos{
   email?: string,
@@ -36,12 +37,6 @@ const Login = () => {
   const [error, setError] = useState<string | undefined>();
   const authContext = useContext(AuthContext);
 
-  const alert = () => {
-    toast("Sucesso! ✅", {
-      className: 'toast'
-    })
-  };
-
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setError(undefined);
@@ -62,7 +57,7 @@ const Login = () => {
       authContext.setToken(request.data.token);
       authContext.setUser(request.data.user);
       
-      alert();
+      showToast("Sucesso! ✅");
       setLoginInfo({ email: '', password: '' });
       window.location.reload();
     }
