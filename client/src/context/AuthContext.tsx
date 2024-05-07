@@ -23,7 +23,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
 
   useEffect(() => {
     const localStorageToken = localStorage.getItem("token");
-    const localStorageUser = localStorage.getItem("user");
+    const localStorageUser = localStorage.getItem("userInfo");
 
     if(localStorageToken != undefined && localStorageUser != undefined){
       setToken(localStorageToken);

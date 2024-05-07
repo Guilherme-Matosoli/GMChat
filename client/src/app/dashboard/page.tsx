@@ -16,9 +16,15 @@ interface User{
   id: number
 };
 
+interface Chat{
+  userReceiver: string,
+  id: string
+};
 
 const Dashboard = () => {
   const [userSearchResult, setUserSearchResult] = useState<User[] | null>();
+  const [chats, setChats] = useState<Chat[]>();
+  const { user } = useContext(AuthContext);
 
   const handleFindUsers = async (username: string) => {
     try{    
@@ -30,14 +36,15 @@ const Dashboard = () => {
     }
   };
 
-  const authContext = useContext(AuthContext);
-
   const getChats = async () => {  
-    await api.get('chat/list/')
+    if(!user) return;
+    const response = await api.get(`/chat/list/${user?.username}`);
+    setChats(response.data);
   };
+
   useEffect(() => {
-    
-  }, []);
+    getChats();
+  }, [user]);
 
   return (
     <Container>
@@ -51,18 +58,13 @@ const Dashboard = () => {
             </div>
 
             <div className="contacts">
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
-              <Contact />
+              {
+                chats?.map(chat => {
+                  return (
+                    <Contact key={chat.id}/>
+                  )
+                })
+              }
             </div>
           </section>
 
