@@ -46,6 +46,10 @@ export const LinkContainer = styled(Link)`
 `;
 
 export const ButtonContainer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   padding: 20px 80px;
 
   background-image: var(--button-gradient);
@@ -62,6 +66,10 @@ export const ButtonContainer = styled.button`
   }
 
   cursor: pointer;
+
+  &.pending{
+    padding: 10px 80px;
+  }
 
   @media(max-width: 900px){
     padding: 15px 75px;

@@ -55,16 +55,18 @@ const SignUp = () => {
     }));
   };
 
+  const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState<Errors>({ emailError: undefined, userError: undefined, others: undefined });
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
+    setPending(true);
     try{
       const response = await api.post('register', signUpInfos);
 
       setSignUpInfos({ name: '', username: '', email: '', password: '' });
       alert();
 
-      router.push('login')
+      response.data.status == "ok" && router.push('login');
     }
     catch(err: unknown){
       if(typeof err == 'object' && err != null && 'response' in err){
@@ -78,6 +80,7 @@ const SignUp = () => {
 
       setErrors(current => ({ ...current, others: "Erro interno do servidor, tente novamente mais tarde." }))
     }
+    finally { setPending(false) }
   };
 
   return hasToken && (
@@ -128,7 +131,7 @@ const SignUp = () => {
       />
 
       <div className="buttonsWrapper">
-        <RealButton type="submit">
+        <RealButton type="submit" pending={pending}>
           Cadatrar-se
         </RealButton>
 

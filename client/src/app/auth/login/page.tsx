@@ -52,7 +52,9 @@ const Login = () => {
     }));
   };
 
+  const [pending, setPending] = useState(false);
   const handleLogin = async (e: FormEvent) => {
+    setPending(true);
     try{
       e.preventDefault();
       const request = await api.post('login', loginInfo);
@@ -74,7 +76,8 @@ const Login = () => {
         return
       };
       setError("Erro interno do servidor, tente novamente mais tarde.");
-    };
+    }
+    finally{ setPending(false) }
   };
 
   return hasToken && (
@@ -104,7 +107,7 @@ const Login = () => {
       />
 
       <div className="buttonsWrapper">
-        <RealButton type="submit">
+        <RealButton type="submit" pending={pending}>
           Entrar
         </RealButton>
 
