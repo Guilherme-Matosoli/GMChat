@@ -10,7 +10,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 import { useContext } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { showToast } from "@/utils/alert";
 

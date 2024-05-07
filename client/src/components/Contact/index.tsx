@@ -3,7 +3,8 @@ import { Container } from "./styles";
 import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 import { api } from "@/services/api";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "@/utils/alert";
 
 interface ContactProps{
   toAdd?: boolean,
@@ -26,7 +27,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, id }) =
       const data = { userSender: user?.username, userReceiver: username };
       
       const response = await api.post("/chat/create", data);
-      console.log(response.data)
+      if(response.data.id) showToast("Chat criado com sucesso!");
     }
     catch(err){
       console.log(err)
@@ -35,6 +36,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, id }) =
 
   return(
     <Container className={ toAdd ? "add" : "" }>
+      <Toaster/>
       <img src={ id ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
       
       <div className="info">
