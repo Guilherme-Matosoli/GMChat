@@ -9,6 +9,7 @@ import { Input } from "@/components/Input";
 import { useContext, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { AuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 interface User{
   username: string,
@@ -42,11 +43,21 @@ const Dashboard = () => {
     setChats(response.data);
   };
 
+  const [hasToken, setHasToken] = useState(false);
+  const router = useRouter();
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if(!token) {
+      router.push('/auth/login');
+      return;
+    };
+    setHasToken(true)
+
     getChats();
   }, [user]);
 
-  return (
+  return hasToken && (
     <Container>
       <Content>
         <Header />
