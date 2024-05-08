@@ -14,8 +14,8 @@ export class CreateMessageService{
 
       const chatExists = await this.chatRepository.findOne({ where: { id: chatId } });
       if(!chatExists) return "Chat doesn't exists";
-
       
+
     }
     catch(err){
       console.log(err)

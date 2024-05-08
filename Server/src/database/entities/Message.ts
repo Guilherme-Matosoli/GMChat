@@ -1,4 +1,4 @@
-import { Entity, JoinColumn, ManyToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, PrimaryColumn } from "typeorm";
 import { Chat } from "./Chat";
 import { User } from "./User";
 
@@ -14,4 +14,7 @@ export class Message{
   @ManyToMany(() => User, user => user.username)
   @JoinColumn({ referencedColumnName: 'usernmame' })
   sender: string
+
+  @Column({type: 'timestamp'})
+  time: Date
 };
