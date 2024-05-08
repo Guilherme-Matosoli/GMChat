@@ -1,4 +1,4 @@
-import { HTMLAttributes, useContext } from "react";
+import { useContext } from "react";
 import { HeaderButton } from "../HeaderButton";
 import { Container } from "./styles";
 import { AuthContext } from "@/context/AuthContext";
@@ -20,7 +20,7 @@ export const Header = () => {
     <Container>
       <a href="/">
         <img
-          src="headerLogo.svg" 
+          src="/headerLogo.svg" 
           alt="GMChat" 
           draggable={false}
         />
