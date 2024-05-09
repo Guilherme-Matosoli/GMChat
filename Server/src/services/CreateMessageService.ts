@@ -8,7 +8,7 @@ import { genChatId } from "../utils/genChatId";
 export class CreateMessageService{
   constructor(private messageRepositry: Repository<Message>, private userRepository: Repository<User>, private chatRepository: Repository<Chat>){};
 
-  async create({ chatId ,sender }){
+  async create({ chatId ,sender }: { chatId: string, sender: string }){
     try{
       const senderExists = await this.userRepository.findOne({ where: { username: sender } });
       if(!senderExists) return "Message sender doesn't exists";

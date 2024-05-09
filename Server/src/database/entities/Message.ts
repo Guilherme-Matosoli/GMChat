@@ -15,6 +15,6 @@ export class Message{
   @JoinColumn({ name: 'sender', referencedColumnName: 'username' })
   sender: string
 
-  @Column({type: 'timestamp'})
+  @Column({type: 'timestamptz'})
   time: Date
 };
