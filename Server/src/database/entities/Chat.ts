@@ -1,7 +1,8 @@
-import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
+import { Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { User } from "./User";
+import { Message } from "./Message";
 
-@Entity("chats")
+@Entity({ name: 'chats', schema: 'public' })
 export class Chat{
   @PrimaryColumn()
   id: string
@@ -13,4 +14,7 @@ export class Chat{
   @ManyToOne(() => User, user => user.username)
   @JoinColumn({ name: 'userReceiver', referencedColumnName: "username" })
   userReceiver: User
+
+  @OneToMany(() => Message, message => message.chatId)
+  messages: Message[]
 };

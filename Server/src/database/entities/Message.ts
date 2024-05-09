@@ -1,18 +1,18 @@
-import { Column, Entity, JoinColumn, ManyToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { Chat } from "./Chat";
 import { User } from "./User";
 
-@Entity('messages')
+@Entity({ name: 'messages', schema: 'public' })
 export class Message{
   @PrimaryColumn()
   id: string
 
-  @ManyToMany(() => Chat, chat => chat.id)
-  @JoinColumn({ referencedColumnName: 'id' })
+  @ManyToOne(() => Chat, chat => chat.id)
+  @JoinColumn({ name: 'chatId', referencedColumnName: 'id' })
   chatId: string
 
-  @ManyToMany(() => User, user => user.username)
-  @JoinColumn({ referencedColumnName: 'usernmame' })
+  @ManyToOne(() => User, user => user.username)
+  @JoinColumn({ name: 'sender', referencedColumnName: 'username' })
   sender: string
 
   @Column({type: 'timestamp'})

@@ -1,6 +1,6 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from 'typeorm';
 
-@Entity('users')
+@Entity({ name: 'users', schema: 'public' })
 export class User{
   @PrimaryColumn({ type: 'int4' })
   id: number;
