@@ -28,3 +28,6 @@ router.get('/users/:username', new SearchUserController().search);
 
 //Create a message
 router.post('/message/create', new CreateMessageController().create);
+
+//List messages
+router.get('/messages/list/:chatId');
