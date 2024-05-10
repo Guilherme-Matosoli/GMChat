@@ -13,18 +13,19 @@ export class ListChatService{
     .where('chat.userReceiver = :username OR chat.userSender = :username', { username })
     .getMany();
 
-    const userPromises = chats.map(async (chat) => {
+    const chatsPromises = chats.map(async (chat) => {
       function handleName() {
           if (chat.userSender.username === username) return chat.userReceiver.username;
           else return chat.userSender.username;
       };
 
-      const user = this.userRepository.findOne({ where: { username: handleName() } });
+      const user = await this.userRepository.findOne({ where: { username: handleName() } });
+      const { password: _, ...rest } = user;
   
-      return { id: chat.id, user };
+      return { id: chat.id, rest };
     });
     
-    const users = await Promise.all(userPromises);
-    
+    const allChats = await Promise.all(chatsPromises);
+    return allChats;
   };
 };
