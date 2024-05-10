@@ -1,7 +1,9 @@
+import { Repository } from "typeorm";
 import { IChatRepository } from "../repositories/in-memory/ChatRepositoryTest";
+import { User } from "../database/entities/User";
 
 export class ListChatService{
-  constructor( private chatRepository: Omit<IChatRepository, "chats"> ){};
+  constructor( private chatRepository: Omit<IChatRepository, "chats">, private userRepository: Repository<User> ){};
 
   async list( { username } ){
     const chats = await this.chatRepository
@@ -11,15 +13,18 @@ export class ListChatService{
     .where('chat.userReceiver = :username OR chat.userSender = :username', { username })
     .getMany();
 
-    const chatsFormated = chats.map(chat => {
-      function handleName(){
-        if(chat.userSender.username == username) return chat.userReceiver.username
-        else return chat.userSender.username
+    const userPromises = chats.map(async (chat) => {
+      function handleName() {
+          if (chat.userSender.username === username) return chat.userReceiver.username;
+          else return chat.userSender.username;
       };
-      
-      return { id: chat.id, username: handleName() };
+
+      const user = this.userRepository.findOne({ where: { username: handleName() } });
+  
+      return { id: chat.id, user };
     });
     
-    return chatsFormated;
+    const users = await Promise.all(userPromises);
+    
   };
 };
