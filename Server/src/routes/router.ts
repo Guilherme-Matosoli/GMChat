@@ -26,5 +26,5 @@ router.get('/chat/list/:username', new ListChatController().list);
 //List users by username
 router.get('/users/:username', new SearchUserController().search);
 
-
-router.post('/teste', new CreateMessageController().create)
+//Create a message
+router.post('/message/create', new CreateMessageController().create);
