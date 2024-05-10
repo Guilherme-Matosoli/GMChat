@@ -22,7 +22,7 @@ export class CreateMessageController{
       const createMessageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
       const message = await createMessageService.create({ chatId, sender, content });
-      if(message == "Message sender doesn't exists" || "Chat doesn't exists") return res.status(404).json({ message });
+      if(message == "Message sender doesn't exists" || message == "Chat doesn't exists") return res.status(404).json({ message });
 
       return res.status(201).json(message);
     }
