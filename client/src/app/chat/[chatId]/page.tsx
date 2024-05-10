@@ -11,6 +11,8 @@ interface ChatIdParams {
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
+  
+
   return (
     <Container>
       <Content>

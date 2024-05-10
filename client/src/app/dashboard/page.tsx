@@ -18,7 +18,7 @@ interface User{
 };
 
 interface Chat{
-  userReceiver: string,
+  user: User,
   id: string
 };
 
@@ -41,6 +41,7 @@ const Dashboard = () => {
     if(!user) return;
     const response = await api.get(`/chat/list/${user?.username}`);
     setChats(response.data);
+    console.log(response.data)
   };
 
   const [hasToken, setHasToken] = useState(false);
@@ -72,7 +73,7 @@ const Dashboard = () => {
               {
                 chats?.map(chat => {
                   return (
-                    <Contact key={chat.id}/>
+                    <Contact key={chat.id} name={chat.user.name} username={chat.user.username}/>
                   )
                 })
               }
