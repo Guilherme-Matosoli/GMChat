@@ -5,9 +5,19 @@ import { UserRepository } from "../repositories/UserRepository";
 import { ChatRepository } from "../repositories/ChatRepository";
 
 export class CreateMessageController{
+  constructor(){ this.create = this.create.bind(this); };
+
+  private checkFields( fields: string[], res: Response ){
+    let missingFields: boolean = false;
+    fields.map(fields => {
+      if(!fields) missingFields = true;
+    })
+  };
+
   async create( req: Request, res: Response ){
     try{
       const { chatId, sender } = req.body;
+      this.checkFields([chatId,sender], res)
       
       const createMessageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
@@ -19,6 +29,6 @@ export class CreateMessageController{
     catch(err){
       console.log(err)
       return res.status(500).json({ message: "Internal Server Error" })
-    }
-  }
-}
+    };
+  };
+};
