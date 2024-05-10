@@ -29,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .toast{
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
 
     font-family: 'Open Sans', sans-serif;
   }

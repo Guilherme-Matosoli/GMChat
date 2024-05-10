@@ -73,7 +73,13 @@ const Dashboard = () => {
               {
                 chats?.map(chat => {
                   return (
-                    <Contact key={chat.id} name={chat.user.name} username={chat.user.username}/>
+                    <Contact 
+                      key={chat.id} 
+                      name={chat.user.name} 
+                      username={chat.user.username} 
+                      contactId={chat.user.id}
+                      chatId={chat.id}
+                    />
                   )
                 })
               }

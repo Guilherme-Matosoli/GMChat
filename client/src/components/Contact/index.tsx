@@ -6,15 +6,17 @@ import { api } from "@/services/api";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
+import Link from "next/link";
 
 interface ContactProps extends HTMLAttributes<HTMLDivElement>{
   toAdd?: boolean,
   name?: string,
   username?: string,
-  contactId?: number
+  contactId?: number, 
+  chatId?: string
 };
 
-export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, ...rest }) => {
+export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, ...rest }) => {
   const { user } = useContext(AuthContext);
 
   const randomIcon = () => {
@@ -46,16 +48,25 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
   return(
     <Container className={ toAdd ? "add" : "" } { ...rest }>
       <Toaster/>
-      <img src={ contactId ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
+      <img className="avatar" src={ contactId ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
       
       <div className="info">
         <span>{ name || "fulano" }</span>
         <strong>{ username || "bak" }</strong>
       </div>
 
-      <button onClick={ () => createChat() }>
-        +
-      </button>
+      {
+        toAdd ? (
+          <button className="addButton" onClick={ () => createChat() }>
+            +
+          </button>
+        ) : (
+          <Link className="goToChat" href={`chat/${chatId}`}>
+            <img src="/arrowRight.svg" alt="" />
+          </Link>
+        )
+      }
+
     </Container>
   );
 };

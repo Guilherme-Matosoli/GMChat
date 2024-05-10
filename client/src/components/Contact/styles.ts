@@ -8,13 +8,14 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 25px;
 
   background-image: var(--button-gradient);
   border-radius: 20px;
   border: 2px solid #FF5D00;
 
-  img{
+  .avatar{
     width: 60px;
     border: 2px solid black;
 
@@ -28,9 +29,17 @@ export const Container = styled.div`
     color: white;
   }
 
+  button.addButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  button{
-    display: none;
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
 
     font-size: 20px;
 
@@ -46,7 +55,7 @@ export const Container = styled.div`
     justify-content: space-between;
   }
 
-  &.add button{
+  .goToChat{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,8 +64,20 @@ export const Container = styled.div`
     height: 50px;
 
     border: 1px solid black;
-    background-color: white;
+    background-color: transparent;
     border-radius: 50%;
+
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 
   .info{
