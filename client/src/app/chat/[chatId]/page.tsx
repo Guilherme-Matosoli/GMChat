@@ -17,7 +17,18 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     <Container>
       <Content>
         <Header />
-        {chatId}
+        <div className="chatArea">
+          <header className="topSide">
+            <button>
+              <img src="/arrowRight.svg" alt="Retornar" />
+              Voltar à página inicial
+            </button>
+
+            <span>
+              Chat com: Joao
+            </span>
+          </header>
+        </div>
       </Content>
     </Container>
   );

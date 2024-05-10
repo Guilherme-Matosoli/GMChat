@@ -31,7 +31,7 @@ export const Header = () => {
             <span className="name">Olá, { user.name }!</span>
             <abbr title="Sair">
               <button className="logout" onClick={handleLogout}>
-                <img src="logoutIcon.svg" alt="Sair" />
+                <img src="/logoutIcon.svg" alt="Sair" />
               </button>
             </abbr>
           </div>
