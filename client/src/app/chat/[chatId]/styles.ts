@@ -72,6 +72,8 @@ export const Container = styled.main`
     flex: 1;
 
     background-color: rgba(0, 0, 0, .5);
+
+    padding: 20px 40px;
   }
 
   .chatArea .inputArea{

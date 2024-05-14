@@ -4,6 +4,7 @@ import { Container } from "./styles";
 import { Content } from "@/components/Content";
 import { Header } from "@/components/Header";
 import Link from "next/link";
+import { Message } from "@/components/Message";
 
 interface ChatIdParams {
   params: {
@@ -31,11 +32,11 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
           </header>
 
           <div className="messageArea">
-
+            <Message />
           </div>
 
           <div className="inputArea">
-            
+
           </div>
         </div>
       </Content>
