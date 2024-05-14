@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { Container } from "./styles";
 import { Content } from "@/components/Content";
 import { Header } from "@/components/Header";
+import Link from "next/link";
 
 interface ChatIdParams {
   params: {
@@ -19,15 +20,23 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
         <Header />
         <div className="chatArea">
           <header className="topSide">
-            <button>
+            <Link href="/dashboard">
               <img src="/arrowRight.svg" alt="Retornar" />
               Voltar à página inicial
-            </button>
+            </Link>
 
             <span>
               Chat com: Joao
             </span>
           </header>
+
+          <div className="messageArea">
+
+          </div>
+
+          <div className="inputArea">
+            
+          </div>
         </div>
       </Content>
     </Container>
