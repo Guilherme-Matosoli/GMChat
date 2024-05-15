@@ -13,7 +13,7 @@ export const Message: React.FC<MessageProps> = ({ name, content }) => {
   return(
     <Container className={ user?.name == name ? 'mine' : '' }>
       <span className='userName'>
-        { name }
+        { name == user?.name ? "Você" : name }
       </span>
 
       <p className='messageContent'>
