@@ -78,6 +78,18 @@ export const Container = styled.main`
     background-color: rgba(0, 0, 0, .5);
 
     padding: 20px 40px;
+
+    overflow-y: auto;
+  }
+
+  .chatArea .messageArea::-webkit-scrollbar{
+    background-color: transparent;
+    width: 10px;
+  }
+
+  .chatArea .messageArea::-webkit-scrollbar-thumb{
+    background: #FF5D00;
+    border-radius: 20px;
   }
 
   .chatArea .inputArea{
