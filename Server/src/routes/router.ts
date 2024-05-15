@@ -7,6 +7,7 @@ import { CreateChatController } from '../controllers/CreateChatController';
 import { ListChatController } from '../controllers/ListChatController';
 import { SearchUserController } from '../controllers/SearchUserController';
 import { CreateMessageController } from '../controllers/CreateMessageController';
+import { ListMessageController } from '../controllers/ListMessageController';
 
 export const router = Router();
 router.use(cors());
@@ -30,4 +31,4 @@ router.get('/users/:username', new SearchUserController().search);
 router.post('/message/create', new CreateMessageController().create);
 
 //List messages
-router.get('/messages/list/:chatId');
+router.get('/message/list/:chatId', new ListMessageController().list);

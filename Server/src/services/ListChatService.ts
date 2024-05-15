@@ -22,10 +22,11 @@ export class ListChatService{
       const user = await this.userRepository.findOne({ where: { username: handleName() } });
       const { password: _, ...rest } = user;
   
-      return { id: chat.id, rest };
+      return { id: chat.id, user: rest };
     });
     
     const allChats = await Promise.all(chatsPromises);
+
     return allChats;
   };
 };
