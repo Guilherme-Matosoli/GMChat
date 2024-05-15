@@ -93,9 +93,38 @@ export const Container = styled.main`
   }
 
   .chatArea .inputArea{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 10px;
+
     width: 100%;
     min-height: 70px;
 
     background-color: rgb(255,104,71);
+  }
+
+  .sendButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+
+    background-color: white;
+    border-radius: 50%;
+
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover{
+      filter: brightness(0.9);
+    }
+  }
+
+  .sendButton img{
+    width: 50px;
   }
 `;

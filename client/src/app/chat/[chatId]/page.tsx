@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Message } from "@/components/Message";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
+import { useState } from "react";
 
 interface ChatIdParams {
   params: {
@@ -15,7 +16,7 @@ interface ChatIdParams {
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
-  
+  const [ message, setMessage ] = useState<string>();
 
   return (
     <Container>
@@ -61,7 +62,15 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
           </div>
 
           <div className="inputArea">
-            <TextArea placeholder="Digite sua mensagem"/> 
+            <TextArea 
+              placeholder="Digite sua mensagem"
+              onChange={e => setMessage(e.target.value)}
+              value={message}
+            /> 
+
+            <button className="sendButton">
+              <img src="/sendIcon.svg" alt="Enviar" />
+            </button>
           </div>
         </div>
       </Content>
