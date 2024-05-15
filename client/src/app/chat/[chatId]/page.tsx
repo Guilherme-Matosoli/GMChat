@@ -5,6 +5,8 @@ import { Content } from "@/components/Content";
 import { Header } from "@/components/Header";
 import Link from "next/link";
 import { Message } from "@/components/Message";
+import { Input } from "@/components/Input";
+import { TextArea } from "@/components/TextArea";
 
 interface ChatIdParams {
   params: {
@@ -59,7 +61,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
           </div>
 
           <div className="inputArea">
-
+            <TextArea placeholder="Digite sua mensagem"/> 
           </div>
         </div>
       </Content>

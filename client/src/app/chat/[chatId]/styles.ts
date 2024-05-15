@@ -94,7 +94,7 @@ export const Container = styled.main`
 
   .chatArea .inputArea{
     width: 100%;
-    height: 70px;
+    min-height: 70px;
 
     background-color: rgb(255,104,71);
   }
