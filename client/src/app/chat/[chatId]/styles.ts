@@ -68,6 +68,10 @@ export const Container = styled.main`
   }
 
   .chatArea .messageArea{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     width: 100%;
     flex: 1;
 

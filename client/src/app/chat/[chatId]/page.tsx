@@ -36,6 +36,10 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
               name="Joao" 
               content="capeta juniors"
             />
+            <Message 
+              name="guilherme" 
+              content="karaio"
+            />
           </div>
 
           <div className="inputArea">

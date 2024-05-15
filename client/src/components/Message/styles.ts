@@ -15,6 +15,29 @@ export const Container = styled.div`
   background-color: white;
   border-radius: 20px 20px 20px 0px;
 
+  &.mine{
+    align-self: flex-end;
+
+    border-radius: 20px 20px 0px 20px;
+  }
+
+  &.mine::after{
+    content: '';
+
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+
+    border-top: 10px solid transparent;
+    border-left: 10px solid white;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white; 
+  }
+
+  &.mine::before{
+    display: none;
+  }
+
   &::before{
     content: '';
 
