@@ -19,6 +19,8 @@ export const Container = styled.div`
     align-self: flex-end;
 
     border-radius: 20px 20px 0px 20px;
+
+    background-color: black;
   }
 
   &.mine::after{
@@ -29,9 +31,9 @@ export const Container = styled.div`
     bottom: 0;
 
     border-top: 10px solid transparent;
-    border-left: 10px solid white;
+    border-left: 10px solid black;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid white; 
+    border-bottom: 10px solid black; 
   }
 
   &.mine::before{
@@ -57,9 +59,17 @@ export const Container = styled.div`
     color: rgba(0, 0, 0, 0.7);
   }
 
+  &.mine .userName{
+    color: white;
+  }
+
   .messageContent{
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
     color: black;
+  }
+
+  &.mine .messageContent{
+    color: white;
   }
 `;
