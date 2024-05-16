@@ -61,7 +61,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
             +
           </button>
         ) : (
-          <Link className="goToChat" href={`chat/${chatId}`}>
+          <Link className="goToChat" href={`chat/${chatId}?user=${ name }`}>
             <img src="/arrowRight.svg" alt="" />
           </Link>
         )

@@ -9,6 +9,7 @@ import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
 import { useEffect, useState } from "react";
 import { api } from "@/services/api";
+import { useRouter } from "next/router";
 
 interface ChatIdParams {
   params: {
@@ -28,6 +29,8 @@ interface Message{
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
+  const [chatUser, setChatUser] = useState<String | null>();
+
   const [ messageList, setMessageList ] = useState<Message[]>();
   const [ message, setMessage ] = useState<string>();
 
@@ -42,6 +45,9 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   };
 
   useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    setChatUser(queryParams.get('user'));
+
     getMessages();
   }, []);
 
@@ -57,35 +63,22 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
             </Link>
 
             <span>
-              Chat com: Joao
+              Chat com: { chatUser }
             </span>
           </header>
 
           <div className="messageArea">
-            <Message 
-              name="Joao" 
-              content="capeta juniors"
-            />
-            <Message 
-              name="guilherme" 
-              content="karaio"
-            />
-            <Message 
-              name="guilherme" 
-              content="karaio"
-            />
-            <Message 
-              name="Joao" 
-              content="MEU IRMAO VÁ TOMAR NO MEIO DO SEU CU VÁ PORRA ME DEIXEDE BOA MEU VELHO TA MALUCO QUE CARA CHATO"
-            />
-            <Message 
-              name="Joao" 
-              content="MEU IRMAO VÁ TOMAR NO MEIO DO SEU CU VÁ PORRA ME DEIXEDE BOA MEU VELHO TA MALUCO QUE CARA CHATO"
-            />
-            <Message 
-              name="Joao" 
-              content="MEU IRMAO VÁ TOMAR NO MEIO DO SEU CU VÁ PORRA ME DEIXEDE BOA MEU VELHO TA MALUCO QUE CARA CHATO"
-            />
+            {
+              messageList?.map(msg => {
+                return(
+                  <Message 
+                    key={ msg.id }
+                    content={ msg.content }
+                    name={ msg.user.name }
+                  />
+                )
+              })
+            }
           </div>
 
           <div className="inputArea">
