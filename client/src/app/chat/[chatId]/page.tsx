@@ -7,7 +7,8 @@ import Link from "next/link";
 import { Message } from "@/components/Message";
 import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "@/services/api";
 
 interface ChatIdParams {
   params: {
@@ -15,8 +16,34 @@ interface ChatIdParams {
   }
 };
 
+interface User{
+  name: string,
+  username: string
+};
+interface Message{
+  id: string,
+  user: User,
+  content: string,
+  time: string
+};
+
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
+  const [ messageList, setMessageList ] = useState<Message[]>();
   const [ message, setMessage ] = useState<string>();
+
+  const getMessages = async () => {
+    try{
+      const response = await api.get(`/message/list/${ chatId }`);  
+      setMessageList(response.data.messages)
+    }
+    catch(err){
+      console.log(err)
+    }
+  };
+
+  useEffect(() => {
+    getMessages();
+  }, []);
 
   return (
     <Container>
