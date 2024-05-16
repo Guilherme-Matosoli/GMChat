@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 export class RegisterUserService{
   constructor( private userRepository: Omit<IUserRepository,"users"> ){};
 
-  async register( { name, email, username, password }: Omit< User, "id" | "chats" > ){
+  async register( { name, email, username, password }: Omit< User, "id" > ){
     try{
       const emailExist = await this.userRepository.findOne({ where: { email: email.toLowerCase() } });
       if(emailExist) return "Email already exists";

@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ListMessageService } from "../services/ListMessageService";
 import { MessageRepository } from "../repositories/MessageRepository";
+import { UserRepository } from "../repositories/UserRepository";
 
 
 export class ListMessageController{
@@ -18,7 +19,7 @@ export class ListMessageController{
       const { chatId } = req.params;
       this.checkFields([chatId], res);
 
-      const listMessageService = new ListMessageService(MessageRepository);
+      const listMessageService = new ListMessageService(MessageRepository, UserRepository);
 
       const messages = await listMessageService.list({ chatId });
 

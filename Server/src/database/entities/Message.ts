@@ -11,9 +11,9 @@ export class Message{
   @JoinColumn({ name: 'chatId', referencedColumnName: 'id' })
   chatId: string
 
-  @ManyToOne(() => User, user => user.username)
+  @ManyToOne(() => User, user => user.username, { eager: true })
   @JoinColumn({ name: 'user', referencedColumnName: 'username' })
-  user: User
+  user: Omit<User, "password">
 
   @Column( {type: 'text'} )
   content: string

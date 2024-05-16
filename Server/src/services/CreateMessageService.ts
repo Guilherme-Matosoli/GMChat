@@ -19,11 +19,11 @@ export class CreateMessageService{
       const time = new Date();
       const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
 
-      const { password: _, ...userRest } = userExists;
+      const { password: _, ...restUser } = userExists;
 
       const message = this.messageRepositry.create({
         id: genChatId(),
-        user: userRest,
+        user: restUser,
         chatId,
         content,
         time: brazilDate

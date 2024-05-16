@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn } from 'typeorm';
+import { Message } from './Message';
 
 @Entity({ name: 'users', schema: 'public' })
 export class User{
