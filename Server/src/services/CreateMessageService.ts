@@ -8,20 +8,22 @@ import { genChatId } from "../utils/genChatId";
 export class CreateMessageService{
   constructor(private messageRepositry: Repository<Message>, private userRepository: Repository<User>, private chatRepository: Repository<Chat>){};
 
-  async create({ chatId ,sender, content }: { chatId: string, sender: string, content: string }){
+  async create({ chatId ,user, content }: { chatId: string, user: string, content: string }){
     try{
-      const senderExists = await this.userRepository.findOne({ where: { username: sender } });
-      if(!senderExists) return "Message sender doesn't exists";
+      const userExists = await this.userRepository.findOne({ where: { username: user } });
+      if(!userExists) return "Message sender doesn't exists";
 
       const chatExists = await this.chatRepository.findOne({ where: { id: chatId } });
       if(!chatExists) return "Chat doesn't exists";
 
       const time = new Date();
-      const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' })
+      const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
 
-      const message = await this.messageRepositry.create({
+      const { password: _, ...userRest } = userExists;
+
+      const message = this.messageRepositry.create({
         id: genChatId(),
-        sender,
+        user: userRest,
         chatId,
         content,
         time: brazilDate

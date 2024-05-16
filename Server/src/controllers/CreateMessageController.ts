@@ -16,12 +16,12 @@ export class CreateMessageController{
 
   async create( req: Request, res: Response ){
     try{
-      const { chatId, sender, content } = req.body;
-      this.checkFields([chatId,sender, content], res)
+      const { chatId, user, content } = req.body;
+      this.checkFields([chatId,user, content], res)
       
       const createMessageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
-      const message = await createMessageService.create({ chatId, sender, content });
+      const message = await createMessageService.create({ chatId, user, content });
       if(message == "Message sender doesn't exists" || message == "Chat doesn't exists") return res.status(404).json({ message });
 
       return res.status(201).json(message);

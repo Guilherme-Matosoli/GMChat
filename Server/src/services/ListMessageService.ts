@@ -6,7 +6,7 @@ export class ListMessageService{
 
   async list( { chatId }: { chatId: string } ){
     try{
-      const messages = await this.messageRepoistory.query('SELECT * FROM messages WHERE "chatId" = $1', [chatId])
+      const messages = await this.messageRepoistory.query('SELECT * FROM messages WHERE "chatId" = $1', [chatId]);
       return messages;
     }
     catch(err){

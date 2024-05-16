@@ -12,8 +12,8 @@ export class Message{
   chatId: string
 
   @ManyToOne(() => User, user => user.username)
-  @JoinColumn({ name: 'sender', referencedColumnName: 'username' })
-  sender: string
+  @JoinColumn({ name: 'user', referencedColumnName: 'username' })
+  user: User
 
   @Column( {type: 'text'} )
   content: string
