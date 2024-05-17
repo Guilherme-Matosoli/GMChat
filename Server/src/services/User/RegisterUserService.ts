@@ -1,11 +1,11 @@
+import { Repository } from "typeorm";
 import { User } from "../../database/entities/User";
-import { IUserRepository } from "../../repositories/in-memory/UserRepositoryTests";
 import { genUserId } from "../../utils/genUserId";
 
 import bcrypt from "bcrypt";
 
 export class RegisterUserService{
-  constructor( private userRepository: Omit<IUserRepository,"users"> ){};
+  constructor( private userRepository: Repository<User> ){};
 
   async register( { name, email, username, password }: Omit< User, "id" > ){
     try{
@@ -25,8 +25,11 @@ export class RegisterUserService{
       });
   
       await this.userRepository.save(user);
+
+      const unstructuredUser = user;
+      const { password: _, ...restUser } = unstructuredUser; 
    
-      return user;
+      return restUser;
     }
     catch(err){
       console.log(err)

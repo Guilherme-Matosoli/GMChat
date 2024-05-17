@@ -27,10 +27,7 @@ export class RegisterUserController{
       if(user == "Email already exists") return res.status(409).json( { message: user } );
       if(user == "Username already exists") return res.status(409).json( { message: user } );
 
-      const unstructuredUser = user as User;
-      const { password: _, ...rest } = unstructuredUser; 
-
-      return res.status(201).json( { status: "ok", user: rest } );
+      return res.status(201).json( { status: "ok", user } );
     } 
 
     catch(err){

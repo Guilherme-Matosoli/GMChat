@@ -1,10 +1,10 @@
-import { IUserRepository } from "../../repositories/in-memory/UserRepositoryTests";
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { User } from "../../database/entities/User";
+import { Repository } from "typeorm";
 
 export class LoginUserService{
-  constructor( private userRepository: Omit< IUserRepository, "users" > ) {};
+  constructor( private userRepository: Repository<User> ) {};
   
   async login( { email, password } ){
     try{
