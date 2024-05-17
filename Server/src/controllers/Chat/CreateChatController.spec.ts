@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../../app";
 import { AppDataSource } from "../../database/dataSource";
 
-import { cleanDatabase } from "../../utils/cleanDatabase";
+import { cleanDatabase } from "../../utils/testsClient";
 
 beforeAll(async () => {
   await AppDataSource.initialize();

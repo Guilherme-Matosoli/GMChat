@@ -2,10 +2,13 @@ import { app } from "../../app";
 import { AppDataSource } from "../../database/dataSource";
 
 import request from "supertest";
-import { cleanDatabase } from "../../utils/cleanDatabase";
+import { testsClient } from "../../utils/testsClient";
+import { Client } from "pg";
 
+let testClient: Client;
 
 beforeAll(async () => {
+  testClient = testsClient;
   await AppDataSource.initialize();
 });
 
@@ -26,7 +29,7 @@ describe("Login User Controller", () => {
 
     const user = await request(app).post('/login').send({ email: data.email, password: data.password });
 
-    await cleanDatabase();
+    await testClient.query(`DELETE FROM users WHERE username = ${ data.username }`);
 
     expect(user.body).toHaveProperty("token");
   })
