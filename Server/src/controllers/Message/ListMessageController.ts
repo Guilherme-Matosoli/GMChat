@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { ListMessageService } from "../services/ListMessageService";
-import { MessageRepository } from "../repositories/MessageRepository";
-import { UserRepository } from "../repositories/UserRepository";
+import { ListMessageService } from "../../services/Message/ListMessageService";
+import { MessageRepository } from "../../repositories/MessageRepository";
+import { UserRepository } from "../../repositories/UserRepository";
 
 
 export class ListMessageController{

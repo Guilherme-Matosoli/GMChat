@@ -1,8 +1,8 @@
 import request from "supertest";
-import { app } from "../app";
-import { AppDataSource } from "../database/dataSource";
+import { app } from "../../app";
+import { AppDataSource } from "../../database/dataSource";
 
-import { cleanDatabase } from "../utils/cleanDatabase";
+import { cleanDatabase } from "../../utils/cleanDatabase";
 
 beforeAll(async () => {
   await AppDataSource.initialize();

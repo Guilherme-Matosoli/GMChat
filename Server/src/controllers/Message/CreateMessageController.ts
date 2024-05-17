@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { CreateMessageService } from "../services/CreateMessageService";
-import { MessageRepository } from "../repositories/MessageRepository";
-import { UserRepository } from "../repositories/UserRepository";
-import { ChatRepository } from "../repositories/ChatRepository";
+import { CreateMessageService } from "../../services/Message/CreateMessageService";
+import { MessageRepository } from "../../repositories/MessageRepository";
+import { UserRepository } from "../../repositories/UserRepository";
+import { ChatRepository } from "../../repositories/ChatRepository";
 
 export class CreateMessageController{
   constructor(){ this.create = this.create.bind(this); };

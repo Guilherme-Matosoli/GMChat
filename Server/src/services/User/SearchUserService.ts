@@ -1,5 +1,5 @@
 import { Like, Repository } from "typeorm";
-import { User } from "../database/entities/User";
+import { User } from "../../database/entities/User";
 
 export class SearchUserService{
   constructor( private userRepository: Repository<User> ){};

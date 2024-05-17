@@ -1,7 +1,7 @@
-import { ChatRepositoryTest } from "../repositories/in-memory/ChatRepositoryTest";
-import { UserRepositoryTests } from "../repositories/in-memory/UserRepositoryTests";
+import { ChatRepositoryTest } from "../../repositories/in-memory/ChatRepositoryTest";
+import { UserRepositoryTests } from "../../repositories/in-memory/UserRepositoryTests";
 
-import { RegisterUserService } from "./RegisterUserService";
+import { RegisterUserService } from "../User/RegisterUserService";
 import { CreateChatService } from "./CreateChatService";
 
 describe("CreateChatService", () => {

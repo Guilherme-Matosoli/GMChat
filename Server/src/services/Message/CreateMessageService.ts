@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
-import { Message } from "../database/entities/Message";
-import { Chat } from "../database/entities/Chat";
-import { User } from "../database/entities/User";
-import { genChatId } from "../utils/genChatId";
+import { Message } from "../../database/entities/Message";
+import { Chat } from "../../database/entities/Chat";
+import { User } from "../../database/entities/User";
+import { genChatId } from "../../utils/genChatId";
 
 
 export class CreateMessageService{

@@ -1,8 +1,8 @@
-import { app } from "../app";
-import { AppDataSource } from "../database/dataSource";
+import { app } from "../../app";
+import { AppDataSource } from "../../database/dataSource";
 
 import request from "supertest";
-import { cleanDatabase } from "../utils/cleanDatabase";
+import { cleanDatabase } from "../../utils/cleanDatabase";
 
 
 beforeAll(async () => {

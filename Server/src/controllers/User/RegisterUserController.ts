@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 
-import { RegisterUserService } from "../services/RegisterUserService";
-import { UserRepository } from "../repositories/UserRepository";
-import { User } from "../database/entities/User";
+import { RegisterUserService } from "../../services/User/RegisterUserService";
+import { UserRepository } from "../../repositories/UserRepository";
+import { User } from "../../database/entities/User";
 
 export class RegisterUserController{
   constructor() { this.register = this.register.bind(this); };

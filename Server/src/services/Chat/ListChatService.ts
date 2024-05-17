@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { IChatRepository } from "../repositories/in-memory/ChatRepositoryTest";
-import { User } from "../database/entities/User";
+import { IChatRepository } from "../../repositories/in-memory/ChatRepositoryTest";
+import { User } from "../../database/entities/User";
 
 export class ListChatService{
   constructor( private chatRepository: Omit<IChatRepository, "chats">, private userRepository: Repository<User> ){};

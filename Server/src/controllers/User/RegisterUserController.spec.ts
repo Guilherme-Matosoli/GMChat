@@ -1,8 +1,8 @@
-import { app } from "../app";
+import { app } from "../../app";
 import request from "supertest";
 
-import { AppDataSource } from '../database/dataSource';
-import { cleanDatabase } from "../utils/cleanDatabase";
+import { AppDataSource } from '../../database/dataSource';
+import { cleanDatabase } from "../../utils/cleanDatabase";
 
 beforeAll(async () => {
   // connect with DB before tests

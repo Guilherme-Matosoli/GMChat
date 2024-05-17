@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { SearchUserService } from '../services/SearchUserService';
-import { UserRepository } from '../repositories/UserRepository';
+import { SearchUserService } from '../../services/User/SearchUserService';
+import { UserRepository } from '../../repositories/UserRepository';
 
 export class SearchUserController{
 

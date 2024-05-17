@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { Message } from "../database/entities/Message";
-import { User } from "../database/entities/User";
+import { Message } from "../../database/entities/Message";
+import { User } from "../../database/entities/User";
 
 export class ListMessageService{
   constructor(private messageRepoistory: Repository<Message>, private userRepository: Repository<User>){};

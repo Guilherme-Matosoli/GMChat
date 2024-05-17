@@ -1,4 +1,4 @@
-import { UserRepositoryTests } from "../repositories/in-memory/UserRepositoryTests";
+import { UserRepositoryTests } from "../../repositories/in-memory/UserRepositoryTests";
 import { SearchUserService } from "./SearchUserService";
 import { RegisterUserService } from "./RegisterUserService";
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { LoginUserService } from "../services/LoginUserService";
-import { UserRepository } from "../repositories/UserRepository";
+import { LoginUserService } from "../../services/User/LoginUserService";
+import { UserRepository } from "../../repositories/UserRepository";
 
 
 export class LoginUserController{

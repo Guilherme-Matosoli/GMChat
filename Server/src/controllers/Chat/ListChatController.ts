@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { ListChatService } from "../services/ListChatService";
-import { ChatRepository } from "../repositories/ChatRepository";
-import { UserRepository } from "../repositories/UserRepository";
+import { ListChatService } from "../../services/Chat/ListChatService";
+import { ChatRepository } from "../../repositories/ChatRepository";
+import { UserRepository } from "../../repositories/UserRepository";
 
 export class ListChatController{
   constructor(){ this.list = this.list.bind(this) };
