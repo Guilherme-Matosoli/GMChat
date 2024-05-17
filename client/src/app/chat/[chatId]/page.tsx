@@ -7,7 +7,7 @@ import { TextArea } from "@/components/TextArea";
 
 import { NextPage } from "next";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { socket } from "@/services/io";
 import { AuthContext } from "@/context/AuthContext";
@@ -47,7 +47,9 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     }
   };
 
-  const sendMessage = async () => {
+  const sendMessage = async (e: FormEvent) => {
+    e.preventDefault();
+
     socket.emit("message", { room: chatId, user: user, message });
     setMessage('');
   };
@@ -99,17 +101,17 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
             }
           </div>
 
-          <div className="inputArea">
+          <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
             <TextArea 
               placeholder="Digite sua mensagem"
               onChange={e => setMessage(e.target.value)}
               value={message}
             /> 
 
-            <button className="sendButton" onClick={() => sendMessage()}>
+            <button className="sendButton" type="submit">
               <img src="/sendIcon.svg" alt="Enviar" />
             </button>
-          </div>
+          </form>
         </div>
       </Content>
     </Container>
