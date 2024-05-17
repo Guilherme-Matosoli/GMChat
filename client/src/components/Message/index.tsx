@@ -4,11 +4,15 @@ import { AuthContext } from '@/context/AuthContext';
 
 interface MessageProps{
   name: string,
-  content: string
+  content: string,
+  time: string
 };
 
-export const Message: React.FC<MessageProps> = ({ name, content }) => {
+export const Message: React.FC<MessageProps> = ({ name, content, time }) => {
   const { user } = useContext(AuthContext);
+
+  const messageTime = new Date(time);
+  const formatedTime = `${ messageTime.getHours() }:${ messageTime.getMinutes() }`;
 
   return(
     <Container className={ user?.name == name ? 'mine' : '' }>
@@ -19,6 +23,10 @@ export const Message: React.FC<MessageProps> = ({ name, content }) => {
       <p className='messageContent'>
         { content }
       </p>
+
+      <span className="time">
+        { formatedTime }
+      </span>
     </Container>
   )
 }

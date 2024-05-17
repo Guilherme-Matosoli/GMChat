@@ -91,6 +91,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
                     key={ msg.id }
                     content={ msg.content }
                     name={ msg.user.name }
+                    time={ msg.time }
                   />
                 )
               })

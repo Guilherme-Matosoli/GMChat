@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
   position: relative;
 
@@ -67,9 +66,22 @@ export const Container = styled.div`
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
     color: black;
+
+    margin-top: 10px;
   }
 
   &.mine .messageContent{
+    color: white;
+  }
+
+  .time{
+    align-self: flex-end;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+  }
+
+  &.mine .time{
     color: white;
   }
 `;
