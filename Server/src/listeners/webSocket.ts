@@ -1,8 +1,9 @@
+import { User } from "../database/entities/User";
 import { io } from "../server";
 
 interface Message {
-  username: string,
-  text: string,
+  user: User,
+  message: Message,
   room: string
 };
 
@@ -13,6 +14,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("message", ( msg: Message ) => {
+
+
     io.to(msg.room).emit("message", msg);
   });
 });

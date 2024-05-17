@@ -1,6 +1,5 @@
 import { Repository } from "typeorm";
 import { Chat } from "../../database/entities/Chat";
-import { IChatRepository } from "../../repositories/in-memory/ChatRepositoryTest";
 import { genChatId } from "../../utils/genChatId";
 import { User } from "../../database/entities/User";
 
