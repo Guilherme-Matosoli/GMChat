@@ -12,7 +12,7 @@ import { AxiosResponse } from "axios";
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { showToast } from "@/utils/alert";
+import { disableToast, showToast } from "@/utils/alert";
 
 interface LoginInfos{
   email?: string,
@@ -28,9 +28,13 @@ const Login = () => {
     if(token != undefined){
       router.push("/dashboard");
       return
-    }
+    };
 
-    setHasToken(true)
+    setHasToken(true);
+
+    return () => {
+      setTimeout(() => disableToast(), 1000)
+    }
   }, []);
 
   const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });

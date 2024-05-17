@@ -5,3 +5,7 @@ export const showToast = ( message: string ) => {
     className: 'toast'
   })
 };
+
+export const disableToast = () => {
+  toast.remove()
+}

@@ -9,7 +9,7 @@ import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { Toaster } from "react-hot-toast";
-import { showToast } from "@/utils/alert";
+import { disableToast, showToast } from "@/utils/alert";
 
 interface SignUpInfos{
   name: string,
@@ -33,9 +33,13 @@ const SignUp = () => {
     if(token != undefined){
       router.push("/dashboard");
       return
-    }
+    };
 
-    setHasToken(true)
+    setHasToken(true);
+
+    return () => {
+      setTimeout( () => disableToast(), 1000)
+    }
   }, []);
 
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
