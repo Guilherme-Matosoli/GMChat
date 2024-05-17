@@ -30,7 +30,7 @@ interface Message{
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
-  socket.emit("join chat", chatId)
+  
   const [chatUser, setChatUser] = useState<String | null>();
 
   const [ messageList, setMessageList ] = useState<Message[]>();
@@ -51,15 +51,20 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     socket.emit("message", { room: chatId, user: user, message });
   };
 
-  socket.on("message", msg => {
-    console.log(msg)
-  })
-
   useEffect(() => {
+    socket.emit("join chat", chatId);
+    socket.on("message", (msg: Message) => {
+      setMessageList(prev => [...(prev || []), msg])
+    });
+
     const queryParams = new URLSearchParams(window.location.search);
     setChatUser(queryParams.get('user'));
 
     getMessages();
+
+    return () => {
+      socket.off("message")
+    };
   }, []);
 
   return (
