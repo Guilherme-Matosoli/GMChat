@@ -7,7 +7,7 @@ import { TextArea } from "@/components/TextArea";
 
 import { NextPage } from "next";
 import Link from "next/link";
-import { FormEvent, useContext, useEffect, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { api } from "@/services/api";
 import { socket } from "@/services/io";
 import { AuthContext } from "@/context/AuthContext";
@@ -30,12 +30,12 @@ interface Message{
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
-  
   const [chatUser, setChatUser] = useState<String | null>();
-
   const [ messageList, setMessageList ] = useState<Message[]>();
   const [ message, setMessage ] = useState<string>();
+
   const { user } = useContext(AuthContext);
+  const messageArea = useRef<HTMLDivElement | null>(null);
 
   const getMessages = async () => {
     try{
@@ -70,6 +70,11 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if(messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
+
+  }, [messageList]);
+
   return (
     <Container>
       <Content>
@@ -86,7 +91,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
             </span>
           </header>
 
-          <div className="messageArea">
+          <div className="messageArea" ref={messageArea}>
             {
               messageList?.map(msg => {
                 return(
