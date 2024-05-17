@@ -42,27 +42,30 @@ export const ChatRepositoryTest = {
     return exists;
   },
 
+  //specific to ListChatService
   find( { where } : any ) {
-    let exists = false;
-    const primaryKeys = Object.keys(where);
+    let exists = [];
+    const allKeys = where;
 
-    const keysInPrimaryKeys = primaryKeys.map(key => {
-      return Object.keys(where[key])[0];
+    const primaryKeys = allKeys.map(key => {
+      return Object.keys(key)[0];
+    });
+
+    const keysInPrimaryKeys = primaryKeys.map((key, index) => {
+      return Object.keys(allKeys[index][key])[0];
     });
 
     this.chats.map(chat => {
-     
-      primaryKeys.map(primaryKey => {
+      primaryKeys.map((key, index) => {
         let allKeysMatch = 0;
 
         keysInPrimaryKeys.map(secKey => {
-          if(chat[primaryKey] == where[primaryKey][secKey]) allKeysMatch++;
+          if(allKeys[index][key][secKey] == chat[key]) allKeysMatch++;
         });
 
-        if(allKeysMatch == keysInPrimaryKeys.length) exists = chat;
+        if(allKeysMatch == primaryKeys.length) exists.push(chat);
 
-      });
-      
+      })
     });
 
     return exists;
