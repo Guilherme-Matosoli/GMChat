@@ -6,7 +6,12 @@ export class ListChatService{
   constructor( private chatRepository: Repository<Chat>, private userRepository: Repository<User> ){};
 
   async list( { username } ){
-    const chats = await this.chatRepository.find({ where: [{ userSender: { username } }, { userReceiver: { username } }], relations: ["userSender", "userReceiver"] });
+
+    const query = [
+      { userSender: { username } }, 
+      { userReceiver: { username } }
+    ];
+    const chats = await this.chatRepository.find({ where: query, relations: ["userSender", "userReceiver"] });
 
     const chatsPromises = chats.map(async (chat) => {
       function handleName() {
