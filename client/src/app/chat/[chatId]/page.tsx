@@ -1,15 +1,16 @@
 'use client';
-import { NextPage } from "next";
 import { Container } from "./styles";
 import { Content } from "@/components/Content";
 import { Header } from "@/components/Header";
-import Link from "next/link";
 import { Message } from "@/components/Message";
-import { Input } from "@/components/Input";
 import { TextArea } from "@/components/TextArea";
-import { useEffect, useState } from "react";
+
+import { NextPage } from "next";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 import { api } from "@/services/api";
-import { useRouter } from "next/router";
+import { socket } from "@/services/io";
+import { AuthContext } from "@/context/AuthContext";
 
 interface ChatIdParams {
   params: {
@@ -29,10 +30,12 @@ interface Message{
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
+  socket.emit("join chat", chatId)
   const [chatUser, setChatUser] = useState<String | null>();
 
   const [ messageList, setMessageList ] = useState<Message[]>();
   const [ message, setMessage ] = useState<string>();
+  const { user } = useContext(AuthContext);
 
   const getMessages = async () => {
     try{
@@ -43,6 +46,14 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
       console.log(err)
     }
   };
+
+  const sendMessage = async () => {
+    socket.emit("message", { room: chatId, user: user, message });
+  };
+
+  socket.on("message", msg => {
+    console.log(msg)
+  })
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -88,7 +99,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
               value={message}
             /> 
 
-            <button className="sendButton">
+            <button className="sendButton" onClick={() => sendMessage()}>
               <img src="/sendIcon.svg" alt="Enviar" />
             </button>
           </div>
