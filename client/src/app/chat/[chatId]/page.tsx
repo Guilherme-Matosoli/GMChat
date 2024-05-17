@@ -49,6 +49,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
 
   const sendMessage = async () => {
     socket.emit("message", { room: chatId, user: user, message });
+    setMessage('');
   };
 
   useEffect(() => {
