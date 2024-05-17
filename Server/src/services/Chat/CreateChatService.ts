@@ -6,7 +6,7 @@ import { User } from "../../database/entities/User";
 
 export class CreateChatService {
   static create: Chat | string;
-  constructor(private chatRepository: Omit<IChatRepository, "chats">, private userRepository: Repository<User>) { }
+  constructor(private chatRepository: Repository<Chat>, private userRepository: Repository<User>) { }
 
   async create({ userSender, userReceiver }: Omit<Chat, "id" | "messages">): Promise<Chat | string> {
     try {

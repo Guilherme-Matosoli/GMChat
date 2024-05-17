@@ -17,42 +17,28 @@ export const UserRepositoryTests= {
     this.users.push(user)
   },
 
-  findOne({ where }: any) {
-    if(Object.keys(where)[0] == "email"){
-      let exists = false;
-      this.users.map(user => {
-        if(user.email == where.email) { exists = user }
-      })
-  
-      return exists
-    }
-    else{
-      let exists = false;
-      this.users.map(user => {
-        if(user.username == where.username) { exists = user }
-      })
-  
-      return exists
-    }
+  findOne({ where }: any){
+    let exists = false;
+
+    const objKey = Object.keys(where)[0];
+
+    this.users.map(user => {
+      if(user[objKey] == where[objKey]) exists = user;
+    });
+
+    return exists;
   },
 
   find({ where }: any) {
-    if(Object.keys(where)[0] == "username"){
-      let exists = false;
-      this.users.map(user => {
-        if(user.username == where.username) { exists = user }
-      })
-  
-      return exists
-    }
-    else{
-      let exists = false;
-      this.users.map(user => {
-        if(user.email == where.email) { exists = user }
-      })
-  
-      return exists
-    }
+    let exists = false;
+
+    const objKey = Object.keys(where)[0];
+
+    this.users.map(user => {
+      if(user[objKey] == where[objKey]) exists = user;
+    });
+
+    return exists;
   },
 
 } as unknown as IUserRepository; 

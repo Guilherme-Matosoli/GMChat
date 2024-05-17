@@ -2,15 +2,13 @@ import { app } from "../../app";
 import request from "supertest";
 
 import { AppDataSource } from '../../database/dataSource';
-import { cleanDatabase } from "../../utils/testsClient";
+import { testsClient } from "../../utils/testsClient";
 
 beforeAll(async () => {
-  // connect with DB before tests
   await AppDataSource.initialize();
 });
 
 afterAll(async () => {
-  // desconect from database after tests
   await AppDataSource.destroy(); 
 });
 
@@ -28,7 +26,8 @@ describe("Register user controller", () => {
     const { password, ...userData } = data;
     const { id: _, ...userResponse } = response.body;
 
-    await cleanDatabase();
+    await testsClient.connect();
+    await testsClient.query(`DELETE FROM users WHERE username = '${ data.username }'`);
 
     expect(userResponse).toHaveProperty("status");
   });

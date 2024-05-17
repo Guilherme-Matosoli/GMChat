@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../../app";
 import { AppDataSource } from "../../database/dataSource";
 
-import { cleanDatabase } from "../../utils/testsClient";
+import { testsClient } from "../../utils/testsClient";
 
 beforeAll(async () => {
   await AppDataSource.initialize();
@@ -37,7 +37,10 @@ describe("Create chat controller", () => {
 
     const chat = await request(app).post("/chat/create").send(data);
 
-    await cleanDatabase();
+    await testsClient.connect();
+    await testsClient.query(`DELETE FROM users WHERE username = '${ grugo.username }'`);
+    await testsClient.query(`DELETE FROM users WHERE username = '${ jeff.username }'`);
+    await testsClient.query(`DELETE FROM chats WHERE userSender = '${ data.userSender }' AND userReceiver = '${ data.userReceiver }'`);
 
     expect(chat.body).toHaveProperty("id")
   })
