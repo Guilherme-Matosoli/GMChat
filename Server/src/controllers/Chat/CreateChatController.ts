@@ -24,7 +24,7 @@ export class CreateChatController{
       
       const chat = await createChatService.create({userSender, userReceiver});
       if(chat == "Can not find user sender" || chat == "Can not find user receiver") return res.status(404).json({ message: chat });
-      if(chat == "Chat already exists") return res.status(409).json({ message: chat })
+      if(chat == "Chat already exists") return res.status(409).json({ message: chat });
 
       return res.status(200).json(chat);
     }

@@ -6,18 +6,11 @@ export class ListChatService{
   constructor( private chatRepository: Repository<Chat>, private userRepository: Repository<User> ){};
 
   async list( { username } ){
-    const chats = await this.chatRepository
-    .createQueryBuilder('chat')
-    .leftJoinAndSelect('chat.userSender', 'userSender')
-    .leftJoinAndSelect('chat.userReceiver', 'userReceiver')
-    .where('chat.userReceiver = :username OR chat.userSender = :username', { username })
-    .getMany();
-
-    console.log(chats)
+    const chats = await this.chatRepository.find({ where: [{ userSender: { username } }, { userReceiver: { username } }], relations: ["userSender", "userReceiver"] });
 
     const chatsPromises = chats.map(async (chat) => {
       function handleName() {
-          if (chat.userSender.username === username) return chat.userReceiver.username;
+          if (chat.userSender.username == username) return chat.userReceiver.username;
           else return chat.userSender.username;
       };
 

@@ -33,8 +33,8 @@ describe("Create chat controller", () => {
       password: "testing123"
     };
 
-    await request(app).post("/register").send(grugo)
-    await request(app).post("/register").send(jeff)
+    await request(app).post("/register").send(grugo);
+    await request(app).post("/register").send(jeff);
 
     const data = {
       userSender: "grugo",

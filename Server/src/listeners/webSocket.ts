@@ -17,7 +17,6 @@ interface MessageBody {
 io.on("connection", (socket) => {
   socket.on("join chat", chat => {
     socket.join(chat)
-    console.log(chat)
   });
 
   socket.on("message", ( msg: MessageBody ) => {

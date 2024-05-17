@@ -20,22 +20,14 @@ export const ChatRepositoryTest = {
     let exists = false;
     const primaryKeys = Object.keys(where);
 
-    const keysInPrimaryKeys = primaryKeys.map(key => {
-      return Object.keys(where[key])[0];
-    });
-
     this.chats.map(chat => {
+      let allKeysMatch = 0;
      
       primaryKeys.map(primaryKey => {
-        let allKeysMatch = 0;
-
-        keysInPrimaryKeys.map(secKey => {
-          if(chat[primaryKey] == where[primaryKey][secKey]) allKeysMatch++;
-        });
-
-        if(allKeysMatch == keysInPrimaryKeys.length) exists = chat;
-
+        if(chat[primaryKey] == where[primaryKey]) allKeysMatch++;
       });
+
+      if(allKeysMatch == primaryKeys.length) exists = chat;
       
     });
 
