@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { Chat } from "../../database/entities/Chat";
-import { genChatId } from "../../utils/genChatId";
+import { genId } from "../../utils/genId";
 import { User } from "../../database/entities/User";
 
 export class CreateChatService {
@@ -18,7 +18,7 @@ export class CreateChatService {
       const chatExist = await this.chatRepository.findOne({ where: { userSender: { username: sender.username } , userReceiver: { username: receiver.username } } });
       if(chatExist) return "Chat already exists";
 
-      const chat = this.chatRepository.create({ id: genChatId(), userSender, userReceiver });
+      const chat = this.chatRepository.create({ id: genId(15), userSender, userReceiver });
       await this.chatRepository.save(chat);
 
       return chat;

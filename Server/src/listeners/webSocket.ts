@@ -1,9 +1,16 @@
-import { User } from "../database/entities/User";
-import { io } from "../server";
+import { ChatRepository } from "../repositories/ChatRepository";
+import { MessageRepository } from "../repositories/MessageRepository";
+import { UserRepository } from "../repositories/UserRepository";
+import { CreateMessageService } from "../services/Message/CreateMessageService";
 
-interface Message {
+import { Message } from "../database/entities/Message";
+import { io } from "../server";
+import { genId } from "../utils/genId";
+import { User } from "../database/entities/User";
+
+interface MessageBody {
   user: User,
-  message: Message,
+  message: Message | string,
   room: string
 };
 
@@ -13,9 +20,22 @@ io.on("connection", (socket) => {
     console.log(chat)
   });
 
-  socket.on("message", ( msg: Message ) => {
+  socket.on("message", ( msg: MessageBody ) => {
+    const messageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
+    const time = new Date();
+    const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
 
-    io.to(msg.room).emit("message", msg);
+    const messageCreated = MessageRepository.create({
+      id: genId(10),
+      user: msg.user,
+      chatId: msg.room,
+      content: msg.message as string,
+      time: brazilDate
+    });
+
+    messageService.create(messageCreated);
+
+    io.to(msg.room).emit("message", messageCreated);
   });
 });
