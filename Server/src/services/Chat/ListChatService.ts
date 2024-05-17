@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
-import { IChatRepository } from "../../repositories/in-memory/ChatRepositoryTest";
 import { User } from "../../database/entities/User";
+import { Chat } from "../../database/entities/Chat";
 
 export class ListChatService{
-  constructor( private chatRepository: Omit<IChatRepository, "chats">, private userRepository: Repository<User> ){};
+  constructor( private chatRepository: Repository<Chat>, private userRepository: Repository<User> ){};
 
   async list( { username } ){
     const chats = await this.chatRepository
@@ -12,6 +12,8 @@ export class ListChatService{
     .leftJoinAndSelect('chat.userReceiver', 'userReceiver')
     .where('chat.userReceiver = :username OR chat.userSender = :username', { username })
     .getMany();
+
+    console.log(chats)
 
     const chatsPromises = chats.map(async (chat) => {
       function handleName() {

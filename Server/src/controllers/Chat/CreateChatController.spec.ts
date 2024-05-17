@@ -4,6 +4,12 @@ import { AppDataSource } from "../../database/dataSource";
 
 import { testsClient } from "../../utils/testsClient";
 
+interface CreateChatResponse{
+  userSender: string,
+  userReceiver: string,
+  id: string
+};
+
 beforeAll(async () => {
   await AppDataSource.initialize();
 });
@@ -38,9 +44,9 @@ describe("Create chat controller", () => {
     const chat = await request(app).post("/chat/create").send(data);
 
     await testsClient.connect();
+    await testsClient.query(`DELETE FROM chats WHERE "userSender" = '${ data.userSender }' AND "userReceiver" = '${ data.userReceiver }'`);
     await testsClient.query(`DELETE FROM users WHERE username = '${ grugo.username }'`);
     await testsClient.query(`DELETE FROM users WHERE username = '${ jeff.username }'`);
-    await testsClient.query(`DELETE FROM chats WHERE userSender = '${ data.userSender }' AND userReceiver = '${ data.userReceiver }'`);
 
     expect(chat.body).toHaveProperty("id")
   })

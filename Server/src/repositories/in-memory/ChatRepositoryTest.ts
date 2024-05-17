@@ -16,13 +16,30 @@ export const ChatRepositoryTest = {
     this.chats.push(chat)
   },
 
-  findOne( { where: { id } } : any ) {
+  findOne( { where } : any ) {
     let exists = false;
-    this.users.map(chat => {
-      if(chat.id == id) exists = chat
-    })
+    const primaryKeys = Object.keys(where);
 
-    return exists
+    const keysInPrimaryKeys = primaryKeys.map(key => {
+      return Object.keys(where[key])[0];
+    });
+
+    this.chats.map(chat => {
+     
+      primaryKeys.map(primaryKey => {
+        let allKeysMatch = 0;
+
+        keysInPrimaryKeys.map(secKey => {
+          if(chat[primaryKey] == where[primaryKey][secKey]) allKeysMatch++;
+        });
+
+        if(allKeysMatch == keysInPrimaryKeys.length) exists = chat;
+
+      });
+      
+    });
+
+    return exists;
   }
 
 } as unknown as IChatRepository; 
