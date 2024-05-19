@@ -1,4 +1,4 @@
-import { ChatRepositoryTest } from "../../repositories/in-memory/ChatRepositoryTest";
+import { ChatRepositoryTest } from "../../repositories/in-memory/ChatRepositoryTests";
 import { UserRepositoryTests } from "../../repositories/in-memory/UserRepositoryTests";
 
 import { RegisterUserService } from "../User/RegisterUserService";

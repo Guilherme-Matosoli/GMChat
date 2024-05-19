@@ -2,8 +2,6 @@ import { Repository } from "typeorm";
 import { Message } from "../../database/entities/Message";
 import { Chat } from "../../database/entities/Chat";
 import { User } from "../../database/entities/User";
-import { genId } from "../../utils/genId";
-
 
 export class CreateMessageService{
   constructor(private messageRepositry: Repository<Message>, private userRepository: Repository<User>, private chatRepository: Repository<Chat>){};
@@ -17,7 +15,6 @@ export class CreateMessageService{
       if(!chatExists) return "Chat doesn't exists";
 
       const { password: _, ...restUser } = userExists;
-
 
       this.messageRepositry.save(message);
 

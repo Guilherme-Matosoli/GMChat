@@ -14,9 +14,5 @@
     /* Type Checking */
     "strict": false,                                      
     "skipLibCheck": true
-  },
-  "exclude": [
-    "**/*.spec.ts",
-    "**/in-memory/**"
-  ]
+  }
 }
