@@ -60,7 +60,7 @@ export const ButtonContainer = styled.button`
   font-family: 'Inter', sans-serif;
   text-decoration: none;
 
-  transition: all .3s;
+  transition: filter .3s;
   &:hover{
     filter: brightness(1.1);
   }

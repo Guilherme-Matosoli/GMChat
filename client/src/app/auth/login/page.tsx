@@ -79,6 +79,7 @@ const Login = () => {
     finally{ setPending(false) }
   };
 
+
   return hasToken && (
     <Container onSubmit={e => handleLogin(e)}>
       <Toaster/>
@@ -106,7 +107,7 @@ const Login = () => {
       />
 
       <div className="buttonsWrapper">
-        <RealButton type="submit" pending={pending}>
+        <RealButton type="submit" pending={ pending }>
           Entrar
         </RealButton>
 
