@@ -25,7 +25,7 @@ interface Chat{
 const Dashboard = () => {
   const [userSearchResult, setUserSearchResult] = useState<User[] | null>();
   const [chats, setChats] = useState<Chat[]>();
-  const { user } = useContext(AuthContext);
+  const context = useContext(AuthContext);
 
   const handleFindUsers = async (username: string) => {
     try{    
@@ -38,8 +38,8 @@ const Dashboard = () => {
   };
 
   const getChats = async () => {  
-    if(!user) return;
-    const response = await api.get(`/chat/list/${user?.username}`);
+    if(!context.user) return;
+    const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer '+ context.token } });
     setChats(response.data);
     console.log(response.data)
   };
@@ -56,7 +56,7 @@ const Dashboard = () => {
     setHasToken(true);
 
     getChats();
-  }, [user]);
+  }, [context]);
 
   return hasToken && (
     <Container>
