@@ -7,6 +7,7 @@ import { CreateChatController } from '../controllers/Chat/CreateChatController';
 import { ListChatController } from '../controllers/Chat/ListChatController';
 import { SearchUserController } from '../controllers/User/SearchUserController';
 import { ListMessageController } from '../controllers/Message/ListMessageController';
+import { authMiddleware } from '../middlewares/authMiddleware';
 
 export const router = Router();
 router.use(cors());
@@ -18,13 +19,13 @@ router.post('/register', new RegisterUserController().register);
 router.post('/login', new LoginUserController().login);
 
 //Create a new chat
-router.post('/chat/create', new CreateChatController().create);
+router.post('/chat/create', authMiddleware, new CreateChatController().create);
 
 //List user chats
-router.get('/chat/list/:username', new ListChatController().list);
+router.get('/chat/list/:username', authMiddleware, new ListChatController().list);
 
 //List users by username
-router.get('/users/:username', new SearchUserController().search);
+router.get('/users/:username', authMiddleware, new SearchUserController().search);
 
 //List messages
-router.get('/message/list/:chatId', new ListMessageController().list);
+router.get('/message/list/:chatId', authMiddleware, new ListMessageController().list);
