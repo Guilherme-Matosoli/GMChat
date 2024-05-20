@@ -3,28 +3,28 @@ import { ListChatService } from "../../services/Chat/ListChatService";
 import { ChatRepository } from "../../repositories/ChatRepository";
 import { UserRepository } from "../../repositories/UserRepository";
 
-export class ListChatController{
-  constructor(){ this.list = this.list.bind(this) };
+export class ListChatController {
+  constructor() { this.list = this.list.bind(this) };
 
-  private checkFields( fields: string[], res: Response ){
+  private checkFields(fields: string[], res: Response) {
     let missingFields: boolean = false;
     fields.map(fields => {
-      if(!fields) missingFields = true;
+      if (!fields) missingFields = true;
     })
   };
 
-  async list( req: Request, res: Response ){
+  async list(req: Request, res: Response) {
     const { username } = req.params;
     this.checkFields([username], res);
 
-    try{
+    try {
       const listChatService = new ListChatService(ChatRepository, UserRepository);
-  
+
       const response = await listChatService.list({ username });
-  
+
       return res.status(200).json(response);
     }
-    catch(err){
+    catch (err) {
       console.log(err)
     };
   };
