@@ -20,23 +20,6 @@ interface LoginInfos{
 };
 
 const Login = () => {
-  const [hasToken, setHasToken] = useState<boolean>(false);
-  const router = useRouter();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if(token != undefined){
-      router.push("/dashboard");
-      return
-    };
-
-    setHasToken(true);
-
-    return () => {
-      setTimeout(() => disableToast(), 1000)
-    }
-  }, []);
-
   const [loginInfo, setLoginInfo] = useState<LoginInfos>({ email: '', password: '' });
   const [error, setError] = useState<string | undefined>();
   const authContext = useContext(AuthContext);
@@ -79,8 +62,7 @@ const Login = () => {
     finally{ setPending(false) }
   };
 
-
-  return hasToken && (
+  return (
     <Container onSubmit={e => handleLogin(e)}>
       <Toaster/>
       <h1>FAÇA SEU LOGIN</h1>

@@ -9,7 +9,7 @@ import { api } from "@/services/api";
 import { useRouter } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { Toaster } from "react-hot-toast";
-import { disableToast, showToast } from "@/utils/alert";
+import { showToast } from "@/utils/alert";
 
 interface SignUpInfos{
   name: string,
@@ -25,23 +25,6 @@ interface Errors{
 }
 
 const SignUp = () => {
-  const [hasToken, setHasToken] = useState<boolean>(false);
-  const router = useRouter();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if(token != undefined){
-      router.push("/dashboard");
-      return
-    };
-
-    setHasToken(true);
-
-    return () => {
-      setTimeout( () => disableToast(), 1000)
-    }
-  }, []);
-
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target; 
@@ -53,6 +36,8 @@ const SignUp = () => {
       [name]: value || ''
     }));
   };
+
+  const router = useRouter();
 
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState<Errors>({ emailError: undefined, userError: undefined, others: undefined });
@@ -82,7 +67,7 @@ const SignUp = () => {
     finally { setPending(false) }
   };
 
-  return hasToken && (
+  return (
     <Container onSubmit={handleSignup}>
       <Toaster />
       <h1>CADASTRE-SE</h1>
