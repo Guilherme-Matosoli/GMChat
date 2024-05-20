@@ -32,7 +32,7 @@ interface Message {
 };
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
-  const [chatUser, setChatUser] = useState<String | null>();
+  const [chatUser, setChatUser] = useState<User | null>();
   const [messageList, setMessageList] = useState<Message[]>();
   const [message, setMessage] = useState<string>();
 
@@ -59,7 +59,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
 
-    socket.emit("message", { room: chatId, user: context.user, message });
+    socket.emit("message", { room: chatId, user: context.user, message, to: chatUser?.username });
     setMessage('');
   };
 
@@ -72,7 +72,10 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     });
 
     const queryParams = new URLSearchParams(window.location.search);
-    setChatUser(queryParams.get('user'));
+    setChatUser({
+      name: queryParams.get("name")!,
+      username: queryParams.get("username")!
+    });
 
     return () => {
       socket.off("message")
@@ -96,7 +99,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
             </Link>
 
             <span>
-              Chat com: {chatUser}
+              Chat com: {chatUser?.name}
             </span>
           </header>
 
