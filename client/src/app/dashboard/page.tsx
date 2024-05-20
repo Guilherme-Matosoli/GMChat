@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { AxiosResponse } from "axios";
 import { handleLogout } from "@/utils/handleLogout";
 
+import { socket } from "@/services/io";
+
 interface User {
   username: string,
   name: string,
@@ -44,7 +46,6 @@ const Dashboard = () => {
       if (!context.user) return;
       const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
       setChats(response.data);
-      console.log(response.data)
     }
     catch (err) {
       if (typeof err == "object" && err != null && "response" in err) {
@@ -59,6 +60,11 @@ const Dashboard = () => {
   const [hasToken, setHasToken] = useState(false);
   const router = useRouter();
   useEffect(() => {
+    socket.emit("newChat", context.user?.username);
+    socket.on("new message", () => {
+      getChats();
+    })
+
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -68,6 +74,8 @@ const Dashboard = () => {
     setHasToken(true);
 
     getChats();
+
+    return () => { socket.off("new message") };
   }, [context]);
 
   return hasToken && (

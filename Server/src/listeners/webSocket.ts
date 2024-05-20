@@ -16,7 +16,7 @@ interface MessageBody {
 };
 
 io.on("connection", (socket) => {
-  socket.on("dashboard atualization", (username) => {
+  socket.on("newChat", (username) => {
     socket.join(username);
   });
 
