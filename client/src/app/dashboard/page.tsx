@@ -31,7 +31,7 @@ const Dashboard = () => {
 
   const handleFindUsers = async (username: string) => {
     try {
-      const request = await api.get(`/users/${username}`);
+      const request = await api.get(`/users/${username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
       setUserSearchResult(request.data);
     }
     catch (err) {

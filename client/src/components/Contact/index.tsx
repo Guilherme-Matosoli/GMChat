@@ -8,16 +8,16 @@ import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
 
-interface ContactProps extends HTMLAttributes<HTMLDivElement>{
+interface ContactProps extends HTMLAttributes<HTMLDivElement> {
   toAdd?: boolean,
   name?: string,
   username?: string,
-  contactId?: number, 
+  contactId?: number,
   chatId?: string
 };
 
 export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, ...rest }) => {
-  const { user } = useContext(AuthContext);
+  const context = useContext(AuthContext);
 
   const randomIcon = () => {
     const firstNumberAtId = String(contactId)?.split('')[0]
@@ -26,42 +26,42 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
   };
 
   const createChat = async () => {
-    try{
-      const data = { userSender: user?.username, userReceiver: username };
-      
-      const response = await api.post("/chat/create", data);
-      if(response.data.id) showToast("Chat criado com sucesso!");
-      window.location.reload(); 
+    try {
+      const data = { userSender: context.user?.username, userReceiver: username };
+
+      const response = await api.post("/chat/create", data, { headers: { 'authorization': 'Bearer ' + context.token } });
+      if (response.data.id) showToast("Chat criado com sucesso!");
+      window.location.reload();
     }
-    catch(err: unknown){
-      if(typeof err == "object" && err != null && 'response' in err){
+    catch (err: unknown) {
+      if (typeof err == "object" && err != null && 'response' in err) {
         const errorResponse = err.response as AxiosResponse;
 
         errorResponse.data.message == "Chat already exists" && showToast("Chat já existente!");
         return;
       };
-      
+
       showToast("Tente novamente mais tarde.");
     }
   };
 
-  return(
-    <Container className={ toAdd ? "add" : "" } { ...rest }>
-      <Toaster/>
-      <img className="avatar" src={ contactId ? randomIcon() : "icons/2.svg" } alt="Foto de uma pessoa" />
-      
+  return (
+    <Container className={toAdd ? "add" : ""} {...rest}>
+      <Toaster />
+      <img className="avatar" src={contactId ? randomIcon() : "icons/2.svg"} alt="Foto de uma pessoa" />
+
       <div className="info">
-        <span>{ name || "fulano" }</span>
-        <strong>{ username || "bak" }</strong>
+        <span>{name || "fulano"}</span>
+        <strong>{username || "bak"}</strong>
       </div>
 
       {
         toAdd ? (
-          <button className="addButton" onClick={ () => createChat() }>
+          <button className="addButton" onClick={() => createChat()}>
             +
           </button>
         ) : (
-          <Link className="goToChat" href={`chat/${chatId}?user=${ name }`}>
+          <Link className="goToChat" href={`chat/${chatId}?user=${name}`}>
             <img src="/arrowRight.svg" alt="" />
           </Link>
         )

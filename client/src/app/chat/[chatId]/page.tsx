@@ -36,12 +36,12 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   const [messageList, setMessageList] = useState<Message[]>();
   const [message, setMessage] = useState<string>();
 
-  const { user } = useContext(AuthContext);
+  const context = useContext(AuthContext);
   const messageArea = useRef<HTMLDivElement | null>(null);
 
   const getMessages = async () => {
     try {
-      const response = await api.get(`/message/list/${chatId}`);
+      const response = await api.get(`/message/list/${chatId}`, { headers: { 'authorization': 'Bearer ' + context.token } });
       setMessageList(response.data.messages)
     }
     catch (err) {
@@ -59,7 +59,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
 
-    socket.emit("message", { room: chatId, user: user, message });
+    socket.emit("message", { room: chatId, user: context.user, message });
     setMessage('');
   };
 
