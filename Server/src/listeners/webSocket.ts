@@ -11,19 +11,26 @@ import { User } from "../database/entities/User";
 interface MessageBody {
   user: User,
   message: Message | string,
-  room: string
+  room: string,
+  to: string
 };
 
 io.on("connection", (socket) => {
+  socket.on("dashboard atualization", (username) => {
+    socket.join(username);
+  });
+
   socket.on("join chat", chat => {
     socket.join(chat)
   });
 
-  socket.on("message", ( msg: MessageBody ) => {
+  socket.on("message", (msg: MessageBody) => {
     const messageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
     const time = new Date();
     const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
+
+    io.to(msg.to).emit("new message");
 
     const messageCreated = MessageRepository.create({
       id: genId(10),
