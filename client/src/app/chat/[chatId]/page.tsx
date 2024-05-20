@@ -11,6 +11,8 @@ import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { api } from "@/services/api";
 import { socket } from "@/services/io";
 import { AuthContext } from "@/context/AuthContext";
+import { AxiosResponse } from "axios";
+import { handleLogout } from "@/utils/handleLogout";
 
 interface ChatIdParams {
   params: {
@@ -18,11 +20,11 @@ interface ChatIdParams {
   }
 };
 
-interface User{
+interface User {
   name: string,
   username: string
 };
-interface Message{
+interface Message {
   id: string,
   user: User,
   content: string,
@@ -31,19 +33,26 @@ interface Message{
 
 const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   const [chatUser, setChatUser] = useState<String | null>();
-  const [ messageList, setMessageList ] = useState<Message[]>();
-  const [ message, setMessage ] = useState<string>();
+  const [messageList, setMessageList] = useState<Message[]>();
+  const [message, setMessage] = useState<string>();
 
   const { user } = useContext(AuthContext);
   const messageArea = useRef<HTMLDivElement | null>(null);
 
   const getMessages = async () => {
-    try{
-      const response = await api.get(`/message/list/${ chatId }`);  
+    try {
+      const response = await api.get(`/message/list/${chatId}`);
       setMessageList(response.data.messages)
     }
-    catch(err){
+    catch (err) {
       console.log(err)
+
+      if (typeof err == "object" && err != null && "response" in err) {
+        const errorResponse = err.response as unknown as AxiosResponse;
+
+        if (errorResponse.data.message == "Invalid token") handleLogout();
+
+      };
     }
   };
 
@@ -56,7 +65,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
 
   useEffect(() => {
     getMessages();
-    
+
     socket.emit("join chat", chatId);
     socket.on("message", (msg: Message) => {
       setMessageList(prev => [...(prev || []), msg])
@@ -71,7 +80,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   }, []);
 
   useEffect(() => {
-    if(messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
+    if (messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
 
   }, [messageList]);
 
@@ -87,19 +96,19 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
             </Link>
 
             <span>
-              Chat com: { chatUser }
+              Chat com: {chatUser}
             </span>
           </header>
 
           <div className="messageArea" ref={messageArea}>
             {
               messageList?.map(msg => {
-                return(
-                  <Message 
-                    key={ msg.id }
-                    content={ msg.content }
-                    name={ msg.user.name }
-                    time={ msg.time }
+                return (
+                  <Message
+                    key={msg.id}
+                    content={msg.content}
+                    name={msg.user.name}
+                    time={msg.time}
                   />
                 )
               })
@@ -107,11 +116,11 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
           </div>
 
           <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
-            <TextArea 
+            <TextArea
               placeholder="Digite sua mensagem"
               onChange={e => setMessage(e.target.value)}
               value={message}
-            /> 
+            />
 
             <button className="sendButton" type="submit">
               <img src="/sendIcon.svg" alt="Enviar" />

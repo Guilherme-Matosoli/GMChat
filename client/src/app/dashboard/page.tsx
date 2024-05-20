@@ -10,14 +10,16 @@ import { useContext, useEffect, useState } from "react";
 import { api } from "@/services/api";
 import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { AxiosResponse } from "axios";
+import { handleLogout } from "@/utils/handleLogout";
 
-interface User{
+interface User {
   username: string,
   name: string,
   id: number
 };
 
-interface Chat{
+interface Chat {
   user: User,
   id: string
 };
@@ -28,20 +30,30 @@ const Dashboard = () => {
   const context = useContext(AuthContext);
 
   const handleFindUsers = async (username: string) => {
-    try{    
+    try {
       const request = await api.get(`/users/${username}`);
       setUserSearchResult(request.data);
     }
-    catch(err){
+    catch (err) {
       setUserSearchResult(null);
     }
   };
 
-  const getChats = async () => {  
-    if(!context.user) return;
-    const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer '+ context.token } });
-    setChats(response.data);
-    console.log(response.data)
+  const getChats = async () => {
+    try {
+      if (!context.user) return;
+      const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
+      setChats(response.data);
+      console.log(response.data)
+    }
+    catch (err) {
+      if (typeof err == "object" && err != null && "response" in err) {
+        const errorResponse = err.response as unknown as AxiosResponse;
+
+        if (errorResponse.data.message == "Invalid token") handleLogout();
+      }
+    };
+
   };
 
   const [hasToken, setHasToken] = useState(false);
@@ -49,7 +61,7 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if(!token) {
+    if (!token) {
       router.push('/auth/login');
       return;
     };
@@ -73,10 +85,10 @@ const Dashboard = () => {
               {
                 chats?.map(chat => {
                   return (
-                    <Contact 
-                      key={chat.id} 
-                      name={chat.user.name} 
-                      username={chat.user.username} 
+                    <Contact
+                      key={chat.id}
+                      name={chat.user.name}
+                      username={chat.user.username}
                       contactId={chat.user.id}
                       chatId={chat.id}
                     />
@@ -92,9 +104,9 @@ const Dashboard = () => {
             </div>
 
             <div className="searchArea">
-              <Input 
-                title="" 
-                name="" 
+              <Input
+                title=""
+                name=""
                 placeholder="Digite o usúario"
                 onChange={e => handleFindUsers(e.target.value)}
               />
