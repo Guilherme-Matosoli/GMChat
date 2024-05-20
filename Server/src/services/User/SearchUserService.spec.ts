@@ -14,8 +14,8 @@ describe("Search user", () => {
     registerUserService = new RegisterUserService(repository);
   });
 
-  it("SHould be able to find a user", async () => {
-    const data = { 
+  it("Should be able to find a user", async () => {
+    const data = {
       name: "Testing",
       username: "testing",
       email: "testing@outlook.com",

@@ -8,10 +8,12 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     if (!authorization) return res.status(401).json({ message: "User without authorization" });
 
     const jwt = authorization.split(' ')[1];
-    const { username } = JWT.verify(jwt, process.env.JWT_PASS || '') as JwtPayload;
+    const { id } = JWT.verify(jwt, process.env.JWT_PASS || '') as JwtPayload;
 
-    const user = await UserRepository.findOne({ where: { username } });
+    const user = await UserRepository.findOne({ where: { id } });
     if (!user) return res.status(404).json({ message: "User not found" });
+
+    console.log(id)
 
     req.headers.cookie = JSON.stringify(user);
     next();
