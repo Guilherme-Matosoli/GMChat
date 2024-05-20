@@ -2,19 +2,10 @@ import { useContext } from "react";
 import { HeaderButton } from "../HeaderButton";
 import { Container } from "./styles";
 import { AuthContext } from "@/context/AuthContext";
+import { handleLogout } from "@/utils/handleLogout";
 
 export const Header = () => {
   const { user } = useContext(AuthContext);
-
-  const handleLogout = () => {
-    const token = localStorage.getItem("token");
-    if(!token) return;
-
-    localStorage.removeItem("token");
-    localStorage.removeItem("userInfo");
-
-    window.location.reload();
-  };
 
   return(
     <Container>

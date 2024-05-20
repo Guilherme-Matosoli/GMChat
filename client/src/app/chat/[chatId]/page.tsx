@@ -55,6 +55,8 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   };
 
   useEffect(() => {
+    getMessages();
+    
     socket.emit("join chat", chatId);
     socket.on("message", (msg: Message) => {
       setMessageList(prev => [...(prev || []), msg])
@@ -62,8 +64,6 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
 
     const queryParams = new URLSearchParams(window.location.search);
     setChatUser(queryParams.get('user'));
-
-    getMessages();
 
     return () => {
       socket.off("message")
