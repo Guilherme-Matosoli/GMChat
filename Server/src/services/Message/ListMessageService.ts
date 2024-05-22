@@ -2,12 +2,12 @@ import { Repository } from "typeorm";
 import { Message } from "../../database/entities/Message";
 import { User } from "../../database/entities/User";
 
-export class ListMessageService{
-  constructor(private messageRepoistory: Repository<Message>, private userRepository: Repository<User>){};
+export class ListMessageService {
+  constructor(private messageRepository: Repository<Message>, private userRepository: Repository<User>) { };
 
-  async list( { chatId }: { chatId: string } ){
-    try{
-      const messages = await this.messageRepoistory.query('SELECT * FROM messages WHERE "chatId" = $1', [chatId]);
+  async list({ chatId }: { chatId: string }) {
+    try {
+      const messages = await this.messageRepository.query('SELECT * FROM messages WHERE "chatId" = $1', [chatId]);
 
       const messagesWithUser = messages.map(async (msg: Message) => {
         const { password: _, ...restUser } = await this.userRepository.findOne({ where: { username: String(msg.user) } });
@@ -18,7 +18,7 @@ export class ListMessageService{
 
       return await Promise.all(messagesWithUser);
     }
-    catch(err){
+    catch (err) {
       console.log(err);
     }
   };

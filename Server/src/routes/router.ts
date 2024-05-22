@@ -8,6 +8,7 @@ import { ListChatController } from '../controllers/Chat/ListChatController';
 import { SearchUserController } from '../controllers/User/SearchUserController';
 import { ListMessageController } from '../controllers/Message/ListMessageController';
 import { authMiddleware } from '../middlewares/authMiddleware';
+import { GetLastMessageController } from '../controllers/Message/GetLastMessageController';
 
 export const router = Router();
 router.use(cors());
@@ -29,3 +30,6 @@ router.get('/users/:username', authMiddleware, new SearchUserController().search
 
 //List messages
 router.get('/message/list/:chatId', authMiddleware, new ListMessageController().list);
+
+//Get last message
+router.get('/message/getlast/:chatId', new GetLastMessageController().get)

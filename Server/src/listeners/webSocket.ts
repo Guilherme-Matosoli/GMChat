@@ -7,11 +7,12 @@ import { Message } from "../database/entities/Message";
 import { io } from "../server";
 import { genId } from "../utils/genId";
 import { User } from "../database/entities/User";
+import { Chat } from "../database/entities/Chat";
 
 interface MessageBody {
   user: User,
   message: Message | string,
-  room: string,
+  room: Chat,
   to: string
 };
 
@@ -42,6 +43,6 @@ io.on("connection", (socket) => {
 
     messageService.create(messageCreated);
 
-    io.to(msg.room).emit("message", messageCreated);
+    io.to(String(msg.room)).emit("message", messageCreated);
   });
 });
