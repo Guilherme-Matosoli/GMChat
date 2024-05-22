@@ -22,14 +22,14 @@ describe("ListChatService", () => {
   });
 
   it("Should list chats", async () => {
-    const data = { 
+    const data = {
       name: "Testing",
       username: "abec",
       email: "testinasasssssddddddsg@a.com",
       password: "testing123"
     };
 
-    const data2 = { 
+    const data2 = {
       name: "Testing",
       username: "abec",
       email: "tasestasdasiang@s.com",
@@ -43,8 +43,8 @@ describe("ListChatService", () => {
 
 
     const chatData = {
-      userSender: data.username as unknown as User,
-      userReceiver: data2.username as unknown as User
+      userSender: data.username,
+      userReceiver: data2.username
     };
 
     await createChatService.create(chatData);
@@ -52,6 +52,6 @@ describe("ListChatService", () => {
     const findChat = await listChatService.list({ username: data.username });
 
     expect(findChat[0]).toHaveProperty("id");
-    
+
   });
 });

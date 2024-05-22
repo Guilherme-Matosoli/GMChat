@@ -15,7 +15,7 @@ export class ListChatService {
 
     const chatsPromises = chats.map(async (chat) => {
       function handleName() {
-        if (chat.userSender.username == username) return chat.userReceiver.username;
+        if (chat.userSender == username) return chat.userReceiver.username;
         return chat.userSender.username;
       };
 
