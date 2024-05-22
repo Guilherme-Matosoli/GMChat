@@ -8,7 +8,6 @@ export const Container = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 25px;
 
   background-image: var(--button-gradient);
@@ -81,13 +80,23 @@ export const Container = styled.div`
   }
 
   .info{
+    flex: 1;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .info strong{
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #f1f1f1;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 250px;
   }
 `;

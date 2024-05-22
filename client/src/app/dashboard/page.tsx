@@ -54,16 +54,15 @@ const Dashboard = () => {
         if (errorResponse.data.message == "Invalid token") handleLogout();
       }
     };
-
   };
 
   const [hasToken, setHasToken] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    socket.emit("newChat", context.user?.username);
+    if (context.user) socket.emit("newChat", context.user?.username);
     socket.on("new message", () => {
       getChats();
-    })
+    });
 
     const token = localStorage.getItem("token");
 

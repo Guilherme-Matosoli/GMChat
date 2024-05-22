@@ -64,7 +64,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   };
 
   useEffect(() => {
-    getMessages();
+    if (context.token) getMessages();
 
     socket.emit("join chat", chatId);
     socket.on("message", (msg: Message) => {
@@ -80,7 +80,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
     return () => {
       socket.off("message")
     };
-  }, []);
+  }, [context]);
 
   useEffect(() => {
     if (messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
