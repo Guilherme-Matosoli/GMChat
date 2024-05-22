@@ -13,8 +13,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     const user = await UserRepository.findOne({ where: { id } });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    console.log(id)
-
     req.headers.cookie = JSON.stringify(user);
     next();
   }
