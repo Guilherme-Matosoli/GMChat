@@ -18,7 +18,7 @@ export class CreateChatService {
       const chatExist = await this.chatRepository.findOne({ where: { userSender: { username: sender.username }, userReceiver: { username: receiver.username } } });
       if (chatExist) return "Chat already exists";
 
-      const chat = this.chatRepository.create({ id: genId(15), userSender: sender, userReceiver: receiver, messagesInChat: [] });
+      const chat = this.chatRepository.create({ id: genId(15), userSender: sender, userReceiver: receiver });
       await this.chatRepository.save(chat);
 
       return chat;

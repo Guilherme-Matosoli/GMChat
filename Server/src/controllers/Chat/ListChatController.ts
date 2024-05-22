@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ListChatService } from "../../services/Chat/ListChatService";
 import { ChatRepository } from "../../repositories/ChatRepository";
 import { UserRepository } from "../../repositories/UserRepository";
+import { MessageRepository } from "../../repositories/MessageRepository";
 
 export class ListChatController {
   constructor() { this.list = this.list.bind(this) };
@@ -18,7 +19,7 @@ export class ListChatController {
     this.checkFields([username], res);
 
     try {
-      const listChatService = new ListChatService(ChatRepository, UserRepository);
+      const listChatService = new ListChatService(ChatRepository, UserRepository, MessageRepository);
 
       const response = await listChatService.list({ username });
 
