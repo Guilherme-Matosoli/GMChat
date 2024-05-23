@@ -98,6 +98,7 @@ const Dashboard = () => {
                       username={chat.user.username}
                       contactId={chat.user.id}
                       chatId={chat.id}
+                      chatList={chats}
                     />
                   )
                 })

@@ -9,15 +9,26 @@ import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
 
+interface User {
+  username: string,
+  name: string,
+};
+
+interface Chat {
+  user: User,
+  id: string
+};
+
 interface ContactProps extends HTMLAttributes<HTMLDivElement> {
   toAdd?: boolean,
   name?: string,
   username?: string,
   contactId?: number,
   chatId?: string,
+  chatList?: Chat[]
 };
 
-export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, ...rest }) => {
+export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, chatList, ...rest }) => {
   const context = useContext(AuthContext);
   const [lastMessage, setLastMessage] = useState("");
 
@@ -63,7 +74,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
 
   useEffect(() => {
     if (context.token) getLastMessage()
-  }, [context]);
+  }, [context, chatList]);
 
   return (
     <Container className={toAdd ? "add" : ""} {...rest}>
