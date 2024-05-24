@@ -9,6 +9,12 @@ export const Container = styled.section`
 
   width: 100%;
 
+  h2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2.5rem;
+    color: white;
+  }
+
   .searchArea{
     width: 100%;
 
