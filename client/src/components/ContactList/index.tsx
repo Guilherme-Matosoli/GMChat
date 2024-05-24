@@ -23,7 +23,6 @@ export const ContactList = () => {
       if (!context.user) return;
       const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
       setChats(response.data);
-      console.log("atualizaou")
     }
     catch (err) {
       if (typeof err == "object" && err != null && "response" in err) {
@@ -38,7 +37,7 @@ export const ContactList = () => {
     if (context.user) socket.emit("newChat", context.user?.username);
 
     socket.on("new message", () => {
-      getChats();
+      setTimeout(() => getChats(), 500);
     });
 
     getChats();
