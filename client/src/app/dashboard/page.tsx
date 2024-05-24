@@ -14,6 +14,7 @@ import { AxiosResponse } from "axios";
 import { handleLogout } from "@/utils/handleLogout";
 
 import { socket } from "@/services/io";
+import { ContactList } from "@/components/ContactList";
 
 interface User {
   username: string,
@@ -21,14 +22,14 @@ interface User {
   id: number
 };
 
-interface Chat {
+export interface Chat {
   user: User,
   id: string
 };
 
 const Dashboard = () => {
   const [userSearchResult, setUserSearchResult] = useState<User[] | null>();
-  const [chats, setChats] = useState<Chat[]>();
+  const [chats, setChats] = useState<Chat[]>([]);
   const context = useContext(AuthContext);
 
   const handleFindUsers = async (username: string) => {
@@ -83,28 +84,9 @@ const Dashboard = () => {
         <Header />
 
         <main>
-          <section className="contactsList">
-            <div className="topSide">
-              <h2>Lista de contatos</h2>
-            </div>
-
-            <div className="contacts">
-              {
-                chats?.map(chat => {
-                  return (
-                    <Contact
-                      key={chat.id}
-                      name={chat.user.name}
-                      username={chat.user.username}
-                      contactId={chat.user.id}
-                      chatId={chat.id}
-                      chatList={chats}
-                    />
-                  )
-                })
-              }
-            </div>
-          </section>
+          <ContactList
+            chats={chats}
+          />
 
           <section className="newChat">
             <div className="topSide">
