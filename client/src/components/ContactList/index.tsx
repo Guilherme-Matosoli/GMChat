@@ -1,12 +1,51 @@
-import { Chat } from "@/app/dashboard/page"
 import { Container } from "./styles"
 import { Contact } from "../Contact"
+import { User } from "@/app/dashboard/page"
+import { useContext, useEffect, useState } from "react"
+import { AuthContext } from "@/context/AuthContext"
+import { api } from "@/services/api"
+import { AxiosResponse } from "axios"
+import { handleLogout } from "@/utils/handleLogout"
+import { socket } from "@/services/io"
 
-interface ContatctListProps {
-  chats: Chat[]
+export interface Chat {
+  user: User,
+  id: string
 };
 
-export const ContactList: React.FC<ContatctListProps> = ({ chats }) => {
+
+export const ContactList = () => {
+  const [chats, setChats] = useState<Chat[]>([]);
+  const context = useContext(AuthContext);
+
+  const getChats = async () => {
+    try {
+      if (!context.user) return;
+      const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
+      setChats(response.data);
+      console.log("atualizaou")
+    }
+    catch (err) {
+      if (typeof err == "object" && err != null && "response" in err) {
+        const errorResponse = err.response as unknown as AxiosResponse;
+
+        if (errorResponse.data.message == "Invalid token") handleLogout();
+      }
+    };
+  };
+
+  useEffect(() => {
+    if (context.user) socket.emit("newChat", context.user?.username);
+
+    socket.on("new message", () => {
+      getChats();
+    });
+
+    getChats();
+
+    return () => { socket.off("new message") };
+  }, []);
+
   return (
     <Container>
       <div className="topSide">

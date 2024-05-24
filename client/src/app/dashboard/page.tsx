@@ -16,20 +16,16 @@ import { handleLogout } from "@/utils/handleLogout";
 import { socket } from "@/services/io";
 import { ContactList } from "@/components/ContactList";
 
-interface User {
+export interface User {
   username: string,
   name: string,
   id: number
 };
 
-export interface Chat {
-  user: User,
-  id: string
-};
+
 
 const Dashboard = () => {
   const [userSearchResult, setUserSearchResult] = useState<User[] | null>();
-  const [chats, setChats] = useState<Chat[]>([]);
   const context = useContext(AuthContext);
 
   const handleFindUsers = async (username: string) => {
@@ -42,29 +38,9 @@ const Dashboard = () => {
     }
   };
 
-  const getChats = async () => {
-    try {
-      if (!context.user) return;
-      const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
-      setChats(response.data);
-    }
-    catch (err) {
-      if (typeof err == "object" && err != null && "response" in err) {
-        const errorResponse = err.response as unknown as AxiosResponse;
-
-        if (errorResponse.data.message == "Invalid token") handleLogout();
-      }
-    };
-  };
-
   const [hasToken, setHasToken] = useState(false);
   const router = useRouter();
   useEffect(() => {
-    if (context.user) socket.emit("newChat", context.user?.username);
-    socket.on("new message", () => {
-      getChats();
-    });
-
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -73,9 +49,6 @@ const Dashboard = () => {
     };
     setHasToken(true);
 
-    getChats();
-
-    return () => { socket.off("new message") };
   }, [context]);
 
   return hasToken && (
@@ -84,9 +57,7 @@ const Dashboard = () => {
         <Header />
 
         <main>
-          <ContactList
-            chats={chats}
-          />
+          <ContactList />
 
           <section className="newChat">
             <div className="topSide">
