@@ -61,4 +61,10 @@ export const Container = styled.header`
 
     margin-bottom: 50px;
   }
+
+  @media(max-width: 600px){
+    .logout img{
+      width: 35px; 
+    }
+  }
 `;
