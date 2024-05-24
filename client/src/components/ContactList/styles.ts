@@ -39,4 +39,9 @@ export const Container = styled.section`
     border-radius: 20px;
   }
 
+
+  @media(max-width: 900px){
+    border-right: none;
+  }
+
 `;

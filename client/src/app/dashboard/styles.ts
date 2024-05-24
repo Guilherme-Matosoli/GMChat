@@ -10,4 +10,12 @@ export const Container = styled.div`
     min-height: 500px;
     width: 100%;
   }
+
+  @media (max-width: 900px){
+    main{
+      flex-direction: column;
+      
+      gap: 20px;
+    }
+  }
 `;

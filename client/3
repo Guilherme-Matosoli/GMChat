@@ -66,6 +66,11 @@ export const Container = styled.div`
     background-color: transparent;
     border-radius: 50%;
 
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+
     cursor: pointer;
     transition: all .3s;
 
@@ -92,7 +97,7 @@ export const Container = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    max-width: 150px;
+    max-width: 250px;
   }
 
   @media(max-width: 900px){
@@ -126,13 +131,7 @@ export const Container = styled.div`
     }
 
     .goToChat img{
-      max-width: 15px;
-    }
-  }
-
-  @media(max-width: 350px){
-    .info strong{
-      max-width: 70px;
+      width: 20px;
     }
   }
 `;
