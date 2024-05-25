@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   width: 100%;
-  /* max-width: 100vw; */
-  height: auto;
+  height: min(800px, 100vh);
 
   padding: 20px 0;
 
@@ -20,11 +19,10 @@ export const Container = styled.main`
     flex-direction: column;
     align-items: center;
     gap: 10rem;
-    flex-grow: 1;
 
     width: 100%;
 
-    margin-top: -100px;
+    margin-top: 100px;
 
     h2{
       font-size: 4rem;
@@ -67,13 +65,13 @@ export const Container = styled.main`
       margin: 0;
     }
 
-    a{
+    a.linkedinLink{
       position: relative;
       text-decoration: none;
       color: white;
     }
 
-    a::after{
+    a.linkedinLink::after{
       position: absolute;
       left: 50%;
       bottom: 0;
@@ -86,13 +84,18 @@ export const Container = styled.main`
       transition: all .3s;
     }
 
-    a:hover::after{
+    a.linkedinLink:hover::after{
       left: 0;
       width: 100%;
     }
   }
 
   footer{
+    position: absolute;
+    bottom: 20px;
+
+    margin: 0 auto;
+
     width: 100%;
 
     display: flex;
@@ -112,7 +115,12 @@ export const Container = styled.main`
     }
 
     .mainContent{
-      /* gap: 0; */
+      margin-top: 0;
+      gap: 20px;
+
+      padding: 0 10px;
+
+      justify-content: space-between;
     }
 
     .mainContent .box{
@@ -129,6 +137,8 @@ export const Container = styled.main`
 
     footer{
       font-size: 1.2rem;
+
+      bottom: 0;
     }
   }
 `;

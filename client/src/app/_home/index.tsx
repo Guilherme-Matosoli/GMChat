@@ -24,7 +24,7 @@ export const HomePage = () => {
               Por favor, não coloque nem compartilhe dados sensíveris e pessoais com ninguém.
             </p>
             <span>
-              ❤️Desenvolvido com amor por: <a href="https://www.linkedin.com/in/guilherme-matos-13b6a6229/" target='_blank'> &gt;Guilherme Matos&lt;</a>❤️
+              ❤️Desenvolvido com amor por: <a className="linkedinLink" href="https://www.linkedin.com/in/guilherme-matos-13b6a6229/" target='_blank'> &gt;Guilherme Matos&lt;</a>❤️
             </span>
           </div>
 
