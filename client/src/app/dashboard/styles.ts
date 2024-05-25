@@ -9,6 +9,8 @@ export const Container = styled.div`
 
     min-height: 500px;
     width: 100%;
+
+    margin-top: 150px;
   }
 
   @media (max-width: 900px){
@@ -16,6 +18,7 @@ export const Container = styled.div`
       flex-direction: column;
       
       gap: 20px;
+      margin-top: 0;
     }
   }
 `;
