@@ -76,12 +76,36 @@ export const Container = styled.div`
 
   .time{
     align-self: flex-end;
-
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
   }
 
   &.mine .time{
     color: white;
+  }
+
+  @media(max-width: 900px){
+    width: 300px;
+  }
+
+  @media(max-width: 690px){
+    width: 250px;
+
+  }
+
+  @media(max-width: 600px){
+    width: 200px;
+    
+    .userName{
+      font-size: 1rem;
+    }
+
+    .messageContent{
+      font-size: 1rem;
+    }
+
+    .time{
+      font-size: .8rem;
+    }
   }
 `;

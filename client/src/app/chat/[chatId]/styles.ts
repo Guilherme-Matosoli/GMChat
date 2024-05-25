@@ -132,7 +132,7 @@ export const Container = styled.main`
     padding: 0;
 
     .chatArea{
-      height: 100vh;
+      max-height: 100vh;
 
       border: none;
       border-radius: 0px;
@@ -141,5 +141,26 @@ export const Container = styled.main`
     header.header{
       display: none;
     }
+  }
+
+  @media(max-width: 600px){
+    .chatArea .topSide{
+      justify-content: space-between;
+      align-items: center;
+
+      img{
+        max-width: 40px;
+      }
+    }
+
+    .chatArea .topSide span{
+      position: initial;
+
+      transform: none;
+    }
+
+    .chatArea .topSide a, .chatArea .topSide span{
+      font-size: 1.4rem;
+    }   
   }
 `;

@@ -13,8 +13,7 @@ export const Container = styled.section`
   max-width: 1200px;
   min-height: 800px;
 
-  @media(max-width: 900px){
-    //padding: 0 20px;
-    //gap: 10rem;
+  @media(max-width: 600px){
+    min-height: 500px;
   }
 `;
