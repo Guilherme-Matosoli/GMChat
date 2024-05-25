@@ -1,15 +1,19 @@
-import { useContext } from "react";
+import { HTMLProps, useContext } from "react";
 import { HeaderButton } from "../HeaderButton";
 import { Container } from "./styles";
 import { AuthContext } from "@/context/AuthContext";
 import { handleLogout } from "@/utils/handleLogout";
 
-export const Header = () => {
+interface HeaderProps extends HTMLProps<HTMLHeadingElement> {
+
+};
+
+export const Header: React.FC<HeaderProps> = ({ ...rest }) => {
   const { user } = useContext(AuthContext);
 
 
   return (
-    <Container>
+    <Container {...rest}>
       <a href="/">
         <img
           src="/headerLogo.svg"

@@ -127,4 +127,19 @@ export const Container = styled.main`
   .sendButton img{
     width: 50px;
   }
+
+  @media(max-width: 900px){
+    padding: 0;
+
+    .chatArea{
+      height: 100vh;
+
+      border: none;
+      border-radius: 0px;
+    }
+
+    header.header{
+      display: none;
+    }
+  }
 `;

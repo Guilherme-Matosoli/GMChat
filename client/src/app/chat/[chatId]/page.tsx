@@ -90,7 +90,7 @@ const Chat: NextPage<ChatIdParams> = ({ params: { chatId } }) => {
   return (
     <Container>
       <Content>
-        <Header />
+        <Header className="header" />
         <div className="chatArea">
           <header className="topSide">
             <Link href="/dashboard">
