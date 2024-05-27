@@ -6,7 +6,8 @@ export const Container = styled.section`
   align-items: center;
   gap: 20px;
       
-  width: 100%;
+  width: 500px;
+  height: 100%;
 
   border-right: 1px solid black; 
 
@@ -20,11 +21,9 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
 
     overflow-y: auto;
       
-    max-height: 500px;
     width: 100%;
     padding: 0 20px;
   }

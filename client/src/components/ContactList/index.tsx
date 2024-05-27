@@ -7,6 +7,7 @@ import { api } from "@/services/api"
 import { AxiosResponse } from "axios"
 import { handleLogout } from "@/utils/handleLogout"
 import { socket } from "@/services/io"
+import { Input } from "../Input"
 
 export interface Chat {
   user: User,
@@ -48,7 +49,10 @@ export const ContactList = () => {
   return (
     <Container>
       <div className="topSide">
-        <h2>Lista de contatos</h2>
+        <Input
+          title=""
+          name=""
+        />
       </div>
 
       <div className="contacts">

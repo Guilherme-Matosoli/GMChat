@@ -1,5 +1,4 @@
 'use client';
-import { Content } from "@/components/Content";
 import { Container } from "./styles";
 
 import { Header } from "@/components/Header";
@@ -39,7 +38,6 @@ const Dashboard = () => {
       <Header />
       <main>
         <ContactList />
-        <UserFinder />
       </main>
     </Container>
   )
