@@ -45,7 +45,7 @@ export const ContactList = () => {
       return;
     }
 
-    setFilteredChats(undefined)
+    setFilteredChats(undefined);
   };
 
   useEffect(() => {
@@ -86,7 +86,8 @@ export const ContactList = () => {
 
       <div className="contacts">
         {
-          filteredChats ?
+          filteredChats
+            ?
             filteredChats?.map(chat => {
               return (
                 <Contact
@@ -96,6 +97,10 @@ export const ContactList = () => {
                   contactId={chat.user.id}
                   chatId={chat.id}
                   chatList={chats}
+                  onClick={() => {
+                    setFilteredChats(undefined);
+                    setSearchUserName("");
+                  }}
                 />
               )
             })
