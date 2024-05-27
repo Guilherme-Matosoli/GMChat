@@ -1,13 +1,12 @@
 import { Container } from "./styles"
 import { Contact } from "../Contact"
 import { User } from "@/app/dashboard/page"
-import { useContext, useEffect, useState } from "react"
+import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/context/AuthContext"
 import { api } from "@/services/api"
 import { AxiosResponse } from "axios"
 import { handleLogout } from "@/utils/handleLogout"
 import { socket } from "@/services/io"
-import { Input } from "../Input"
 
 export interface Chat {
   user: User,
@@ -33,6 +32,26 @@ export const ContactList = () => {
     };
   };
 
+  const [searchUserName, setSearchUserName] = useState<string | undefined>();
+  const [filteredChats, setFilteredChats] = useState<Chat[]>();
+  const searchChat = () => {
+    if (searchUserName) {
+      const filterChats = chats.filter(chat => {
+        console.log(`User name: ${chat.user.name}  user search: ${searchUserName}`)
+        return chat.user.name.includes(searchUserName!)
+      });
+
+      setFilteredChats(filterChats);
+      return;
+    }
+
+    setFilteredChats(undefined)
+  };
+
+  useEffect(() => {
+    searchChat()
+  }, [searchUserName]);
+
   useEffect(() => {
     if (context.user) socket.emit("newChat", context.user?.username);
 
@@ -48,8 +67,15 @@ export const ContactList = () => {
   return (
     <Container>
       <div className="topSide">
-        <h2>Chat</h2>
-        <input placeholder="Buscar novo usuário" />
+        <h2>Chats</h2>
+
+        <input
+          placeholder="Busca por nome de usuário"
+          onChange={e => setSearchUserName(e.target.value)}
+          type="text"
+          value={searchUserName}
+        />
+
         <button className="newChat">
           <img
             src="addIcon.svg"
@@ -60,18 +86,32 @@ export const ContactList = () => {
 
       <div className="contacts">
         {
-          chats?.map(chat => {
-            return (
-              <Contact
-                key={chat.id}
-                name={chat.user.name}
-                username={chat.user.username}
-                contactId={chat.user.id}
-                chatId={chat.id}
-                chatList={chats}
-              />
-            )
-          })
+          filteredChats ?
+            filteredChats?.map(chat => {
+              return (
+                <Contact
+                  key={chat.id}
+                  name={chat.user.name}
+                  username={chat.user.username}
+                  contactId={chat.user.id}
+                  chatId={chat.id}
+                  chatList={chats}
+                />
+              )
+            })
+            :
+            chats?.map(chat => {
+              return (
+                <Contact
+                  key={chat.id}
+                  name={chat.user.name}
+                  username={chat.user.username}
+                  contactId={chat.user.id}
+                  chatId={chat.id}
+                  chatList={chats}
+                />
+              )
+            })
         }
       </div>
 
