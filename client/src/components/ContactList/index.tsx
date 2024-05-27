@@ -48,10 +48,15 @@ export const ContactList = () => {
   return (
     <Container>
       <div className="topSide">
-        <h2>Lista de contatos</h2>
+        <h2>Chat</h2>
+        <input placeholder="Buscar novo usuário" />
+        <button className="newChat">
+          <img
+            src="addIcon.svg"
+            alt="Sinal de mais (adicionar)"
+          />
+        </button>
       </div>
-
-      <Input title="" name="" placeholder="Buscar novo usuário" />
 
       <div className="contacts">
         {
