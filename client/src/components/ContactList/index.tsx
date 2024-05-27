@@ -52,6 +52,9 @@ export const ContactList = () => {
     searchChat()
   }, [searchUserName]);
 
+
+  const [newSearchMode, setNewSearchMode] = useState(false);
+
   useEffect(() => {
     if (context.user) socket.emit("newChat", context.user?.username);
 
@@ -66,7 +69,7 @@ export const ContactList = () => {
 
   return (
     <Container>
-      <div className="topSide">
+      <div className={newSearchMode ? "topSide search" : "topSide"}>
         <h2>Chats</h2>
 
         <input
@@ -76,7 +79,7 @@ export const ContactList = () => {
           value={searchUserName}
         />
 
-        <button className="newChat">
+        <button className="newChat" onClick={() => setNewSearchMode(true)}>
           <img
             src="addIcon.svg"
             alt="Sinal de mais (adicionar)"

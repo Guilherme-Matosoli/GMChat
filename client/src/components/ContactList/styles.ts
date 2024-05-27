@@ -25,6 +25,21 @@ export const Container = styled.section`
     border-radius: 15px;
   }
 
+  .topSide.search{
+    flex-direction: row-reverse;
+  }
+
+  .topSide h2,
+  .topSide input,
+  .topSide .newChat{
+    transition: all .3s;
+  }
+
+  .topSide.search h2{
+    display: none;
+  }
+
+
   .topSide h2{
     font-family: 'Open Sans', sans-serif;
     font-size: 2.5rem;
@@ -82,6 +97,7 @@ export const Container = styled.section`
     overflow-y: auto;
       
     width: 100%;
+    height: 100%;
 
     background-color: white;
     border-radius: 15px;
