@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
+import { handleMonth } from "@/utils/handleMonth";
 
 interface User {
   username: string,
@@ -31,6 +32,25 @@ interface ContactProps extends HTMLAttributes<HTMLDivElement> {
 export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, chatList, ...rest }) => {
   const context = useContext(AuthContext);
   const [lastMessage, setLastMessage] = useState("");
+
+  const [time, setTime] = useState("");
+  const handleDate = () => {
+    const messageDate = new Date(time);
+
+    const month = handleMonth(messageDate.getMonth());
+    const day = messageDate.getDate();
+
+    return `${day} ${month}`
+  };
+
+  const handleTime = () => {
+    const messageDate = new Date(time);
+
+    const hour = messageDate.getHours();
+    const minute = messageDate.getMinutes();
+
+    return `${hour}:${minute}`
+  };
 
   const randomIcon = () => {
     const firstNumberAtId = String(contactId)?.split('')[0]
@@ -63,6 +83,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
       const response = await api.get(`/message/getlast/${chatId}`, { headers: { 'authorization': 'Bearer ' + context.token } });
 
       const message = response.data[0];
+      setTime(message.time);
 
       const lastMessageReturn = `${context.user?.username == message.user ? "Você: " : name + ": "} ${message.content}`;
       setLastMessage(lastMessageReturn)
@@ -72,8 +93,13 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
     };
   };
 
+  let teste = '';
+
   useEffect(() => {
     if (context.token) getLastMessage()
+
+    teste = 'capete'
+
   }, [context, chatList]);
 
   return (
@@ -82,7 +108,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
       <img className="avatar" src={contactId ? randomIcon() : "icons/2.svg"} alt="Foto de uma pessoa" />
 
       <div className="info">
-        <span>{name}</span>
+        <span className="userName">{name}</span>
         <strong>{lastMessage || username}</strong>
       </div>
 
@@ -92,9 +118,10 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
             +
           </button>
         ) : (
-          <Link className="goToChat" href={`chat/${chatId}?name=${name}&username=${username}`}>
-            <img src="/arrowRight.svg" alt="" />
-          </Link>
+          <div className="messageTime">
+            <span className="date"> {handleDate()} </span>
+            <span className="hour"> {handleTime()} </span>
+          </div>
         )
       }
 

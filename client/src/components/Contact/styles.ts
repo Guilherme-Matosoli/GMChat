@@ -13,6 +13,13 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 25px;
+  background-color: white;
+
+  cursor: pointer;
+  transition: filter .3s;
+  &:hover{
+    filter: brightness(0.95);
+  }
 
   &::after{
     content: '';
@@ -35,13 +42,39 @@ export const Container = styled.div`
     border-radius: 50%;
   }
 
-  span{
-    font-size: 20px;
+  &.add{
+    justify-content: space-between;
+  }
+
+  .info{
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  span.userName{
+    font-size: 16px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     color: black;
   }
 
+  .info strong{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #929292;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 250px;
+  }
+
+  
   button.addButton{
     display: flex;
     align-items: center;
@@ -64,10 +97,6 @@ export const Container = styled.div`
     }
   }
 
-  &.add{
-    justify-content: space-between;
-  }
-
   .goToChat{
     display: flex;
     align-items: center;
@@ -88,28 +117,17 @@ export const Container = styled.div`
     }
   }
 
-  .goToChat img{
-  }
-
-  .info{
-    flex: 1;
-
+  .messageTime{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11px;
   }
 
-  .info strong{
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
+  .date{
     font-weight: 500;
-    color: #929292;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    max-width: 150px;
   }
 
   @media(max-width: 900px){
