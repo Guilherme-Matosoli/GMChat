@@ -9,6 +9,8 @@ export const Container = styled.div`
   height: 100vh;
 
   main{
+    margin-top: 50px;
+
     display: flex;
 
     flex: 1;
