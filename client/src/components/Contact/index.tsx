@@ -49,7 +49,12 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
     const hour = messageDate.getHours();
     const minute = messageDate.getMinutes();
 
-    return `${hour}:${minute}`
+    const handleMinutes = () => {
+      if (String(minute).length != 2) return 0 + String(minute);
+      else return minute
+    };
+
+    return `${hour}:${handleMinutes()}`
   };
 
   const randomIcon = () => {
