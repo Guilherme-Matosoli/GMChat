@@ -14,7 +14,6 @@ export interface Chat {
   id: string
 };
 
-
 export const ContactList = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const context = useContext(AuthContext);
@@ -49,11 +48,10 @@ export const ContactList = () => {
   return (
     <Container>
       <div className="topSide">
-        <Input
-          title=""
-          name=""
-        />
+        <h2>Lista de contatos</h2>
       </div>
+
+      <Input title="" name="" placeholder="Buscar novo usuário" />
 
       <div className="contacts">
         {

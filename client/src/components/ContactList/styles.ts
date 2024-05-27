@@ -9,7 +9,8 @@ export const Container = styled.section`
   width: 500px;
   height: 100%;
 
-  border-right: 1px solid black; 
+  border-right: 1px solid white; 
+  padding-right: 20px;
 
   h2{
     font-family: 'Open Sans', sans-serif;
@@ -25,7 +26,9 @@ export const Container = styled.section`
     overflow-y: auto;
       
     width: 100%;
-    padding: 0 20px;
+
+    background-color: white;
+    border-radius: 10px;
   }
 
   .contacts::-webkit-scrollbar{

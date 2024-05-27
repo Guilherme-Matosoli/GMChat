@@ -2,20 +2,34 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
+
   width: 100%;
   min-height: 75px;
+
+  box-sizing: border-box;
   padding: 0 20px;
 
   display: flex;
   align-items: center;
   gap: 25px;
 
-  background-image: var(--button-gradient);
-  border-radius: 20px;
-  border: 2px solid #FF5D00;
+  &::after{
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 90%;
+    height: 1px;
+
+    background-color: rgba(0, 0, 0, .2);
+  }
 
   .avatar{
-    width: 60px;
+    width: 50px;
     border: 2px solid black;
 
     border-radius: 50%;
@@ -25,7 +39,7 @@ export const Container = styled.div`
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    color: white;
+    color: black;
   }
 
   button.addButton{
@@ -74,6 +88,9 @@ export const Container = styled.div`
     }
   }
 
+  .goToChat img{
+  }
+
   .info{
     flex: 1;
 
@@ -86,7 +103,7 @@ export const Container = styled.div`
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    color: #f1f1f1;
+    color: #929292;
 
     white-space: nowrap;
     overflow: hidden;
