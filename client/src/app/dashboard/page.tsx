@@ -36,13 +36,11 @@ const Dashboard = () => {
 
   return hasToken && (
     <Container>
-      <Content>
-        <Header />
-        <main>
-          <ContactList />
-          <UserFinder />
-        </main>
-      </Content>
+      <Header />
+      <main>
+        <ContactList />
+        <UserFinder />
+      </main>
     </Container>
   )
 };
