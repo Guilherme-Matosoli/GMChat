@@ -1,12 +1,17 @@
 import { User } from "@/app/dashboard/page";
 import { Input } from "../Input";
 import { Container } from "./styles";
-import { useContext, useState } from "react";
-import { api } from "@/services/api";
-import { AuthContext } from "@/context/AuthContext";
 import { Contact } from "../Contact";
 
-export const UserFinder = () => {
+import { useContext, useEffect, useState } from "react";
+import { api } from "@/services/api";
+import { AuthContext } from "@/context/AuthContext";
+
+interface UserFinderProps {
+  username: string
+};
+
+export const UserFinder: React.FC<UserFinderProps> = ({ username }) => {
   const [userSearchResult, setUserSearchResult] = useState<User[] | null>();
   const context = useContext(AuthContext);
 
@@ -21,28 +26,19 @@ export const UserFinder = () => {
   };
 
 
+  useEffect(() => {
+    handleFindUsers(username)
+    console.log("pikas")
+  }, [username]);
+
+
   return (
     <Container>
-      <div className="topSide">
-        <h2>Procurar usuário</h2>
-      </div>
-
-      <div className="searchArea">
-        <Input
-          title=""
-          name=""
-          placeholder="Digite o usúario"
-          onChange={e => handleFindUsers(e.target.value)}
-        />
-        <div className="result">
-          {
-            userSearchResult?.map(user => {
-              return <Contact toAdd name={user.name} username={user.username} contactId={user.id} />
-            })
-          }
-        </div>
-
-      </div>
+      {
+        userSearchResult?.map(user => {
+          return <Contact toAdd name={user.name} username={user.username} contactId={user.id} />
+        })
+      }
     </Container>
   )
 };

@@ -29,16 +29,9 @@ export const Container = styled.section`
     flex-direction: row-reverse;
   }
 
-  .topSide h2,
-  .topSide input,
-  .topSide .newChat{
-    transition: all .3s;
-  }
-
   .topSide.search h2{
     display: none;
   }
-
 
   .topSide h2{
     font-family: 'Open Sans', sans-serif;

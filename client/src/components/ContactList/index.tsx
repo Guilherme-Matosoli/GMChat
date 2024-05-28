@@ -7,6 +7,8 @@ import { api } from "@/services/api"
 import { AxiosResponse } from "axios"
 import { handleLogout } from "@/utils/handleLogout"
 import { socket } from "@/services/io"
+import { UserFinder } from "../UserFinder"
+import { Chats } from "./chats"
 
 export interface Chat {
   user: User,
@@ -54,6 +56,7 @@ export const ContactList = () => {
 
 
   const [newSearchMode, setNewSearchMode] = useState(false);
+  const [searchNewUser, setSearchNewUser] = useState<string>();
 
   useEffect(() => {
     if (context.user) socket.emit("newChat", context.user?.username);
@@ -73,13 +76,15 @@ export const ContactList = () => {
         <h2>Chats</h2>
 
         <input
-          placeholder="Busca por nome de usuário"
-          onChange={e => setSearchUserName(e.target.value)}
+          placeholder={newSearchMode ? "Digite o username de quem quer adicionar" : "Busca por nome do usuário"}
+          onChange={e => {
+            newSearchMode ? setSearchNewUser(e.target.value) : setSearchUserName(e.target.value)
+          }}
           type="text"
           value={searchUserName}
         />
 
-        <button className="newChat" onClick={() => setNewSearchMode(true)}>
+        <button className="newChat" onClick={() => setNewSearchMode(!newSearchMode)}>
           <img
             src="addIcon.svg"
             alt="Sinal de mais (adicionar)"
@@ -89,37 +94,20 @@ export const ContactList = () => {
 
       <div className="contacts">
         {
-          filteredChats
+          newSearchMode
             ?
-            filteredChats?.map(chat => {
-              return (
-                <Contact
-                  key={chat.id}
-                  name={chat.user.name}
-                  username={chat.user.username}
-                  contactId={chat.user.id}
-                  chatId={chat.id}
-                  chatList={chats}
-                  onClick={() => {
-                    setFilteredChats(undefined);
-                    setSearchUserName("");
-                  }}
-                />
-              )
-            })
+            <UserFinder username={searchNewUser!} />
             :
-            chats?.map(chat => {
-              return (
-                <Contact
-                  key={chat.id}
-                  name={chat.user.name}
-                  username={chat.user.username}
-                  contactId={chat.user.id}
-                  chatId={chat.id}
-                  chatList={chats}
-                />
-              )
-            })
+
+            <Chats
+              onClickFunction={() => {
+                setFilteredChats(undefined);
+                setSearchUserName("");
+              }}
+
+              filteredChats={filteredChats}
+              chats={chats}
+            />
         }
       </div>
 

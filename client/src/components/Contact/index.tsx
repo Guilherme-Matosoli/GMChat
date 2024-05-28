@@ -60,7 +60,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
   const randomIcon = () => {
     const firstNumberAtId = String(contactId)?.split('')[0]
 
-    return "icons/" + firstNumberAtId + ".svg"
+    return "/icons/" + firstNumberAtId + ".svg"
   };
 
   const createChat = async () => {
