@@ -36,6 +36,9 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
 
   const [time, setTime] = useState("");
   const handleDate = () => {
+    if (!time) {
+      return ''
+    }
     const messageDate = new Date(time);
 
     const month = handleMonth(messageDate.getMonth());
@@ -45,6 +48,10 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
   };
 
   const handleTime = () => {
+    if (!time) {
+      return ''
+    }
+
     const messageDate = new Date(time);
 
     const hour = messageDate.getHours();

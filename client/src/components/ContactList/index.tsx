@@ -9,6 +9,7 @@ import { handleLogout } from "@/utils/handleLogout"
 import { socket } from "@/services/io"
 import { UserFinder } from "../UserFinder"
 import { Chats } from "./chats"
+import { AddButton } from "../AddButton"
 
 export interface Chat {
   user: User,
@@ -55,8 +56,8 @@ export const ContactList = () => {
   }, [searchUserName]);
 
 
-  const [newSearchMode, setNewSearchMode] = useState(false);
-  const [searchNewUser, setSearchNewUser] = useState<string>();
+  const [searchNewUserMode, setNewSearchMode] = useState(false);
+  const [searchNewUsername, setSearchNewUsername] = useState<string>();
 
   useEffect(() => {
     if (context.user) socket.emit("newChat", context.user?.username);
@@ -72,31 +73,28 @@ export const ContactList = () => {
 
   return (
     <Container>
-      <div className={newSearchMode ? "topSide search" : "topSide"}>
+      <div className={searchNewUserMode ? "topSide search" : "topSide"}>
         <h2>Chats</h2>
 
         <input
-          placeholder={newSearchMode ? "Digite o username de quem quer adicionar" : "Busca por nome do usuário"}
+          placeholder={searchNewUserMode ? "Digite o username de quem quer adicionar" : "Busca por nome do usuário"}
           onChange={e => {
-            newSearchMode ? setSearchNewUser(e.target.value) : setSearchUserName(e.target.value)
+            searchNewUserMode ? setSearchNewUsername(e.target.value) : setSearchUserName(e.target.value)
           }}
           type="text"
-          value={searchUserName}
+          value={searchNewUserMode ? searchNewUsername : searchUserName}
         />
 
-        <button className="newChat" onClick={() => setNewSearchMode(!newSearchMode)}>
-          <img
-            src="addIcon.svg"
-            alt="Sinal de mais (adicionar)"
-          />
-        </button>
+        <AddButton
+          onClick={() => setNewSearchMode(!searchNewUserMode)}
+        />
       </div>
 
       <div className="contacts">
         {
-          newSearchMode
+          searchNewUserMode
             ?
-            <UserFinder username={searchNewUser!} />
+            <UserFinder username={searchNewUsername!} />
             :
 
             <Chats

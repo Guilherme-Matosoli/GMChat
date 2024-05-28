@@ -33,6 +33,10 @@ export const Container = styled.section`
     display: none;
   }
 
+  .topSide.search button img{
+    transform: rotate(45deg);
+  }
+
   .topSide h2{
     font-family: 'Open Sans', sans-serif;
     font-size: 2.5rem;
@@ -50,36 +54,6 @@ export const Container = styled.section`
     outline: none;
 
     padding: 0 20px;
-  }
-
-  .newChat{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background-image: var(--gradient-background); 
-    border: none;
-    border-radius: 50%;
-
-    width: 50px;
-    height: 50px;
-
-    font-size: 30px;
-    font-weight: 200;
-    color: white;
-
-    cursor: pointer;
-    transition: filter .3s;
-
-    &:hover{
-      filter: brightness(1.1);
-    }
-  }
-
-  .newChat img{
-    width: 70px;
   }
 
   .contacts{
