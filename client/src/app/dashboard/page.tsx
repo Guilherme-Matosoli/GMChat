@@ -8,7 +8,7 @@ import { AuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 
 import { ContactList } from "@/components/ContactList";
-import { UserFinder } from "@/components/UserFinder";
+import { ChatArea } from "@/components/ChatArea";
 
 export interface User {
   username: string,
@@ -38,6 +38,7 @@ const Dashboard = () => {
       <Header />
       <main>
         <ContactList />
+        <ChatArea chatId="khsdgd" />
       </main>
     </Container>
   )

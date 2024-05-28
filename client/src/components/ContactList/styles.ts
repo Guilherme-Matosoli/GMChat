@@ -9,7 +9,6 @@ export const Container = styled.section`
   width: 500px;
   height: 100%;
 
-  border-right: 1px solid white; 
   padding-right: 20px;
 
   .topSide{
@@ -19,6 +18,7 @@ export const Container = styled.section`
     gap: 25px;
 
     width: 100%;
+    height: 90px;
     padding: 20px;
 
     background-color: white;

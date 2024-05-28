@@ -12,6 +12,7 @@ export const Container = styled.div`
     margin-top: 50px;
 
     display: flex;
+    align-items: center;
 
     flex: 1;
     width: 100%;
