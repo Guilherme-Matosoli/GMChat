@@ -54,6 +54,11 @@ export const Container = styled.section`
     outline: none;
 
     padding: 0 20px;
+    transition: filter .5s ease;
+  }
+
+  .topSide input:focus{
+    filter: brightness(0.9);
   }
 
   .contacts{

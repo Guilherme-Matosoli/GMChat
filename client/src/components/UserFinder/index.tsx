@@ -25,10 +25,8 @@ export const UserFinder: React.FC<UserFinderProps> = ({ username }) => {
     }
   };
 
-
   useEffect(() => {
     handleFindUsers(username)
-    console.log("pikas")
   }, [username]);
 
 
