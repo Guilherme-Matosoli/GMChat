@@ -9,6 +9,7 @@ import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
 import Link from "next/link";
 import { handleMonth } from "@/utils/handleMonth";
+import { AddButton } from "../AddButton";
 
 interface User {
   username: string,
@@ -88,7 +89,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
       const response = await api.get(`/message/getlast/${chatId}`, { headers: { 'authorization': 'Bearer ' + context.token } });
 
       const message = response.data[0];
-      setTime(message.time);
+      setTime(message.time)
 
       const lastMessageReturn = `${context.user?.username == message.user ? "Você: " : name + ": "} ${message.content}`;
       setLastMessage(lastMessageReturn)
@@ -119,9 +120,7 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
 
       {
         toAdd ? (
-          <button className="addButton" onClick={() => createChat()}>
-            +
-          </button>
+          <AddButton onClick={() => createChat()} />
         ) : (
           <div className="messageTime">
             <span className="date"> {handleDate()} </span>
