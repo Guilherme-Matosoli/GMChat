@@ -1,11 +1,11 @@
+import { Container } from "./styles";
+
 import { AuthContext } from "@/context/AuthContext";
 import { api } from "@/services/api";
 import { socket } from "@/services/io";
 import { handleLogout } from "@/utils/handleLogout";
 import { AxiosResponse } from "axios";
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
-import { Container } from "./styles";
-import { Header } from "../Header";
 import Link from "next/link";
 import { Message } from "../Message";
 import { TextArea } from "../TextArea";
@@ -95,31 +95,35 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
       </header>
 
       <div className="messageArea" ref={messageArea}>
-        {
-          messageList?.map(msg => {
-            return (
-              <Message
-                key={msg.id}
-                content={msg.content}
-                name={msg.user.name}
-                time={msg.time}
-              />
-            )
-          })
-        }
+        <div>
+          {
+            messageList?.map(msg => {
+              return (
+                <Message
+                  key={msg.id}
+                  content={msg.content}
+                  name={msg.user.name}
+                  time={msg.time}
+                />
+              )
+            })
+          }
+        </div>
+
+        <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
+          <TextArea
+            placeholder="Digite sua mensagem"
+            onChange={e => setMessage(e.target.value)}
+            value={message}
+          />
+
+          <button className="sendButton" type="submit">
+            <img src="/sendIcon.svg" alt="Enviar" />
+          </button>
+        </form>
+
       </div>
 
-      <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
-        <TextArea
-          placeholder="Digite sua mensagem"
-          onChange={e => setMessage(e.target.value)}
-          value={message}
-        />
-
-        <button className="sendButton" type="submit">
-          <img src="/sendIcon.svg" alt="Enviar" />
-        </button>
-      </form>
     </Container>
   );
 

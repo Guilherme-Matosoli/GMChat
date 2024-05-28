@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 
   height: 100%;
   flex: 1;
@@ -64,14 +64,14 @@ export const Container = styled.div`
   .messageArea{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
-
-    width: 100%;
     flex: 1;
 
-    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
 
-    padding: 20px 40px;
+    background-color: white;
+    border-radius: 20px;
 
     overflow-y: auto;
   }
@@ -95,6 +95,8 @@ export const Container = styled.div`
 
     width: 100%;
     min-height: 70px;
+
+    background-color: black;
   }
 
   .sendButton{
