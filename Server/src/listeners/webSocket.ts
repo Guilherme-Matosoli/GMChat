@@ -17,21 +17,23 @@ interface MessageBody {
 };
 
 io.on("connection", (socket) => {
+  const usersOnline = [];
+
   socket.on("newChat", (username) => {
     socket.join(username);
+
+    usersOnline.push(username);
   });
 
   socket.on("join chat", chat => {
     socket.join(chat)
   });
 
-  socket.on("message", (msg: MessageBody) => {
+  socket.on("message", async (msg: MessageBody) => {
     const messageService = new CreateMessageService(MessageRepository, UserRepository, ChatRepository);
 
     const time = new Date();
     const brazilDate = time.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' });
-
-    io.to(msg.to).emit("new message");
 
     const messageCreated = MessageRepository.create({
       id: genId(10),
@@ -40,9 +42,9 @@ io.on("connection", (socket) => {
       content: msg.message as string,
       time: brazilDate
     });
-
-    messageService.create(messageCreated);
-
     io.to(String(msg.room)).emit("message", messageCreated);
+
+    await messageService.create(messageCreated);
+    io.to(msg.to).emit("new message");
   });
 });
