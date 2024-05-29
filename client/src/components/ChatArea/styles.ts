@@ -5,7 +5,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+//  gap: 20px;
+  border-radius: 20px;
+  background: white;
 
   height: 100%;
   flex: 1;
@@ -19,46 +21,6 @@ export const Container = styled.div`
 
     width: 100%;
     height: 90px;
-
-    background-color: white;
-    border-radius: 20px;
-
-    a{
-      display: flex;
-      align-items: center;
-      gap: 5px;
-
-      background-color: transparent;
-      border: none;
-
-      font-family: 'Open Sans', sans-serif;
-      font-size: 1.8rem;
-      text-decoration: none;
-      color: black;
-
-      cursor: pointer;
-      transition: all .3s;
-    }
-
-    a:hover{
-      transform: scale(1.05);
-    }
-
-    a img{
-      transform: rotate(180deg);
-    }
-
-    span{
-      position: absolute;
-      left: 50%;
-      top: 50%;
-
-      transform: translateX(-50%) translateY(-50%);
-
-      font-family: 'Open Sans', sans-serif;
-      font-size: 1.8rem;
-      color: white;
-    }
   }
 
   .messageArea{
@@ -69,9 +31,6 @@ export const Container = styled.div`
     flex: 1;
 
     width: 100%;
-
-    background-color: white;
-    border-radius: 20px;
 
     overflow-y: auto;
   }
@@ -86,6 +45,14 @@ export const Container = styled.div`
     border-radius: 20px;
   }
 
+  .messageList{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 20px 40px;
+  }
+
   .inputArea{
     display: flex;
     align-items: center;
@@ -95,8 +62,6 @@ export const Container = styled.div`
 
     width: 100%;
     min-height: 70px;
-
-    background-color: black;
   }
 
   .sendButton{

@@ -84,18 +84,11 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
   return (
     <Container>
       <header className="topSide">
-        <Link href="/dashboard">
-          <img src="/arrowRight.svg" alt="Retornar" />
-          Voltar à página inicial
-        </Link>
 
-        <span>
-          Chat com: {chatUser?.name}
-        </span>
       </header>
 
       <div className="messageArea" ref={messageArea}>
-        <div>
+        <div className="messageList">
           {
             messageList?.map(msg => {
               return (
