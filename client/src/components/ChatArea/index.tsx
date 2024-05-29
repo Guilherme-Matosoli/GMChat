@@ -84,7 +84,25 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
   return (
     <Container>
       <header className="topSide">
+        <div className="info">
+          <div className="profilePic">
+            <img
+              src="/icons/1.svg"
+              draggable="false"
+              alt="Foto de perfil do usuário"
+            />
+          </div>
 
+          <div className="user">
+            <span className="name">
+              Danilo
+            </span>
+
+            <span className="status">
+              Online
+            </span>
+          </div>
+        </div>
       </header>
 
       <div className="messageArea" ref={messageArea}>

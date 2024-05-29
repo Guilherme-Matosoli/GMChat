@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-//  gap: 20px;
   border-radius: 20px;
   background: white;
 
@@ -15,12 +14,71 @@ export const Container = styled.div`
   .topSide{
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: center; 
 
     padding: 20px;
 
     width: 100%;
     height: 90px;
+
+    border-bottom: 1px solid #e1e1e1;
+  }
+
+  .topSide .info{
+    display: flex;  
+    align-items: center;
+    gap: 25px;
+
+    height: 100%;
+
+    .profilePic{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      border-radius: 50%;
+      border: 2px solid black;
+    }
+
+    .profilePic img{
+      width: 60px;
+    }
+
+    .profilePic::before{
+      content: '';
+      display: block;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      width: 15px;
+      height: 15px;
+
+      background-color: #00EA1C;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .user{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      height: 100%;
+    }
+
+    .user .name{
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.7rem;
+    }
+
+    .user .status{
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.3rem;
+    }
   }
 
   .messageArea{
@@ -62,6 +120,8 @@ export const Container = styled.div`
 
     width: 100%;
     min-height: 70px;
+
+    border-top: 1px solid #e1e1e1;
   }
 
   .sendButton{
