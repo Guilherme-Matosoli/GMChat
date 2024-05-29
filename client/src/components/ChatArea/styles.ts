@@ -15,6 +15,7 @@ export const Container = styled.div`
     position: relative;
     display: flex;
     align-items: center; 
+    justify-content: space-between;
 
     padding: 20px;
 
@@ -78,6 +79,41 @@ export const Container = styled.div`
     .user .status{
       font-family: 'Open Sans', sans-serif;
       font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+
+  .topSide .options{
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+
+    border-left: 1px solid #e1e1e1;
+    padding: 0 15px;
+
+    .searchButton, .settingsButton{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 10px;
+
+      background-color: white;
+      border-radius: 50%;
+      border: none;
+
+      cursor: pointer;
+      transition: filter .3s;
+
+      &:hover{
+        filter: brightness(0.9);
+      }
+    } 
+
+    .searchButton img, .settingsButton img{
+      width: 30px;
     }
   }
 

@@ -103,6 +103,16 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
             </span>
           </div>
         </div>
+
+        <div className="options">
+          <button className="searchButton">
+            <img src="/searchIcon.svg" />
+          </button>
+
+          <button className="settingsButton">
+            <img src="/settingsIcon.svg" />
+          </button>
+        </div>
       </header>
 
       <div className="messageArea" ref={messageArea}>
