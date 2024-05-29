@@ -165,10 +165,9 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    background-color: transparent;
     border: none;
 
-    background-color: white;
+    background-color: #e1e1e1;
     border-radius: 50%;
 
     cursor: pointer;

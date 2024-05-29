@@ -1,7 +1,6 @@
 import { Container } from "./styles"
-import { Contact } from "../Contact"
 import { User } from "@/app/dashboard/page"
-import { ChangeEvent, useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/context/AuthContext"
 import { api } from "@/services/api"
 import { AxiosResponse } from "axios"
@@ -18,12 +17,12 @@ export interface Chat {
 
 export const ContactList = () => {
   const [chats, setChats] = useState<Chat[]>([]);
-  const context = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
   const getChats = async () => {
     try {
-      if (!context.user) return;
-      const response = await api.get(`/chat/list/${context.user?.username}`, { headers: { 'authorization': 'Bearer ' + context.token } });
+      if (!authContext.user) return;
+      const response = await api.get(`/chat/list/${authContext.user?.username}`, { headers: { 'authorization': 'Bearer ' + authContext.token } });
       setChats(response.data);
     }
     catch (err) {
@@ -40,7 +39,6 @@ export const ContactList = () => {
   const searchChat = () => {
     if (searchUserName) {
       const filterChats = chats.filter(chat => {
-        console.log(`User name: ${chat.user.name}  user search: ${searchUserName}`)
         return chat.user.name.includes(searchUserName!)
       });
 
@@ -60,10 +58,10 @@ export const ContactList = () => {
   const [searchNewUsername, setSearchNewUsername] = useState<string>();
 
   useEffect(() => {
-    if (context.user) socket.emit("newChat", context.user?.username);
+    if (authContext.user) socket.emit("newChat", authContext.user?.username);
 
     socket.on("new message", () => {
-      setTimeout(() => getChats(), 500);
+      getChats()
     });
 
     getChats();

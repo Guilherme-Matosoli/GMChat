@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { ContactList } from "@/components/ContactList";
 import { ChatArea } from "@/components/ChatArea";
+import { ChatContext } from "@/context/ChatContext";
 
 export interface User {
   username: string,
@@ -16,9 +17,9 @@ export interface User {
   id: number
 };
 
-
 const Dashboard = () => {
   const context = useContext(AuthContext);
+  const chatContext = useContext(ChatContext);
 
   const [hasToken, setHasToken] = useState(false);
   const router = useRouter();
@@ -38,7 +39,7 @@ const Dashboard = () => {
       <Header />
       <main>
         <ContactList />
-        <ChatArea chatId="khsdgd" />
+        <ChatArea chatId={chatContext.actualChat?.id} />
       </main>
     </Container>
   )

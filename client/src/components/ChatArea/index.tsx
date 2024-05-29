@@ -6,31 +6,32 @@ import { socket } from "@/services/io";
 import { handleLogout } from "@/utils/handleLogout";
 import { AxiosResponse } from "axios";
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
-import Link from "next/link";
+
 import { Message } from "../Message";
 import { TextArea } from "../TextArea";
+import { ChatContext } from "@/context/ChatContext";
 
 interface ChatIdParams {
-  chatId: string
+  chatId?: string
 };
 
 interface User {
   name: string,
   username: string
 };
-interface Message {
+export interface Message {
   id: string,
   user: User,
   content: string,
   time: string
 };
 
-
 export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
   const [chatUser, setChatUser] = useState<User | null>();
   const [messageList, setMessageList] = useState<Message[]>();
   const [message, setMessage] = useState<string>();
 
+  const chatContext = useContext(ChatContext);
   const context = useContext(AuthContext);
   const messageArea = useRef<HTMLDivElement | null>(null);
 
@@ -71,10 +72,13 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
       name: queryParams.get("name")!,
       username: queryParams.get("username")!
     });
+
+    setMessage("");
+
     return () => {
       socket.off("message")
     };
-  }, [context]);
+  }, [context, chatContext]);
 
   useEffect(() => {
     if (messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
@@ -95,7 +99,7 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
 
           <div className="user">
             <span className="name">
-              Danilo
+              {chatContext.actualChat?.user.name}
             </span>
 
             <span className="status">
@@ -105,7 +109,7 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
         </div>
 
         <div className="options">
-          <button className="searchButton">
+          <button className="searchButton"  >
             <img src="/searchIcon.svg" />
           </button>
 

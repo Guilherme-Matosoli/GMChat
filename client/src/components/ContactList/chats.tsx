@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Chat } from ".";
 import { Contact } from "../Contact";
+import { ChatContext } from "@/context/ChatContext";
 
 interface ChatsProps {
   filteredChats?: Chat[],
@@ -8,6 +10,8 @@ interface ChatsProps {
 };
 
 export const Chats: React.FC<ChatsProps> = ({ filteredChats, chats, onClickFunction }) => {
+  const chatContext = useContext(ChatContext);
+
   return (
     <>
       {
@@ -22,7 +26,10 @@ export const Chats: React.FC<ChatsProps> = ({ filteredChats, chats, onClickFunct
                 contactId={chat.user.id}
                 chatId={chat.id}
                 chatList={chats}
-                onClick={() => onClickFunction()}
+                onClick={() => {
+                  onClickFunction();
+                  chatContext.setActualChat(chat);
+                }}
               />
             )
           })
@@ -36,6 +43,7 @@ export const Chats: React.FC<ChatsProps> = ({ filteredChats, chats, onClickFunct
                 contactId={chat.user.id}
                 chatId={chat.id}
                 chatList={chats}
+                onClick={() => chatContext.setActualChat(chat)}
               />
             )
           })

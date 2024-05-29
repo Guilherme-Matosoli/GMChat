@@ -11,7 +11,7 @@ export const Container = styled.div`
 
   padding: 10px 20px;
 
-  background-color: white;
+  background-color: orange;
   border-radius: 20px 20px 20px 0px;
 
   &.mine{
@@ -47,8 +47,8 @@ export const Container = styled.div`
     bottom: 0;
 
     border-top: 5px solid transparent;
-    border-right: 5px solid white; 
-    border-bottom: 5px solid white; 
+    border-right: 5px solid orange; 
+    border-bottom: 5px solid orange; 
     border-left: 5px solid transparent; 
   }
 
