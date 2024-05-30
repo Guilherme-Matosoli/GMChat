@@ -8,8 +8,9 @@ export const Container = styled.div`
   border-radius: 20px;
   background: white;
 
-  height: 100%;
+  height: calc(100vh - 20px - 50px - 70px - 10px);
   flex: 1;
+  width: 100%;
 
   .topSide{
     position: relative;
@@ -121,12 +122,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 10px;
-    flex: 1;
 
-    width: 100%;
-
-    overflow-y: auto;
+    height: 100%;
+    overflow: hidden;
   }
 
   .messageArea::-webkit-scrollbar{
@@ -140,13 +138,18 @@ export const Container = styled.div`
   }
 
   .messageList{
+    height: 100%;
+    flex: 1;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
 
     padding: 20px 40px;
+    
+    overflow-y: auto;
   }
-
+   
   .inputArea{
     display: flex;
     align-items: center;
