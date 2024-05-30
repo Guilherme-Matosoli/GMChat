@@ -25,6 +25,10 @@ export const Container = styled.div`
       gap: 20px;
       margin-top: 0;
     }
+
+    main .chatArea{
+      display: none;
+    }
   }
 
   @media(max-width: 600px){

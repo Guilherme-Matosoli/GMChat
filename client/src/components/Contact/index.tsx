@@ -1,5 +1,6 @@
 'use client';
 import { Container } from "./styles";
+import { AddButton } from "../AddButton";
 
 import { HTMLAttributes, useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/context/AuthContext";
@@ -7,9 +8,9 @@ import { api } from "@/services/api";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/utils/alert";
 import { AxiosResponse } from "axios";
-import Link from "next/link";
 import { handleMonth } from "@/utils/handleMonth";
-import { AddButton } from "../AddButton";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useRouter } from "next/navigation";
 
 interface User {
   username: string,
@@ -27,10 +28,11 @@ interface ContactProps extends HTMLAttributes<HTMLDivElement> {
   username?: string,
   contactId?: number,
   chatId?: string,
-  chatList?: Chat[]
+  chatList?: Chat[],
+  onClickFunc?: () => void
 };
 
-export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, chatList, ...rest }) => {
+export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contactId, chatId, chatList, onClickFunc, ...rest }) => {
   const context = useContext(AuthContext);
   const [lastMessage, setLastMessage] = useState("");
 
@@ -106,17 +108,23 @@ export const Contact: React.FC<ContactProps> = ({ toAdd, name, username, contact
     };
   };
 
-  let teste = '';
-
   useEffect(() => {
     if (context.token) getLastMessage()
-
-    teste = 'capete'
-
   }, [context, chatList]);
 
+  const query = useMediaQuery(900);
+  const router = useRouter();
+  const goToChat = () => {
+    if (query) {
+      router.push(`/chat/${chatId}`)
+    }
+  };
+
   return (
-    <Container className={toAdd ? "add" : ""} {...rest}>
+    <Container className={toAdd ? "add" : ""} {...rest} onClick={() => {
+      onClickFunc && onClickFunc();
+      goToChat();
+    }}>
       <Toaster />
       <img className="avatar" src={contactId ? randomIcon() : "icons/2.svg"} alt="Foto de uma pessoa" />
 

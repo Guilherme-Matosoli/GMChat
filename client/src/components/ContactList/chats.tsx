@@ -26,7 +26,7 @@ export const Chats: React.FC<ChatsProps> = ({ filteredChats, chats, onClickFunct
                 contactId={chat.user.id}
                 chatId={chat.id}
                 chatList={chats}
-                onClick={() => {
+                onClickFunc={() => {
                   onClickFunction();
                   chatContext.setActualChat(chat);
                 }}
@@ -43,7 +43,7 @@ export const Chats: React.FC<ChatsProps> = ({ filteredChats, chats, onClickFunct
                 contactId={chat.user.id}
                 chatId={chat.id}
                 chatList={chats}
-                onClick={() => chatContext.setActualChat(chat)}
+                onClickFunc={() => chatContext.setActualChat(chat)}
               />
             )
           })

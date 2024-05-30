@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const UseMediaQuery = (query: number) => {
+export const useMediaQuery = (query: number) => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {

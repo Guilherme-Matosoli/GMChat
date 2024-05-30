@@ -4,10 +4,11 @@ import { ChatAreaContent } from "./ChatArea";
 import { OffChat } from "../OffChat";
 
 interface ChatIdParams {
-  chatId?: string
+  chatId?: string,
+  className?: string
 };
 
-export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
+export const ChatArea: React.FC<ChatIdParams> = ({ chatId, className }) => {
   const chatContext = useContext(ChatContext);
 
   return (
@@ -15,7 +16,7 @@ export const ChatArea: React.FC<ChatIdParams> = ({ chatId }) => {
       {
         chatContext.actualChat
           ?
-          <ChatAreaContent chatId={chatId} />
+          <ChatAreaContent chatId={chatId} className={className} />
           :
           <OffChat />
       }

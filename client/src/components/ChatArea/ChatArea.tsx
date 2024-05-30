@@ -11,7 +11,8 @@ import { Message } from "../Message";
 import { TextArea } from "../TextArea";
 
 interface ChatIdParams {
-  chatId?: string
+  chatId?: string,
+  className?: string
 };
 
 interface User {
@@ -26,7 +27,7 @@ export interface Message {
 };
 
 
-export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId }) => {
+export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) => {
   const [messageList, setMessageList] = useState<Message[]>();
   const [message, setMessage] = useState<string>();
 
@@ -90,7 +91,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId }) => {
   };
 
   return (
-    <Container>
+    <Container className={className}>
       <header className="topSide">
         <div className="info">
           <div className="profilePic">

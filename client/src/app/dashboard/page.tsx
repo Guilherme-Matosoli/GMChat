@@ -39,7 +39,7 @@ const Dashboard = () => {
       <Header />
       <main>
         <ContactList />
-        <ChatArea chatId={chatContext.actualChat?.id} />
+        <ChatArea chatId={chatContext.actualChat?.id} className="chatArea" />
       </main>
     </Container>
   )
