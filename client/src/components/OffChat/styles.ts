@@ -25,4 +25,8 @@ export const Container = styled.div`
     font-size: 20px;
     font-weight: 500;
   }
+
+  @media(max-width: 900px){
+    display: none;
+  }
 `;

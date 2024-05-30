@@ -88,6 +88,37 @@ export const Container = styled.section`
 
   @media(max-width: 900px){
     border-right: none;
+
+    width: 100%;
   }
 
+  @media(max-width: 600px){
+    gap: 0;
+    padding: 0;
+
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+
+    .topSide{
+      gap: 10px;
+      justify-content: space-between;
+
+      padding: 10px;
+
+      border-radius: 0;
+      width: 100%;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    .topSide h2{
+      font-size: 2rem;
+    }
+
+    .topSide input{
+      height: 40px;
+      width: 100%;
+      border-radius: 15px;
+    }
+  }
 `;

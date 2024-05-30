@@ -26,4 +26,10 @@ export const Container = styled.div`
       margin-top: 0;
     }
   }
+
+  @media(max-width: 600px){
+    padding: 10px;
+
+    margin-top: 0px;
+  }
 `;

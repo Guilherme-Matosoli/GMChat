@@ -29,4 +29,9 @@ export const Container = styled.button`
     transition: transform .5s;
     width: 70px;
   }
+
+  @media(max-width: 600px){
+    width: 40px;
+    height: 40px;
+  }
 `;

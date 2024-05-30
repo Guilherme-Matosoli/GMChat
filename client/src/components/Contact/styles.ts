@@ -140,7 +140,7 @@ export const Container = styled.div`
       width: 40px;
     }
 
-    span{
+    .info .username{
       font-size: 15px;
     }
 
@@ -162,6 +162,12 @@ export const Container = styled.div`
 
     .goToChat img{
       max-width: 15px;
+    }
+  }
+
+  @media(max-width: 600px){
+    .messageTime{
+      font-size: 8px;
     }
   }
 
