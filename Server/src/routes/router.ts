@@ -9,6 +9,7 @@ import { SearchUserController } from '../controllers/User/SearchUserController';
 import { ListMessageController } from '../controllers/Message/ListMessageController';
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { GetLastMessageController } from '../controllers/Message/GetLastMessageController';
+import { DeleteMessageController } from '../controllers/Message/DeleteMessageController';
 
 export const router = Router();
 router.use(cors());
@@ -33,3 +34,6 @@ router.get('/message/list/:chatId', authMiddleware, new ListMessageController().
 
 //Get last message
 router.get('/message/getlast/:chatId', new GetLastMessageController().get)
+
+//Delete all messages
+router.delete('/message/delete', new DeleteMessageController().delete)
