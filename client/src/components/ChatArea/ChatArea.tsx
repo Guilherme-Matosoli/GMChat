@@ -9,6 +9,7 @@ import { socket } from "@/services/io";
 import { Loading } from "../Loading";
 import { Message } from "../Message";
 import { TextArea } from "../TextArea";
+import Link from "next/link";
 
 interface ChatIdParams {
   chatId?: string,
@@ -94,6 +95,10 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
     <Container className={className}>
       <header className="topSide">
         <div className="info">
+          <Link className="backDashboard" href="/dashboard">
+            <img src="/arrowRight.svg" />
+          </Link>
+
           <div className="profilePic">
             <img
               src={randomIcon()}

@@ -33,6 +33,10 @@ export const Container = styled.div`
 
     height: 100%;
 
+    .backDashboard{
+      transform: rotate(-180deg);
+    }
+
     .profilePic{
       display: flex;
       align-items: center;
