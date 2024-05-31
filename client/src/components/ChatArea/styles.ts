@@ -225,6 +225,10 @@ export const Container = styled.div`
       font-size: 1.4rem;
     }   
 
+    .messageList{
+      padding: 10px 25px;
+    }
+
     .inputArea{
       height: 70px;
     }

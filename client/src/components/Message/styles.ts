@@ -29,10 +29,10 @@ export const Container = styled.div`
     left: 100%;
     bottom: 0;
 
-    border-top: 10px solid transparent;
-    border-left: 10px solid black;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid black; 
+    border-top: 5px solid transparent;
+    border-left: 5px solid black;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid black; 
   }
 
   &.mine::before{
@@ -89,23 +89,8 @@ export const Container = styled.div`
   }
 
   @media(max-width: 690px){
-    width: 250px;
-
-  }
-
-  @media(max-width: 600px){
     width: 200px;
-    
-    .userName{
-      font-size: 1rem;
-    }
 
-    .messageContent{
-      font-size: 1rem;
-    }
-
-    .time{
-      font-size: .8rem;
-    }
   }
+
 `;
