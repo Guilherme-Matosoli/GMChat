@@ -198,9 +198,17 @@ export const Container = styled.div`
       justify-content: space-between;
       align-items: center;
 
+      height: 70px;
+      padding: 10px;
+
       img{
         max-width: 40px;
       }
+    }
+
+    .topSide .info .user{
+      justify-content: center;
+      gap: 10px;
     }
 
     .topSide span{
@@ -212,5 +220,9 @@ export const Container = styled.div`
     .topSide a, .topSide span{
       font-size: 1.4rem;
     }   
+
+    .inputArea{
+      height: 70px;
+    }
   }
 `;

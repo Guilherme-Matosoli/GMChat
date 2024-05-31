@@ -124,14 +124,14 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
         </div>
       </header>
 
-      <div className="messageArea" ref={messageArea}>
+      <div className="messageArea" >
         {
           fetching
             ?
             <Loading />
             :
 
-            <div className="messageList">
+            <div className="messageList" ref={messageArea}>
               {
                 messageList?.map(msg => {
                   return (
