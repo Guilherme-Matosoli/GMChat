@@ -1,4 +1,3 @@
-
 'use client';
 import styled from "styled-components";
 
@@ -94,9 +93,8 @@ export const Container = styled.div`
 
     height: 100%;
 
-
     border-left: 1px solid #e1e1e1;
-    padding: 0 15px;
+    padding-left: 15px;
   }
 
   .messageArea{
