@@ -98,7 +98,7 @@ export const Container = styled.div`
     border-left: 1px solid #e1e1e1;
     padding: 0 15px;
 
-    .searchButton, .settingsButton{
+    .settingsButton{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -117,7 +117,7 @@ export const Container = styled.div`
       }
     } 
 
-    .searchButton img, .settingsButton img{
+    .settingsButton img{
       width: 30px;
     }
   }

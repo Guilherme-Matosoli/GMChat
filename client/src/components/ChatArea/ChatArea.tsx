@@ -119,10 +119,6 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
         </div>
 
         <div className="options">
-          <button className="searchButton"  >
-            <img src="/searchIcon.svg" />
-          </button>
-
           <button className="settingsButton">
             <img src="/settingsIcon.svg" />
           </button>
