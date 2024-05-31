@@ -10,6 +10,7 @@ import { Loading } from "../Loading";
 import { Message } from "../Message";
 import { TextArea } from "../TextArea";
 import Link from "next/link";
+import { ConfigButton } from "../ConfigButton";
 
 interface ChatIdParams {
   chatId?: string,
@@ -119,9 +120,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
         </div>
 
         <div className="options">
-          <button className="settingsButton">
-            <img src="/settingsIcon.svg" />
-          </button>
+          <ConfigButton />
         </div>
       </header>
 
