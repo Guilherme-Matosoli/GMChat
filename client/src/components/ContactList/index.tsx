@@ -58,7 +58,7 @@ export const ContactList = () => {
   const [searchNewUsername, setSearchNewUsername] = useState<string>();
 
   useEffect(() => {
-    if (authContext.user) socket.emit("newChat", authContext.user?.username);
+    if (authContext.user) socket.emit("dashboard", authContext.user?.username);
 
     socket.on("new message", () => {
       getChats()
