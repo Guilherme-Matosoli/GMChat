@@ -16,7 +16,8 @@ export class DeleteChatService {
       const delMessages = await new DeleteMessageService(this.messageRepository, this.chatRepository).delete({ chatId, username });
       if (delMessages == "User is not in chat.") return delMessages;
 
-      await this.chatRepository.delete({ id: chatId })
+      await this.chatRepository.delete({ id: chatId });
+      return "Delete successfully"
     }
     catch (err) {
       console.log(err)
