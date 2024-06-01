@@ -26,6 +26,9 @@ router.post('/chat/create', authMiddleware, new CreateChatController().create);
 //List user chats
 router.get('/chat/list/:username', authMiddleware, new ListChatController().list);
 
+//Delete chat
+router.delete('/chat/delete/:chatId');
+
 //List users by username
 router.get('/users/:username', authMiddleware, new SearchUserController().search);
 
