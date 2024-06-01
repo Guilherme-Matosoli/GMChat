@@ -10,6 +10,7 @@ import { ListMessageController } from '../controllers/Message/ListMessageControl
 import { authMiddleware } from '../middlewares/authMiddleware';
 import { GetLastMessageController } from '../controllers/Message/GetLastMessageController';
 import { DeleteMessageController } from '../controllers/Message/DeleteMessageController';
+import { DeleteChatController } from '../controllers/Chat/DeleteChatController';
 
 export const router = Router();
 router.use(cors());
@@ -27,7 +28,7 @@ router.post('/chat/create', authMiddleware, new CreateChatController().create);
 router.get('/chat/list/:username', authMiddleware, new ListChatController().list);
 
 //Delete chat
-router.delete('/chat/delete/:chatId');
+router.delete('/chat/delete/:chatId', authMiddleware, new DeleteChatController().delete);
 
 //List users by username
 router.get('/users/:username', authMiddleware, new SearchUserController().search);
