@@ -19,6 +19,7 @@ export class DeleteMessageController {
       return res.status(200).json({ message: messageDelete })
     }
     catch (err) {
+      console.log(err)
       return res.status(500).json({ message: "Internal server error" })
     }
   };
