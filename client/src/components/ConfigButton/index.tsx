@@ -15,7 +15,15 @@ const Modal = ({ chatId }: { chatId: string }) => {
   const deleteAllMessages = async () => {
     try {
       const response = await api.delete(`/message/delete/${chatId}`, { headers: { "authorization": "Bearer " + authContext.token } })
-      window.location.reload();
+      if (response.data.message == "Delete successfully") window.location.reload();
+    }
+    catch (err) { }
+  };
+
+  const deleteChat = async () => {
+    try {
+      const response = await api.delete(`/chat/delete/${chatId}`, { headers: { "authorization": "Bearer " + authContext.token } })
+      if (response.data.message == "Delete successfully") window.location.reload();
     }
     catch (err) { }
   };
@@ -23,7 +31,7 @@ const Modal = ({ chatId }: { chatId: string }) => {
   return (
     <ModalContainer>
       <ConfigOption text="Apagar mensagens" onClick={deleteAllMessages} />
-      <ConfigOption text="Apagar contato" />
+      <ConfigOption text="Apagar contato" onClick={deleteChat} />
     </ModalContainer>
   )
 };
