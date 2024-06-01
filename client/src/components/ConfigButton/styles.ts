@@ -11,7 +11,6 @@ export const Container = styled.button`
   border-radius: 50%;
   border: none;
 
- 
   img{
     background-color: white;
     border-radius: 50%;
@@ -28,15 +27,20 @@ export const Container = styled.button`
 
 
 export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
   position: absolute;
   top: 100%;
   right: 0;
   z-index: 10;
 
   width: 200px;
-  height: 350px;
+  height: auto;
 
-  background: red;
-  border: 1px solid black;
+  background: white;
   border-radius: 20px;
+
+  box-shadow: 0px 0px 5px black;
+  overflow: hidden;
 `;

@@ -120,7 +120,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
         </div>
 
         <div className="options">
-          <ConfigButton />
+          <ConfigButton chatId={chatId!} />
         </div>
       </header>
 

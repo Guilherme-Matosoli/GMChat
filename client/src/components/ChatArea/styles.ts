@@ -33,7 +33,20 @@ export const Container = styled.div`
     height: 100%;
 
     .backDashboard{
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+
+      background: white;
+      border-radius: 50%;
+
       transform: rotate(-180deg);
+    
+      transition: filter .3s;
+      &:hover{
+        filter: brightness(0.9);
+      }
     }
 
     .profilePic{
@@ -170,6 +183,11 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     border-radius: 0;
+
+    .topSide .info .backDashboard{
+      justify-content: center;
+      display: flex;
+    }
   }
 
   @media(max-width: 600px){ 
