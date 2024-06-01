@@ -8,7 +8,7 @@ import { User } from "../../database/entities/User";
 export class DeleteMessageController {
   async delete(req: Request, res: Response) {
     try {
-      const { chatId } = req.body;
+      const { chatId } = req.params;
       const { username }: User = JSON.parse(req.headers.cookie);
 
       const deleteMessageService = new DeleteMessageService(MessageRepository, ChatRepository);

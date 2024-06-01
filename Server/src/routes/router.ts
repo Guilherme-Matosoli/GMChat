@@ -36,4 +36,4 @@ router.get('/message/list/:chatId', authMiddleware, new ListMessageController().
 router.get('/message/getlast/:chatId', new GetLastMessageController().get)
 
 //Delete all messages
-router.delete('/message/delete', new DeleteMessageController().delete)
+router.delete('/message/delete/:chatId', new DeleteMessageController().delete)
