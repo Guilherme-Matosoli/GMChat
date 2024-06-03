@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -10,7 +10,7 @@ export const Container = styled.div`
   width: 100%;
 
   font-family: 'Open Sans', sans-serif;
-  font-size: 1.3rem;
+  font-size: 16px;
 
   label{
     margin-left: 20px;

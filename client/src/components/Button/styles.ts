@@ -14,7 +14,7 @@ export const LinkContainer = styled(Link)`
   border: 1px solid orange;
 
   color: white;
-  font-size: 1.6rem;
+  font-size: 16px;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
 
@@ -36,8 +36,6 @@ export const LinkContainer = styled(Link)`
 
   @media(max-width: 900px){
     padding: 15px 75px;
-
-    font-size: 1.4rem;
   }
 
   @media(max-width: 300px){
@@ -56,7 +54,7 @@ export const ButtonContainer = styled.button`
   border-radius: 50px;
 
   color: white;
-  font-size: 1.6rem;
+  font-size: 16px;
   font-family: 'Inter', sans-serif;
   text-decoration: none;
 
@@ -74,7 +72,6 @@ export const ButtonContainer = styled.button`
   @media(max-width: 900px){
     padding: 15px 75px;
 
-    font-size: 1.4rem;
     max-width: 100%;
   }
 

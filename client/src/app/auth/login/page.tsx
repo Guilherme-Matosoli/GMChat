@@ -7,14 +7,13 @@ import { LinkButton } from "@/components/Button/linkButton";
 import { api } from "@/services/api";
 import { AuthContext } from "@/context/AuthContext";
 
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { AxiosResponse } from "axios";
 import { useContext } from "react";
 import { Toaster } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { disableToast, showToast } from "@/utils/alert";
+import { showToast } from "@/utils/alert";
 
-interface LoginInfos{
+interface LoginInfos {
   email?: string,
   password?: string
 };
@@ -37,37 +36,37 @@ const Login = () => {
   const [pending, setPending] = useState(false);
   const handleLogin = async (e: FormEvent) => {
     setPending(true);
-    try{
+    try {
       e.preventDefault();
       const request = await api.post('login', loginInfo);
 
       authContext.setToken(request.data.token);
       authContext.setUser(request.data.user);
-      
+
       showToast("Sucesso! ✅");
       setLoginInfo({ email: '', password: '' });
       window.location.reload();
     }
-    catch(err: unknown){
-      if(typeof err == "object" && err != null && "response" in err){
+    catch (err: unknown) {
+      if (typeof err == "object" && err != null && "response" in err) {
         const errorResponse = err.response as AxiosResponse;
 
         errorResponse.data.message == "Invalid email or password" && setError("Email ou senha inválidos, tente novamente.");
-        setLoginInfo(current => ( { ...current, password: '' } ) );
-        
+        setLoginInfo(current => ({ ...current, password: '' }));
+
         return
       };
       setError("Erro interno do servidor, tente novamente mais tarde.");
     }
-    finally{ setPending(false) }
+    finally { setPending(false) }
   };
 
   return (
     <Container onSubmit={e => handleLogin(e)}>
-      <Toaster/>
+      <Toaster />
       <h1>FAÇA SEU LOGIN</h1>
 
-      <Input 
+      <Input
         title="Email:"
         name="email"
         placeholder="Digite seu email"
@@ -77,7 +76,7 @@ const Login = () => {
         value={loginInfo?.email}
       />
 
-      <Input 
+      <Input
         title="Senha:"
         name="password"
         placeholder="Digite sua senha"
@@ -85,11 +84,11 @@ const Login = () => {
         required
         onChange={e => setInfos(e)}
         value={loginInfo?.password}
-        errorDesc={ error }
+        errorDesc={error}
       />
 
       <div className="buttonsWrapper">
-        <RealButton type="submit" pending={ pending }>
+        <RealButton type="submit" pending={pending}>
           Entrar
         </RealButton>
 

@@ -14,5 +14,7 @@ export const Container = styled.textarea`
   border-radius: 15px;
 
   font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+
   background-color: #dbdbdb; 
 `;
