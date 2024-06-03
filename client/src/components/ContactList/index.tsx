@@ -58,6 +58,8 @@ export const ContactList = () => {
   const [searchNewUsername, setSearchNewUsername] = useState<string>();
 
   useEffect(() => {
+    window.addEventListener("beforeunload", () => socket.emit("disconect", authContext?.user?.username));
+
     if (authContext.user) socket.emit("dashboard", authContext.user?.username);
 
     socket.on("new message", () => {
@@ -66,7 +68,10 @@ export const ContactList = () => {
 
     getChats();
 
-    return () => { socket.off("new message") };
+    return () => {
+      socket.off("new message")
+      window.removeEventListener("beforeunload", () => socket.emit("disconect", authContext?.user?.username));
+    };
   }, []);
 
   return (

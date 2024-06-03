@@ -71,7 +71,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
     if (context.token) getMessages();
     if (chatContext.actualChat) {
       socket.emit("get user online", chatContext.actualChat.user.username);
-      socket.on("get user online", response => setUserOnline(response))
+      socket.on("get user online", response => setUserOnline(response));
     };
 
     socket.emit("join chat", chatId);
@@ -82,7 +82,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
     setMessage("");
 
     return () => {
-      socket.off("message")
+      socket.off("message");
     };
   }, [context, chatContext]);
 
