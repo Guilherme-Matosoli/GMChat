@@ -1,9 +1,14 @@
+import 'dotenv/config'
 import { createClient } from "redis";
 
+const { REDIS_URL, REDIS_USERNAME, REDIS_PASSWORD } = process.env;
+
+console.log(REDIS_URL, REDIS_USERNAME, REDIS_PASSWORD)
+
 const client = createClient({
-  url: `redis://redis-13760.c80.us-east-1-2.ec2.redns.redis-cloud.com:13760`,
-  username: 'default',
-  password: 'kDEHvSEceA2MYoM2YiCjoBtsKqQKKtJi'
-})
+  url: REDIS_URL,
+  username: REDIS_USERNAME,
+  password: REDIS_PASSWORD
+});
 
 client.on("error", (err) => console.log("Redis error: " + err))
