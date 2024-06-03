@@ -32,6 +32,7 @@ export interface Message {
 export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) => {
   const [messageList, setMessageList] = useState<Message[]>();
   const [message, setMessage] = useState<string>();
+  const [userOnline, setUserOnline] = useState(false);
 
   const chatContext = useContext(ChatContext);
   const context = useContext(AuthContext);
@@ -68,6 +69,10 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
 
   useEffect(() => {
     if (context.token) getMessages();
+    if (chatContext.actualChat) {
+      socket.emit("get user online", chatContext.actualChat.user.username);
+      socket.on("get user online", response => setUserOnline(response))
+    };
 
     socket.emit("join chat", chatId);
     socket.on("message", (msg: Message) => {
@@ -100,7 +105,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
             <img src="/arrowRight.svg" />
           </Link>
 
-          <div className="profilePic">
+          <div className={userOnline ? "profilePic online" : "profilePic offline"}>
             <img
               src={randomIcon()}
               draggable="false"
@@ -114,7 +119,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
             </span>
 
             <span className="status">
-              Online
+              {userOnline ? "Online" : "Offline"}
             </span>
           </div>
         </div>

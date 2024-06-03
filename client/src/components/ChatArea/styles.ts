@@ -75,10 +75,14 @@ export const Container = styled.div`
       width: 15px;
       height: 15px;
 
-      background-color: #00EA1C;
+      background-color: red;
       border-radius: 50%;
       border: 2px solid white;
     }
+
+    .profilePic.online::before{
+      background-color: #00EA1C; 
+    };
 
     .user{
       display: flex;
