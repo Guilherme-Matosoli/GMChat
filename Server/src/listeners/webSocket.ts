@@ -16,9 +16,21 @@ interface MessageBody {
   to: string
 };
 
+const usersOnline = new Map();
+
 io.on("connection", (socket) => {
+  socket.on("disconect", username => usersOnline.delete(username));
+
+  socket.on("get user online", username => {
+    const userOnline = usersOnline.get(username);
+
+    socket.emit("get user online", userOnline ? true : false)
+  });
+
   socket.on("dashboard", (username) => {
     socket.join(username);
+
+    usersOnline.set(username, username);
   });
 
   socket.on("join chat", chat => {
