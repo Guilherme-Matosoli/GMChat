@@ -37,7 +37,7 @@ router.get('/users/:username', authMiddleware, new SearchUserController().search
 router.get('/message/list/:chatId', authMiddleware, new ListMessageController().list);
 
 //Get last message
-router.get('/message/getlast/:chatId', new GetLastMessageController().get)
+router.get('/message/getlast/:chatId', new GetLastMessageController().get);
 
 //Delete all messages
-router.delete('/message/delete/:chatId', authMiddleware, new DeleteMessageController().delete)
+router.delete('/message/delete/:chatId', authMiddleware, new DeleteMessageController().delete);

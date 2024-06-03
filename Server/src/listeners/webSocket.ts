@@ -8,6 +8,7 @@ import { io } from "../server";
 import { genId } from "../utils/genId";
 import { User } from "../database/entities/User";
 import { Chat } from "../database/entities/Chat";
+import { redisClient } from "../database/redis";
 
 interface MessageBody {
   user: User,
@@ -17,12 +18,19 @@ interface MessageBody {
 };
 
 io.on("connection", (socket) => {
-  const usersOnline = [];
+  socket.on("get user online", async (username) => {
+    await redisClient.connect()
+    const userOnline = redisClient.get(username);
 
-  socket.on("newChat", (username) => {
+    return userOnline ? true : false;
+  });
+
+  socket.on("dashboard", (username) => {
     socket.join(username);
 
-    usersOnline.push(username);
+    redisClient.connect().then(client => {
+      client.set(username, username);
+    });
   });
 
   socket.on("join chat", chat => {
@@ -45,6 +53,7 @@ io.on("connection", (socket) => {
     io.to(String(msg.room)).emit("message", messageCreated);
 
     await messageService.create(messageCreated);
-    io.to(msg.to).emit("new message");
+    io.to(String(msg.room)).emit("new message")
+    io.to(msg.to).to(msg.user.username).emit("new message");
   });
 });
