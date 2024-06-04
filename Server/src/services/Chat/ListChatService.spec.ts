@@ -1,6 +1,7 @@
 
 import { Chat } from "../../database/entities/Chat";
 import { User } from "../../database/entities/User";
+import { MessageRepository } from "../../repositories/MessageRepository";
 import { ChatRepositoryTest } from "../../repositories/in-memory/ChatRepositoryTests";
 import { UserRepositoryTests } from "../../repositories/in-memory/UserRepositoryTests";
 import { RegisterUserService } from "../User/RegisterUserService";
@@ -18,7 +19,7 @@ describe("ListChatService", () => {
   beforeAll(() => {
     registerUserService = new RegisterUserService(userRepository);
     createChatService = new CreateChatService(chatRepository, userRepository);
-    listChatService = new ListChatService(chatRepository, userRepository);
+    listChatService = new ListChatService(chatRepository, userRepository, MessageRepository);
   });
 
   it("Should list chats", async () => {
