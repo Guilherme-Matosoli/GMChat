@@ -14,7 +14,13 @@ export const HomePage = () => {
           <div className="introduction">
             <h2>INTRODUÇÃO</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget rutrum nulla, vitae porta libero. Praesent quis leo tristique, bibendum lorem vel, porttitor mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec est ante, condimentum quis viverra id, luctus at sapien. Nulla dapibus nunc sit amet felis pellentesque, quis pulvinar nunc euismod. Cras elit purus, euismod at tellus sed, dignissim aliquam felis. Aliquam quis vulputate elit. Nulla erat orci, malesuada eu consequat in, consectetur sit amet erat. Suspendisse potenti. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras dolor
+              Bem-vindo ao GMChat! Nossa plataforma de bate-papo em tempo real foi projetada para conectar pessoas de forma rápida e segura. Com autenticação integrada e mensagens instantâneas, o GMChat oferece uma experiência de comunicação direta e eficiente.
+            </p>
+            <p>
+              Você pode criar uma conta facilmente, seja registrando-se com seu e-mail ou número de telefone. Depois disso, conecte-se com amigos ou inicie uma conversa com alguém novo. O GMChat é intuitivo e fácil de usar, permitindo que você explore o bate-papo em tempo real de maneira simples e rápida.
+            </p>
+            <p>
+              Experimente o GMChat hoje mesmo e descubra como ele pode simplificar suas conversas online! 🚀
             </p>
           </div>
 
@@ -31,10 +37,11 @@ export const HomePage = () => {
           <LinkButton href="auth/login">
             COMECE A SE DIVERTIR JÁ!
           </LinkButton>
+
+          <footer>
+            Copyright © {String(new Date().getFullYear())} GM Chat Company. Todos os direitos reservados.
+          </footer>
         </div>
-        <footer>
-          Copyright © {String(new Date().getFullYear())} GM Chat Company. Todos os direitos reservados.
-        </footer>
       </Content>
     </Container>
   )

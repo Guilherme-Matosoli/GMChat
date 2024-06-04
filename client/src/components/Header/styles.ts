@@ -53,6 +53,7 @@ export const Container = styled.header`
 
   .logout img{
     width: 45px;
+    filter: invert();
   }
 
   @media(max-width: 900px){

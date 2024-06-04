@@ -2,8 +2,9 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
+display: flex;
   width: 100%;
-  height: min(800px, 100vh);
+  height: 100vh;
 
   padding: 20px 0;
 
@@ -18,9 +19,11 @@ export const Container = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 10rem;
 
     width: 100%;
+    flex: 1;
 
     margin-top: 100px;
 
@@ -91,9 +94,6 @@ export const Container = styled.main`
   }
 
   footer{
-    position: absolute;
-    bottom: 20px;
-
     margin: 0 auto;
 
     width: 100%;
