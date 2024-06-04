@@ -104,6 +104,15 @@ export const Container = styled.div`
     }
   }
 
+  &.fullscreen{
+    height: 100vh;
+    border-radius: 0;
+
+    .topSide .info .backDashboard{
+      display: flex;
+    }
+  }
+
   .topSide .options{
     display: flex;
     align-items: center;
@@ -151,6 +160,8 @@ export const Container = styled.div`
     align-items: center;
     gap: 20px;
 
+    box-sizing: border-box;
+
     padding: 10px;
 
     width: 100%;
@@ -178,7 +189,7 @@ export const Container = styled.div`
   }
 
   .sendButton img{
-    width: 50px;
+    width: 40px;
   }
 
   @media(max-width: 900px){
@@ -187,11 +198,6 @@ export const Container = styled.div`
     width: 100%;
     height: 100vh;
     border-radius: 0;
-
-    .topSide .info .backDashboard{
-      justify-content: center;
-      display: flex;
-    }
   }
 
   @media(max-width: 600px){ 

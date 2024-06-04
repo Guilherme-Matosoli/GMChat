@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 
 export const Container = styled.textarea`
+  position: relative;  
+
   width: 100%;
-  min-height: 50px;
+  height: 100%;
 
   resize: none;
 
