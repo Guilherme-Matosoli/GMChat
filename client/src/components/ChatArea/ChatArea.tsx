@@ -61,11 +61,13 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
     }
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const sendMessage = async (e: FormEvent) => {
     e.preventDefault();
 
     socket.emit("message", { room: chatId, user: context.user, message, to: chatContext.actualChat?.user.username });
     setMessage('');
+    inputRef?.current?.focus();
   };
 
   useEffect(() => {
@@ -154,6 +156,7 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
         }
         <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
           <Input
+            inputRef={inputRef}
             title=""
             name=""
             placeholder="Digite sua mensagem"
