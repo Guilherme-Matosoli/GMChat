@@ -11,14 +11,14 @@ import { AxiosResponse } from "axios";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "@/utils/alert";
 
-interface SignUpInfos{
+interface SignUpInfos {
   name: string,
   username: string,
   email: string,
   password: string
 };
 
-interface Errors{
+interface Errors {
   emailError?: string,
   userError?: string,
   others?: string
@@ -27,7 +27,7 @@ interface Errors{
 const SignUp = () => {
   const [signUpInfos, setSignUpInfos] = useState<SignUpInfos>({ name: '', username: '', email: '', password: '' });
   const setInfos = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target; 
+    const { name, value } = e.target;
 
     setErrors({ emailError: undefined, userError: undefined, others: undefined });
 
@@ -44,7 +44,7 @@ const SignUp = () => {
   const handleSignup = async (e: FormEvent) => {
     e.preventDefault();
     setPending(true);
-    try{
+    try {
       const response = await api.post('register', signUpInfos);
 
       setSignUpInfos({ name: '', username: '', email: '', password: '' });
@@ -52,13 +52,13 @@ const SignUp = () => {
 
       response.data.status == "ok" && router.push('login');
     }
-    catch(err: unknown){
-      if(typeof err == 'object' && err != null && 'response' in err){
+    catch (err: unknown) {
+      if (typeof err == 'object' && err != null && 'response' in err) {
         const errorResponse = err.response as AxiosResponse;
 
         errorResponse.data.message == 'Email already exists' && setErrors(current => ({ ...current, emailError: "Email já cadastrado." }));
         errorResponse.data.message == 'Username already exists' && setErrors(current => ({ ...current, userError: "Usuário já cadastrado." }));
-        
+
         return;
       }
 

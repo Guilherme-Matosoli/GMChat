@@ -1,4 +1,4 @@
 import { io } from "socket.io-client";
 
-
-export const socket = io("http://localhost:4000");
+const apiUrl = process.env.NEXT_PUBLIC_API_URL as string;
+export const socket = io(apiUrl);
