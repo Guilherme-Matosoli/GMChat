@@ -65,6 +65,7 @@ export const Container = styled.div`
   .messageContent{
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
+    word-wrap: break-word;
     color: black;
 
     margin-top: 10px;

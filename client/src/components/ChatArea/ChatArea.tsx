@@ -11,6 +11,7 @@ import { Message } from "../Message";
 import { TextArea } from "../TextArea";
 import Link from "next/link";
 import { ConfigButton } from "../ConfigButton";
+import { Input } from "../Input";
 
 interface ChatIdParams {
   chatId?: string,
@@ -152,7 +153,9 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
             </div>
         }
         <form className="inputArea" onSubmit={(e) => sendMessage(e)}>
-          <TextArea
+          <Input
+            title=""
+            name=""
             placeholder="Digite sua mensagem"
             onChange={e => setMessage(e.target.value)}
             value={message}
