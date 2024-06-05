@@ -85,6 +85,23 @@ export const Container = styled.section`
     border-radius: 20px;
   }
 
+  .contacts .whitoutChats{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    span{
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      text-align: center;
+
+      width: 250px;
+    }
+  }
+
 
   @media(max-width: 900px){
     border-right: none;

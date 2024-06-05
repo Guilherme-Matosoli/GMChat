@@ -22,7 +22,6 @@ export const ContactList = () => {
 
   const [pending, setPending] = useState(false);
   const getChats = async () => {
-    setPending(true);
     try {
       if (!authContext.user) return;
       const response = await api.get(`/chat/list/${authContext.user?.username}`, { headers: { 'authorization': 'Bearer ' + authContext.token } });
@@ -64,6 +63,7 @@ export const ContactList = () => {
   const [searchNewUsername, setSearchNewUsername] = useState<string>();
 
   useEffect(() => {
+    setPending(true);
     window.addEventListener("beforeunload", () => socket.emit("disconect", authContext?.user?.username));
 
     if (authContext.user) socket.emit("dashboard", authContext.user?.username);
@@ -105,8 +105,17 @@ export const ContactList = () => {
         }
 
         {
+          !pending && chats.length < 1 && !searchNewUserMode && (
+            <div className="whitoutChats" >
+              <span>
+                Nenhum chat ainda. Procure por seus amigos e comece a ser divertir já!
+              </span>
+            </div>
+          )
+        }
 
-          searchNewUserMode && !pending
+        {
+          !pending && searchNewUserMode
             ?
             <UserFinder username={searchNewUsername!} />
             :
