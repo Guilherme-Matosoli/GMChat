@@ -32,4 +32,10 @@ export const Container = styled.div`
     color: red;
     margin-left: 20px;
   }
+
+  @media(max-width: 900px){
+    input{
+      font-size: 16px;
+    }
+  }
 `;

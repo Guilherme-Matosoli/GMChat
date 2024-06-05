@@ -79,7 +79,8 @@ export const Container = styled.div`
     }
 
     .content{
-      height: 600px;
+      min-height: 620px;
+      max-height: 680px;
       padding: 0px 20px;
     }
 

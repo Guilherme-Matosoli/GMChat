@@ -35,7 +35,6 @@ export const LinkContainer = styled(Link)`
   }
 
   @media(max-width: 900px){
-    padding: 15px 75px;
     font-size: 14px;
   }
 
@@ -71,8 +70,6 @@ export const ButtonContainer = styled.button`
   }
 
   @media(max-width: 900px){
-    padding: 15px 75px;
-
     max-width: 100%;
     font-size: 14px;
   }
