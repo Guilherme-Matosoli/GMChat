@@ -5,10 +5,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string,
   name: string,
   errorDesc?: string,
-  inputRef?: React.Ref<HTMLInputElement>
 };
 
-export const Input: React.FC<InputProps> = ({ title, name, errorDesc, inputRef, ...rest }) => {
+export const Input: React.FC<InputProps> = ({ title, name, errorDesc, ...rest }) => {
   return (
     <Container>
       <label htmlFor={name}>
@@ -18,7 +17,6 @@ export const Input: React.FC<InputProps> = ({ title, name, errorDesc, inputRef, 
       <input
         type="text"
         name={name}
-        ref={inputRef}
         {...rest}
       />
 
