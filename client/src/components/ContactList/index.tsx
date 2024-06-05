@@ -29,9 +29,9 @@ export const ContactList = () => {
     }
     catch (err) {
       if (typeof err == "object" && err != null && "response" in err) {
-        const errorResponse = err.response as unknown as AxiosResponse;
+        const { data: { message } } = err.response as unknown as AxiosResponse;
 
-        if (errorResponse.data.message == "Invalid token") handleLogout();
+        if (message == "Invalid token" || message == "User without authorization" || message == "User not found") handleLogout();
       }
     }
     finally {
