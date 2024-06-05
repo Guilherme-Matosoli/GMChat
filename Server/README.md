@@ -88,7 +88,7 @@ Response:
     "id": "Chat ID",
     "userSender": "User that created chat",
 	  "userReceiver": "User who was added to the chat"
-  } 
+  }
 ```
 
 ---

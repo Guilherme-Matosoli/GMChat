@@ -89,6 +89,7 @@ const SignUp = () => {
           onChange={setInfos}
           value={signUpInfos.username}
           errorDesc={errors.userError}
+          autoCapitalize="none"
         />
       </InputWrapper>
 

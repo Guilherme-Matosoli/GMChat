@@ -91,7 +91,9 @@ export const ContactList = () => {
             searchNewUserMode ? setSearchNewUsername(e.target.value) : setSearchUserName(e.target.value)
           }}
           type="text"
+
           value={searchNewUserMode ? searchNewUsername : searchUserName}
+          autoCapitalize="none"
         />
 
         <AddButton

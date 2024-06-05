@@ -55,6 +55,8 @@ export const Container = styled.section`
 
     padding: 0 20px;
     transition: filter .5s ease;
+
+    font-size: 16px;
   }
 
   .topSide input:focus{

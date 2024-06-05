@@ -6,11 +6,14 @@ O GMChat é um projeto desenvolvido por Guilherme Matos. Encontra-se em fase de 
 
 ## Status do Projeto
 
-O GMChat está atualmente em fase de desenvolvimento ativo. Novos recursos e melhorias estão sendo adicionados regularmente.
+O GMChat está em fase beta, já em produção. Novos recursos e melhorias serão.
 
 ## Como Usar
 
-Em breve, incluiremos informações detalhadas sobre como usar o GMChat em seu projeto.
+O projeto já está em produção, caso queira acessar [clique aqui](https://gm-chat-six.vercel.app/)
+
+### Clone o repositório em sua máquina: 
+`git clone https://github.com/Guilherme-Matosoli/GMChat.git`
 
 ## Licença
 
