@@ -9,6 +9,7 @@ import { socket } from "@/services/io"
 import { UserFinder } from "../UserFinder"
 import { Chats } from "./chats"
 import { AddButton } from "../AddButton"
+import { Loading } from "../Loading"
 
 export interface Chat {
   user: User,
@@ -19,7 +20,9 @@ export const ContactList = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const authContext = useContext(AuthContext);
 
+  const [pending, setPending] = useState(false);
   const getChats = async () => {
+    setPending(true);
     try {
       if (!authContext.user) return;
       const response = await api.get(`/chat/list/${authContext.user?.username}`, { headers: { 'authorization': 'Bearer ' + authContext.token } });
@@ -31,7 +34,10 @@ export const ContactList = () => {
 
         if (errorResponse.data.message == "Invalid token") handleLogout();
       }
-    };
+    }
+    finally {
+      setPending(false);
+    }
   };
 
   const [searchUserName, setSearchUserName] = useState<string | undefined>();
@@ -95,7 +101,12 @@ export const ContactList = () => {
 
       <div className="contacts">
         {
-          searchNewUserMode
+          pending && <Loading />
+        }
+
+        {
+
+          searchNewUserMode && !pending
             ?
             <UserFinder username={searchNewUsername!} />
             :
@@ -105,7 +116,6 @@ export const ContactList = () => {
                 setFilteredChats(undefined);
                 setSearchUserName("");
               }}
-
               filteredChats={filteredChats}
               chats={chats}
             />
