@@ -177,7 +177,7 @@ export const Container = styled.div`
 
     border: none;
 
-    background-color: #e1e1e1;
+    background-color: #fff;
     border-radius: 50%;
 
     cursor: pointer;
@@ -189,7 +189,7 @@ export const Container = styled.div`
   }
 
   .sendButton img{
-    width: 40px;
+    width: 50px;
   }
 
   @media(max-width: 900px){
