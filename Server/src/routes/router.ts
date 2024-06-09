@@ -41,3 +41,11 @@ router.get('/message/getlast/:chatId', new GetLastMessageController().get);
 
 //Delete all messages
 router.delete('/message/delete/:chatId', authMiddleware, new DeleteMessageController().delete);
+
+
+
+// Render anti-sleep router
+
+router.get('/antisleep', (req, res) => {
+  res.status(200).json({ message: "Up" })
+});
