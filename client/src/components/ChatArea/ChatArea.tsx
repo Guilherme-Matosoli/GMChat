@@ -90,6 +90,15 @@ export const ChatAreaContent: React.FC<ChatIdParams> = ({ chatId, className }) =
   }, [context, chatContext]);
 
   useEffect(() => {
+    textAreaRef.current?.addEventListener("keypress", e => {
+      if (e.key == "Enter" && !e.shiftKey) {
+        e.preventDefault();
+
+        const form = document.querySelector('.inputArea') as HTMLFormElement;
+        form.submit();
+      };
+    });
+
     if (messageArea.current) messageArea.current.scrollTop = messageArea.current.scrollHeight;
 
   }, [messageList]);
