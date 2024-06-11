@@ -13,21 +13,21 @@ describe("CreateChatService", () => {
     repository = UserRepositoryTests;
     chatService = new CreateChatService(ChatRepositoryTest, repository);
     registerservice = new RegisterUserService(repository);
-  })
+  });
 
   it("Should be able to create a new chat", async () => {
-    const userSender = { 
+    const userSender = {
       name: "Testing",
       username: "abec",
       email: "testinasasssssddddddsg@a.com",
-      password: "testing123"
+      password: "testing123",
     };
 
-    const userReceiver = { 
+    const userReceiver = {
       name: "Testing",
       username: "abecas",
       email: "tasestasdasiang@s.com",
-      password: "testing123"
+      password: "testing123",
     };
 
     await registerservice.register(userSender);
@@ -35,7 +35,7 @@ describe("CreateChatService", () => {
 
     const data = {
       userSender: "abec",
-      userReceiver: "abecas"
+      userReceiver: "abecas",
     };
 
     const chat = await chatService.create(data);
@@ -46,11 +46,14 @@ describe("CreateChatService", () => {
   it("Shouldn't be able to create a new chat", async () => {
     const data = {
       userSender: "grugo",
-      userReceiver: "Jeff"
+      userReceiver: "Jeff",
     };
 
     const chat = await chatService.create(data);
 
-    expect(chat).toEqual("Can not find user sender" || "Can not find user receiver")
-  })
-})
+    expect(chat).toEqual(
+      "Can not find user sender" || "Can not find user receiver",
+    );
+  });
+});
+
