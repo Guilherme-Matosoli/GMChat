@@ -5,7 +5,7 @@ export interface IMessageRepository extends Repository<Message> {
   messages: Array<Message>
 };
 
-export const messageRepositoryTest = {
+export const MessageRepositoryTest = {
   messages: [],
   create({ id, user, content }: Message) {
     const message = { id, user, content };
