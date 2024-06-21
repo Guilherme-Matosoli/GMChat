@@ -15,7 +15,7 @@ export const io = new Server(serverHttp, {
 
 const initialize = async () => {
   setInterval(() => {
-    fetch("https://gmchat.onrender.com/antisleep")
+    fetch("https://gmchat-a91m.onrender.com/antisleep")
   }, 30000)
 
   await AppDataSource.initialize();
